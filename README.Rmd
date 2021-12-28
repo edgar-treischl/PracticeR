@@ -39,7 +39,7 @@ The book is expected for 2022, at the moment there is only one `preview` tutoria
 ```{r, eval=FALSE}
 library(PracticeR)
 ## basic example code
-practice("preview")
+#practice("preview")
 ```
 
 If everything works, the tutorial will be opened in R Studio or your browser:
