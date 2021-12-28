@@ -12,6 +12,3 @@ shows all PracticeR tutorials
 \description{
 Shows all PracticeR tutorials
 }
-\examples{
-practice_list()
-}

@@ -18,7 +18,6 @@ practice <- function(x) {
 #' @return shows all PracticeR tutorials
 #' @export
 #'
-#' @examples practice_list()
 
 practice_list <- function() {
   list.dirs(path = "inst/tutorials", full.names = FALSE, recursive = FALSE)
