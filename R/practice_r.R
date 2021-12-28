@@ -5,8 +5,6 @@
 #' @return loads the corresponding learnr tutorial
 #' @export
 #'
-#' @examples
-#' \dontrun{practice("preview")}
 
 practice <- function(x) {
   learnr::run_tutorial(x, package = "PracticeR")

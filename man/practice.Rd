@@ -15,6 +15,3 @@ loads the corresponding learnr tutorial
 \description{
 Load PracticeR tutorials
 }
-\examples{
-\dontrun{practice("preview")}
-}
