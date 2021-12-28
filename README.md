@@ -33,7 +33,7 @@ package in the background and hands over the tutorial from Practice R.
 ``` r
 library(PracticeR)
 ## basic example code
-#practice("preview")
+practice("preview")
 ```
 
 If everything works, the tutorial will be opened in R Studio or your
