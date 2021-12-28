@@ -8,7 +8,7 @@ navbar:
     - intro
     - reference
     - articles
-    right: github
+    right: [github]
 development:
   mode: auto
 authors:
