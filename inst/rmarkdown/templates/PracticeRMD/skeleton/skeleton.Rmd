@@ -1,0 +1,16 @@
+---
+title: "Practice RMD Template"
+author: "Your Name"
+output:
+  bookdown::html_document2:
+    toc: true
+    fig_caption: true
+    theme: 
+      bootswatch: minty
+---
+
+# Introduction
+
+# Analysis
+
+# Conclusions

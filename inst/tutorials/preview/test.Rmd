@@ -1,0 +1,252 @@
+---
+title: "Tutorial"
+author: "Edgar Treischl"
+date: "01.01.2020"
+output: 
+  learnr::tutorial:
+    highlight: kate
+    theme: flatly
+    
+description: >
+  Learn about the base data types in R. Explore R's data frames, and learn how
+  to interact with data frames and their columns.
+   
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(tidyverse)
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+## The Basics
+
+This tutorial shows you the five main functions from the `dplyr` package which help you to handle most of the common data manipulation tasks (see *Grolemund & Wickham 2017: R for Data Science* for a broader discussion about data management):
+
+-   *Learn how to pick* cases depending on their values with `filter()`
+-   *Sort* the data with `arrange()`
+-   *Choose* variables based on their names with `select()`
+-   *Extend* the dataset and generate new variables with `mutate()`
+-   *Summarize* variables with `summarise()`
+
+We use the implemented `mtcars` data set, so you can run the code on your own device without downloading the data. First you need access to the `dplyr` package. Please check whether `library(tidyverse)` is already installed, the latter includes the dyplr package. In case you are working with the package for the very first time, install it with the command `install.packages("tidyverse")`.
+
+More importantly, this is an interactive tutorial based on the `learnr` package, which means you can run R code as you see below, adjust the command line via the app and learn by practice.
+
+So, let us practice! To understand what we are actually doing, we need more information about the data. To see what kind of data we use, let's use the `str(mtcars)` command again.
+
+
+```{r 1, exercise=TRUE, exercise.lines = 3, exercise.eval=FALSE}
+#Run this code
+str(mtcars)
+```
+
+```{r 1-hint}
+#Ask R to provide a data description from the help file by typing ?mtcars, if you are not familiar with the data set.
+```
+
+## Filter()
+
+Use `filter()` to subset the data based on specific values.
+
+1.  Provide the name of your data frame. We are working with the `mtcars` dataset.
+2.  Use mathematical arguments to subset and filter the data. For instance, we want to create a dataframe that contains only cars with more than 100 hp (gross horsepower): `hp > 100`
+
+```{r 2, exercise=TRUE, exercise.lines = 2, exercise.eval=FALSE}
+filter(mtcars, hp > 100)
+```
+
+```{r 2-hint, exercise.lines = 6}
+## Hint 1: Use comparison operators to select observations: >, >=, <, <=, != (not equal), and == in case you want to tell R that something should be equal.
+##Hint 2: You need to provide the variable name if you combine several condition
+filter(mtcars, hp > 100 & hp < 200)
+```
+
+Dplyr filters the `mtcars` data depending on the specified conditions and returns a new data frame. Now only cars with `hp > 100` are included. Adjust the filter and use boolean operations to combine several conditions or use relational operators to select observations.
+
+### Practice
+
+1.  Now it's your turn. Adjust the code so that only cars with an manual transmission (stored in the variable am: 0 = automatic, 1 = manual) are in the dataframe.
+
+2.  Create a dataframe that include all observations, but without cars that have 8 cylinders (cyl: Number of cylinders).
+
+3.  Can you adjust the code so that two condition have to be fullfilled simultaneously. For example, choose cars with more than 100 hp and less then 200 hp.
+
+```{r 3, exercise=TRUE, exercise.lines = 6, exercise.eval=FALSE}
+filter(mtcars, hp > 100)
+```
+
+## Arrange()
+
+Sometimes it is handy if data is sorted in a specific way. You can sort or arrange the order of your data frame with `arrange()`. For example, we can arrange the cars from the lowest to the highest value of horsepower.
+
+```{r 4, exercise=TRUE, exercise.lines = 2}
+arrange (mtcars, hp)
+```
+
+```{r 4-hint}
+#Use `desc(variablename)` to order the data frame in descending order :-)
+```
+
+## Select ()
+
+In this tutorial we use a rather small dataset. In real life, you will encounter messy and large datasets. `Select()` helps us to focus on a part or a subset of the dataset, in which we are interested in. The `mtcars` data is not messy nor big, but we can learn the principals how to select columns anyway.
+
+We use `select()` to specify which variables (e.g. mpg, hp) we want to keep from the `mtcars` data. R provides us with a new data frame which contains the selected variables only.
+
+```{r 5, exercise=TRUE, exercise.lines = 1, exercise.eval=FALSE}
+select(mtcars, mpg, hp)
+```
+
+`Select ()` comes with a few handy features and functions. You can select several columns without typing each name of it. All you have to do is choose a starting and endpoint and combine them with a colon. For example, instead of the two variables `mpg, hp` we want all colums between these two. So we type: `mpg:hp`
+
+```{r 6, exercise=TRUE, exercise.lines = 1, exercise.eval=FALSE}
+select(mtcars, mpg:hp) %>% slice(1:5)
+```
+
+Probably, we want all columns in the dataframe except the variables shown in the last output. This is a very easy task since we have to adjust the code slightly and tell R we want the opposite from the set: `-(mpg:hp)`
+
+```{r 7, exercise=TRUE, exercise.lines = 1, exercise.eval=FALSE}
+select(mtcars, -(mpg:hp)) %>% slice(1:5)
+```
+
+There are more tricks how to select variables, especially with regard to the variable strings and running numbers. For example, some data sets contain serval variables to measure one construct or you have several index variables with a running number. Hopefully, your variables names start all with the same string, so you can select them by adding `starts_with("var_")` in the select command. Dplyr checks all variables names and includes variables which name start with the string `var_`. A similar command exists for the last latters. Instead of looking at the first string characters, the option `ends_with("string")` checks the end part of the string. Or the variables in your data contain a running nummer, say the variables from var1 to var10. The option `num_range("var", 1:10)` includes all ten variables with the running number.
+
+### Practice
+
+1.  Select all columns from the mtcars data between horsepower (hp) and automatic transmission (am).
+2.  Select all variables which start with a "d".
+3.  Select all variables which end with a "p".
+4.  Can you imagine how the `everything()` command works? With this command you can move a list of variables to the start of the data frame, everything else keeps its order.
+
+```{r 8, exercise=TRUE, exercise.lines = 5, exercise.eval=FALSE}
+select(mtcars, -(mpg:hp)) %>% slice(1:5)
+```
+
+```{r 8-hint, exercise.lines = 2}
+select(dataset, var1, var2, everything())
+```
+
+## Mutate ()
+
+Often, the raw data does not contain the variables in the way we need them. In such an instance we have to transform the data, generate new variables depending on the values of other variables in the dataset. Here comes `mutate()` into play, which adds a generated variable (or column) at the end of the data. First, we need a narrower dataset, otherwise you cannot see the added variables in the output. This shouldn't be problem since we have already learned how to select variables. Let's select the variables hp from the dataset and save them as a new dataframe (df).
+
+```{r 9, exercise=TRUE, exercise.lines = 3, exercise.eval=TRUE}
+df <- select(mtcars, hp, gear)
+head(df)
+```
+
+After have created a narrow dataframe, we can generate new variables for illustration. For instance, let's assume we have to report how much kilowatt (kw) a car engine has instead of gross horsepower (hp). We can use mutate to extend the dataframe, generate the new variable `kw` by multiplying `hp` with the conversion factor `0.74570`.
+
+```{r 10, exercise=TRUE, exercise.lines = 7, exercise.eval=FALSE}
+df <- select(mtcars, hp, gear) #a subset of the data set
+mutate(df,
+       kw = hp * 0.74570,
+       hp2 = kw * 1.34102,
+       hp_rounding = round(hp2, 1)
+) %>% slice(1:5)
+```
+
+Never mind of the formula to transform hp into kw, `mutate()` makes it possible to extend the data and calculate new variables. We can even generate a second variable which depends on the values of the first variable. Look at the variable `hp2`. I had no idea how to transform horsepower into kilowatt, I just googled it. To check whether Google provided me with the right information, I reversed the calcuation and save the results in the second variable `hp2`. Thus, we can generate several variables on the fly and we have access to variables which were just created. As the output shows, it seems the the formula worked. The difference between `hp` and `hp2` is probably due to rounding. Therefore, one can add a third variable `hp_rounding` and use the R function `round()`.
+
+Accordingly, I can check whether the rounding argument is right, but more importantly, you see that other R functions (see Section 2) work as well. Thus, you may use arithmetic operators (`+, -, *, /, ^`), logical comparisons(`<, <=, ==, =>, >, !`), and other functions (log, rankings, etc.) to generate new variables and insights.
+
+### Practice
+
+1.  The data set contains the weight (`wt`) of the cars saved in pounds (1000 lbs). Can you transfer the pound in kilograms (hint: `0.453592`) ?
+
+2.  Check whether the transformation is right! Reverse the calcuation and save the results in the second variable (hint: `2.205`). Use the `round()` function, but don't forget to adjust it for the weight variable.
+
+3.  Generate a logical variable that indicate whether the transmission of a car is automatic.
+
+```{r 11, exercise=TRUE, exercise.lines = 7, exercise.eval=FALSE}
+df <- select(mtcars, wt) #a subset of the data set
+mutate(df,
+       kw = hp * 0.74570,
+       hp2 = kw * 1.34102,
+       hp_rounding = round(hp2, 1)
+) %>% slice(1:5)
+```
+
+```{r 11-hint, exercise.lines = 2}
+variable_name = ifelse(variable == some_value, "TRUE", "FALSE")
+```
+
+```{r 11-solution, exercise.lines = 7}
+df <- select(mtcars, wt, am)
+mutate(df,
+       kilo = wt* 0.453592,
+       wt2 = kilo * 2.205,
+       wt_rounding = round(wt2, 3),
+       check = ifelse(am == 0, "TRUE", "FALSE")
+) %>% slice(1:5)
+```
+
+## Summarise ()
+
+We can calculate measurements of central tendencies (e.g. means, modus) with the `summarise()` function, which collapses several columns into a single row. For instance, we can calculate the mean horsepower of the cars in the dataset.
+
+```{r 12, exercise=TRUE, exercise.lines = 2, exercise.eval=FALSE}
+summarise(mtcars, mean_hp = mean(hp))
+```
+
+Thus, `summarise()` collapses the dataset and provides a summary for the mean. However, most of the time we are not interest in the overall mean. Instead, we want to compare an outcome for different groups (e.g. men vs. women). Let's say we believe that cars with different transmissions (am: 0 = automatic, 1 = manual) may differ in terms of horsepower. This is an artificial example, but we can use it to learn how to calculate group-specific means. To this end, we have to group and store our data first with `compare_group <- group_by(mtcars, am)` command, and in a second step, we have to estimate the mean value.
+
+```{r 13, exercise=TRUE, exercise.lines = 2, exercise.eval=FALSE}
+compare_group <- group_by(mtcars, am)
+summarise(compare_group, hp_mean = mean(hp))
+```
+
+As the output shows, we separated the data based on the values of `am` with the `group_by()` command. Now, we can use `summarise()` to estimate group specific results. This goes way easier with the pipe `%>%`. The pipe is a key element in the *tidyverse* package and it works for many commands. It puts the steps of your analysis forward, so you can combine several lines of code in one command. Sure, in our example we have only two lines of code, but even in this case it is easier to read if you get used to the pipe. Just say: *next or then* in case you see a `%>%`. Let's see how it works.
+
+```{r 14, exercise=TRUE, exercise.lines = 5, exercise.eval=FALSE}
+mtcars %>% 
+  group_by(am) %>% 
+  summarise(
+    mean_hp = mean(hp)
+  )
+```
+
+Thus, first we call the data frame `%>%`, group the data `%>%` call the summary function in which we can store different estimates for the groups. I guess the main idea is clear, let's see how `summarise ()` works in practice.
+
+### Practice
+
+1.  To get the number of observation per group, add `count = n()` to the summary function.
+
+2.  Make sure that your summary does not rely on an unlawful small number of observations.
+
+3.  Calculate the `median(x)` instead of the mean, add the standard deviation (`sd(x)`) and count the number of unique values (`n_distinct(x)`).
+
+```{r 15, exercise=TRUE, exercise.lines = 10, exercise.eval=FALSE}
+#adjust me!
+mtcars %>% 
+  group_by(am) %>% 
+  summarise(
+    mean_hp = mean(hp)
+  )
+```
+
+```{r 15-solution, exercise.lines = 6}
+mtcars %>% 
+  group_by(am) %>% 
+  summarise(
+    median_hp = median(hp),
+    count = n(),
+    sd = sd(hp),
+    n_distinct(hp)
+  )
+```
+
+## The End
+
+Congratulations, mission accomplished! You are now able to *handle and manipulate* data, which gives you the skills for your own analysis. Before you start on your own, let me give you a final recommendation and a short overview on the next chapters.
+
+I know from my personal experience that learning R can be awkward. Everyone makes a lot of mistakes in the beginning. It's pointless to say, but you will only learn it by writing many lines of code which probably include an abundance of mistakes and errors. So, do not think of an error as something you are doing wrong, an error points only to something you have not achieved yet. There is no need to make our lives even harder than it is. R has a big community and a lot of information is available online which helps you find a solution or at least some hints to solve your problem. There are also several cheat sheets for different R packages. For example, have a look at the `dplyr` [cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf) provided by [Garrett Grolemund](https://github.com/garrettgman), which gives a compact overview about the possibilities at your hand.
+
+In the next data management section, we dig a little bit deeper and learn more skills from the *tidyverse* package. For example, we will learn how to merge or combine two different data sets. [Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain) made several nice animations to visualize a merging process and other commands from the tidyverse package. For example, we can make a `full_join`. A `full_join` means that we combine every information from a dataset x with another dataset y, regardless whether all units appear in both data sets or not. In summary, we have learned the basics of data manipulaton. In the next section, we will advance by learning more from the *tidyverse* package such as merging and we will focus on different kind of data (e.g. relation data).
+
+![Source: Garrick Aden-Buie](images/full-join.gif)
