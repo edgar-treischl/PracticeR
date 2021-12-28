@@ -40,6 +40,3 @@ If everything works, the tutorial will be opened in R Studio or your
 browser:
 
 ![](man/figures/preview.png)
-
-All Practice R tutorials will also show up in the tutorial pane of
-RStudio after you have installed the package.

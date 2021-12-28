@@ -8,7 +8,7 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/",
+  fig.path = "man/figures/README-",
   out.width = "100%"
 )
 ```
@@ -45,7 +45,3 @@ practice("preview")
 If everything works, the tutorial will be opened in R Studio or your browser:
 
 ![](man/figures/preview.png)
-
-All Practice R tutorials will also show up in the tutorial pane of RStudio after you have installed the package.
-
-
