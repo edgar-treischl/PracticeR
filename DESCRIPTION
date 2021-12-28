@@ -6,7 +6,8 @@ Authors@R: person("Treischl", "Edgar", email = "edgar.treischl@fau.de",
                   role = c("aut", "cre"))
 Description: Practice R is a social science textbook for R beginners and PracticeR is the 
     corresponding R package that provides Learnr tutorials and templates used in the book.
-URL: https://github.com/edgar-treischl/PracticeR/
+URL: https://github.com/edgar-treischl/PracticeR/,
+    https://edgar-treischl.github.io/PracticeR/
 BugReports: https://github.com/edgar-treischl/PracticeR/issues/
 License: MIT + file LICENSE
 Encoding: UTF-8

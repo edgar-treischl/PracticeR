@@ -1,0 +1,17 @@
+url: https://edgar-treischl.github.io/PracticeR/
+template:
+  bootstrap: 5
+  bootswatch: simplex
+navbar:
+  structure:
+    left:
+    - intro
+    - reference
+    - articles
+    right: github
+development:
+  mode: auto
+authors:
+  Edgar Treischl:
+    href: https://www.edgar-treischl.de/
+
