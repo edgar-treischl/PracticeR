@@ -2,8 +2,10 @@ Package: PracticeR
 Type: Package
 Title: PracticeR provides learnr Tutorials and Templates for R Beginner
 Version: 0.0.0.9000
-Authors@R: person("Treischl", "Edgar", email = "edgar.treischl@fau.de",
-                  role = c("aut", "cre"))
+Authors@R: person("Edgar", "Treischl", 
+                email = "edgar.treischl@fau.de",
+                comment = c(ORCID = "0000-0001-5627-9125"),
+                role = c("aut", "cre"))
 Description: Practice R is a social science textbook for R beginners and PracticeR is the 
     corresponding R package that provides Learnr tutorials and templates used in the book.
 URL: https://github.com/edgar-treischl/PracticeR/,
