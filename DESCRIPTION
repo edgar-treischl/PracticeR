@@ -17,6 +17,7 @@ LazyData: true
 RoxygenNote: 7.1.2
 Imports: 
     bookdown,
+    ggplot2,
     learnr,
     rsconnect
 Suggests: 
