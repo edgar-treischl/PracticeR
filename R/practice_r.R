@@ -11,19 +11,4 @@ practice <- function(x) {
 }
 
 
-#' Shows all PracticeR tutorials
-#'
-#'
-#'
-#' @return shows all PracticeR tutorials
-#' @export
-#'
-
-practice_list <- function() {
-  list.dirs(path = "inst/tutorials", full.names = FALSE, recursive = FALSE)
-}
-
-
-
-
 
