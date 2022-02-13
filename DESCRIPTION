@@ -17,9 +17,12 @@ LazyData: true
 RoxygenNote: 7.1.2
 Imports: 
     bookdown,
+    fs,
     ggplot2,
+    httr,
     learnr,
-    rsconnect
+    rsconnect,
+    rstudioapi
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

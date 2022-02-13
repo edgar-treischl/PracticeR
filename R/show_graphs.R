@@ -16,9 +16,9 @@ show_linetypes <- function() {
     ggplot2::scale_linetype_identity() +
     ggplot2::geom_segment(data = d,
                           mapping = ggplot2::aes(x = 0, xend = 1,
-                                        y = lt_names,
-                                        yend = lt_names,
-                                        linetype = lt)) +
+                                                 y = lt_names,
+                                                 yend = lt_names,
+                                                 linetype = lt)) +
     ggplot2::labs(y = "")+
     ggplot2::theme_minimal()
 
