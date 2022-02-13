@@ -1,6 +1,6 @@
 Package: PracticeR
 Type: Package
-Title: PracticeR provides learnr Tutorials and Templates for R Beginner
+Title: PracticeR provides learnr tutorials, templates and further materials to learn R
 Version: 0.0.0.9000
 Authors@R: person("Edgar", "Treischl", 
                 email = "edgar.treischl@fau.de",
@@ -17,12 +17,16 @@ LazyData: true
 RoxygenNote: 7.1.2
 Imports: 
     bookdown,
+    dplyr,
     fs,
     ggplot2,
     httr,
     learnr,
+    magrittr,
     rsconnect,
-    rstudioapi
+    rstudioapi,
+    stringr,
+    tidyr
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

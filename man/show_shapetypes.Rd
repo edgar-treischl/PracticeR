@@ -2,13 +2,13 @@
 % Please edit documentation in R/show_graphs.R
 \name{show_shapetypes}
 \alias{show_shapetypes}
-\title{show_shapetypes Shows shape types from base R}
+\title{show_shapetypes}
 \usage{
 show_shapetypes()
 }
 \value{
-loads the corresponding learnr tutorial
+Graph
 }
 \description{
-show_shapetypes Shows shape types from base R
+Shows shape types from base R
 }

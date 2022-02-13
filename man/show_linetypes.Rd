@@ -2,13 +2,14 @@
 % Please edit documentation in R/show_graphs.R
 \name{show_linetypes}
 \alias{show_linetypes}
-\title{show_linetypes Shows line types from base R}
+\title{show_linetypes}
 \usage{
 show_linetypes()
 }
 \value{
-loads the corresponding learnr tutorial
+linetypes graph
 }
 \description{
-show_linetypes Shows line types from base R
+show_linetypes generate a graph that shows
+the line types of base R
 }

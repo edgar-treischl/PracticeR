@@ -1,8 +1,10 @@
-#' show_script returs book scripts
+#' show_script
+#' @description fetches the book script from Github
+#' opens a new script and insert the code in the script
 #'
 #' @param file insert name of script
 #'
-#' @return loads the corresponding learnr tutorial
+#' @return R script
 #' @export
 #'
 
@@ -42,6 +44,48 @@ show_script <- function(file) {
   }
 
 }
+
+
+#' show_chapters
+#' @description fetches the book script from Github
+#' opens a new script and insert the code in the script
+#'
+#'
+#' @return A tibble
+#' @export
+#'
+
+
+show_chapters <- function() {
+  author <- "edgar-treischl"
+  repository <- "Scripts_PracticeR"
+  branch <- "main"
+  gitlink2 <- "/git/trees/main?recursive=1"
+  gitlink1 <- "https://api.github.com/repos/"
+  gitsearch_name <- paste(gitlink1, author, "/", sep = "" )
+
+  gitsearch <- paste(gitsearch_name, repository, gitlink2, sep = "" )
+
+  response <- httr::GET(gitsearch)
+
+  jsonRespParsed <- httr::content(response, as="parsed")
+  modJson <- jsonRespParsed$tree
+
+  df <- dplyr::bind_rows(modJson)
+
+  chapters <- df$path
+  query_results <- tidyr::as_tibble(stringr::str_subset(chapters,
+                                                        "R\\/\\w+\\.R$"))
+
+
+  result <- dplyr::select(query_results, chapters = value)
+  result
+}
+
+
+utils::globalVariables(c("value"))
+
+
 
 
 

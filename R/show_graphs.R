@@ -1,6 +1,9 @@
-#' show_linetypes Shows line types from base R
-
-#' @return loads the corresponding learnr tutorial
+#' show_linetypes
+#'
+#' @description show_linetypes generate a graph that shows
+#' the line types of base R
+#'
+#' @return linetypes graph
 #' @export
 #'
 
@@ -24,9 +27,10 @@ show_linetypes <- function() {
 
 }
 
-#' show_shapetypes Shows shape types from base R
-
-#' @return loads the corresponding learnr tutorial
+#' show_shapetypes
+#'
+#' @description Shows shape types from base R
+#' @return Graph
 #' @export
 #'
 

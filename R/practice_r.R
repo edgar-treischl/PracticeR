@@ -1,13 +1,17 @@
-#' Load PracticeR tutorials
+#' practice
 #'
-#' @param x insert name of the tutorial
+#' @description Practice R - An interactive textbook for
+#' for the social sciences has several learnr tutorials; the
+#' practice function is a convient way to load them
 #'
-#' @return loads the corresponding learnr tutorial
+#' @param name name of the tutorial
+#'
+#' @return loads the tutorial
 #' @export
 #'
 
-practice <- function(x) {
-  learnr::run_tutorial(x, package = "PracticeR")
+practice <- function(name) {
+  learnr::run_tutorial(name, package = "PracticeR")
 }
 
 
