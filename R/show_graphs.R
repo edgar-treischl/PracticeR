@@ -43,7 +43,7 @@ show_shapetypes <- function() {
   )
 
   ggplot2::ggplot(df, ggplot2::aes(y, x)) +
-    ggplot2::geom_point(ggplot2::aes(shape = shape), size = 5, fill = "#C51717") +
+    ggplot2::geom_point(ggplot2::aes(shape = shape), size = 4, fill = "#C51717") +
     ggplot2::geom_text(ggplot2::aes(label = shape), vjust = -1.25, fontface = "bold") +
     ggplot2::scale_shape_identity()+
     ggplot2::expand_limits(y = .15)+
