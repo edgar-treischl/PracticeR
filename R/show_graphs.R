@@ -27,6 +27,7 @@ show_linetypes <- function() {
 
 }
 
+
 #' show_shapetypes
 #'
 #' @description Shows shape types from base R
@@ -35,20 +36,23 @@ show_linetypes <- function() {
 #'
 
 show_shapetypes <- function() {
-  shapes <- data.frame(
-    shape = c(0:19, 22, 21, 24, 23, 20),
-    x = 0:24 %/% 5,
-    y = -(0:24 %% 5)
+  df <- data.frame(
+    shape = c(0:24),
+    x = rep(0:-4, each = 5),
+    y = rep(0:4, times = 5)
   )
 
-  ggplot2::ggplot(shapes, ggplot2::aes(x, y)) +
-    ggplot2::geom_point(ggplot2::aes(shape = shape), size = 4, fill = "grey") +
-    ggplot2::geom_text(ggplot2::aes(label = shape), hjust = 0, nudge_x = 0.15) +
-    ggplot2::scale_shape_identity() +
-    ggplot2::expand_limits(x = 4.1) +
-    ggplot2::theme_void()
+  ggplot2::ggplot(df, ggplot2::aes(y, x)) +
+    ggplot2::geom_point(ggplot2::aes(shape = shape), size = 5, fill = "#C51717") +
+    ggplot2::geom_text(ggplot2::aes(label = shape), vjust = -1.25, fontface = "bold") +
+    ggplot2::scale_shape_identity()+
+    ggplot2::expand_limits(y = .15)+
+    ggplot2::theme_minimal()+
+    ggplot2::theme(axis.text = ggplot2::element_blank(),
+                   axis.title =  ggplot2::element_blank())
 
 }
+
 
 utils::globalVariables(c("x", "y", "shape"))
 
