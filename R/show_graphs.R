@@ -47,7 +47,7 @@ show_shapetypes <- function() {
     ggplot2::geom_text(ggplot2::aes(label = shape), vjust = -1.25,
                        size = 3.5, fontface = "bold") +
     ggplot2::scale_shape_identity()+
-    ggplot2::expand_limits(y = .3)+
+    ggplot2::expand_limits(y = .45)+
     ggplot2::theme_minimal()+
     ggplot2::theme(axis.text = ggplot2::element_blank(),
                    axis.title =  ggplot2::element_blank())
