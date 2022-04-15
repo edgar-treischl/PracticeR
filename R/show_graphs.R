@@ -4,10 +4,9 @@
 #' the line types of base R
 #'
 #' @return linetypes graph
-#' @export
-#'
 
-show_linetypes <- function() {
+
+linetypes_plot <- function() {
 
   lt <- c("blank", "solid", "dashed", "dotted", "dotdash", "longdash", "twodash")
   lt_names <- c("0 Blank", "1 Solid ", "2 Dashed", "3 Dotted", "4 Dotdash", "5 Longdash", "6 Twodash")
@@ -32,10 +31,9 @@ show_linetypes <- function() {
 #'
 #' @description Shows shape types from base R
 #' @return Graph
-#' @export
 #'
 
-show_shapetypes <- function() {
+shapetypes_plot <- function() {
   df <- data.frame(
     shape = c(0:24),
     x = rep(0:-4, each = 5),
@@ -51,6 +49,24 @@ show_shapetypes <- function() {
     ggplot2::theme_minimal()+
     ggplot2::theme(axis.text = ggplot2::element_blank(),
                    axis.title =  ggplot2::element_blank())
+
+}
+
+#' show_plot
+#'
+#' @description show_plot generate a graph that shows
+#' the line types of base R
+#' @param x Plot name
+#' @return A graph
+#' @export
+#'
+
+show_plot <- function(x) {
+  p <- switch(x,
+              linetypes = linetypes_plot(),
+              shapetypes  = shapetypes_plot()
+  )
+  p
 
 }
 
