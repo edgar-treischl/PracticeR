@@ -1,8 +1,9 @@
-#' show_script
-#' @description fetches the book script from Github
-#' opens a new script and insert the code in the script
+#' Shows the R script for each chapter of Practice R.
 #'
-#' @param file insert name of script
+#' @description The function scrapes the book script from Github
+#' opens a new script and insert the code for you.
+#'
+#' @param file Name of script
 #'
 #' @return R script
 #' @export

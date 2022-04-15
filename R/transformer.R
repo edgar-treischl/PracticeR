@@ -1,6 +1,7 @@
-#' transformer
+#' Transform a numerical input.
 #'
-#' @description Transforms a numerical variable into
+#' @description Transforms a numerical variable according to the
+#' ladder of powers and returns histrograms to display them.
 #' @param x Variable to transform
 #' @param method Transformation method
 #' @return Graph

@@ -1,12 +1,11 @@
-#' practice
+#' Load the Practice R Tutorials
 #'
-#' @description Practice R - An interactive textbook for
-#' for the social sciences has several learnr tutorials; the
-#' practice function is a convient way to load them
+#' @description Practice R comes with several learnr tutorials; the
+#' practice function is a convenient way to load them
 #'
-#' @param name name of the tutorial
+#' @param name Name of the tutorial
 #'
-#' @return loads the tutorial
+#' @return Returns the tutorial in the viewer pane
 #' @export
 #'
 

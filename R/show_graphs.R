@@ -1,10 +1,3 @@
-#' show_linetypes
-#'
-#' @description show_linetypes generate a graph that shows
-#' the line types of base R
-#'
-#' @return linetypes graph
-
 
 linetypes_plot <- function() {
 
@@ -27,11 +20,6 @@ linetypes_plot <- function() {
 }
 
 
-#' show_shapetypes
-#'
-#' @description Shows shape types from base R
-#' @return Graph
-#'
 
 shapetypes_plot <- function() {
   df <- data.frame(
@@ -52,12 +40,12 @@ shapetypes_plot <- function() {
 
 }
 
-#' show_plot
+#' Shows the linetypes and shapestypes in R
 #'
-#' @description show_plot generate a graph that shows
-#' the line types of base R
+#' @description The show_plot returns a graph that shows
+#' the line types and shape type of base R
 #' @param x Plot name
-#' @return A graph
+#' @return A ggplot2 object
 #' @export
 #'
 
