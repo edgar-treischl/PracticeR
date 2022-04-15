@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_graphs.R
 \name{show_plot}
 \alias{show_plot}
-\title{show_plot}
+\title{Shows the linetypes and shapestypes in R}
 \usage{
 show_plot(x)
 }
@@ -10,9 +10,9 @@ show_plot(x)
 \item{x}{Plot name}
 }
 \value{
-A graph
+A ggplot2 object
 }
 \description{
-show_plot generate a graph that shows
-the line types of base R
+The show_plot returns a graph that shows
+the line types and shape type of base R
 }

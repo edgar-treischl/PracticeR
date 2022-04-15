@@ -2,18 +2,17 @@
 % Please edit documentation in R/practice_r.R
 \name{practice}
 \alias{practice}
-\title{practice}
+\title{Load the Practice R Tutorials}
 \usage{
 practice(name)
 }
 \arguments{
-\item{name}{name of the tutorial}
+\item{name}{Name of the tutorial}
 }
 \value{
-loads the tutorial
+Returns the tutorial in the viewer pane
 }
 \description{
-Practice R - An interactive textbook for
-for the social sciences has several learnr tutorials; the
-practice function is a convient way to load them
+Practice R comes with several learnr tutorials; the
+practice function is a convenient way to load them
 }

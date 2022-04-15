@@ -2,17 +2,17 @@
 % Please edit documentation in R/show_script.R
 \name{show_script}
 \alias{show_script}
-\title{show_script}
+\title{Shows the R script for each chapter of Practice R.}
 \usage{
 show_script(file)
 }
 \arguments{
-\item{file}{insert name of script}
+\item{file}{Name of script}
 }
 \value{
 R script
 }
 \description{
-fetches the book script from Github
-opens a new script and insert the code in the script
+The function scrapes the book script from Github
+opens a new script and insert the code for you.
 }
