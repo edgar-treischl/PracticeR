@@ -45,3 +45,5 @@ practice("preview")
 If everything works, the tutorial will be opened in R Studio or your browser:
 
 ![](man/figures/preview.png)
+
+

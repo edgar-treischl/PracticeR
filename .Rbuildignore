@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^_pkgdown\.yml$
 ^docs$
+^vignettes/web_only$
 ^pkgdown$
 ^\.github$
 ^LICENSE\.md$
