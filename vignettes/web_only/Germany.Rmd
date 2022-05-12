@@ -1,151 +1,114 @@
 ---
-title: HTML Example Page
+title: Webscraping
 ---
 
-<table class="sortable wikitable" style="text-align:left; font-size:85%;">
+Welcome to the example website to learn web scraping with R.
+
+### An example table:
+
+<table class="sortable" style="text-align:left; font-size:85%;">
 
 <tbody><tr style="font-size:100%; text-align:right;">
 <th style="width:160px;">State</th>
 <th style="width:85px;">Capital</th>
-<th style="width:75px;">Area </th>
-<th style="width:70px;">Population (2018)</th>
-<th style="width:100px;">Nominal GDP billions EUR (2015)</th>
-<th style="width:100px;">Nominal GDP per capita EUR (2015)
-</th></tr>
+<th style="width:70px;">Population</th>
+<th style="width:100px;">Nominal GDP (in billions)</th>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Baden-W%C3%BCrttemberg" title="Baden-Württemberg">Baden-Württemberg</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Stuttgart" title="Stuttgart">Stuttgart</a></td>
-<td style="text-align:right">35,751</td>
 <td style="text-align:right">11,069,533</td>
 <td style="text-align:right">461</td>
-<td style="text-align:right">42,800
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Bavaria" title="Bavaria">Bavaria</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Munich" title="Munich">Munich</a></td>
-<td style="text-align:right">70,550</td>
 <td style="text-align:right">13,076,721</td>
 <td style="text-align:right">550</td>
-<td style="text-align:right">43,100
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Berlin" title="Berlin">Berlin</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Berlin" title="Berlin">Berlin</a></td>
-<td style="text-align:right">892</td>
 <td style="text-align:right">3,644,826</td>
 <td style="text-align:right">125</td>
-<td style="text-align:right">35,700
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Brandenburg" title="Brandenburg">Brandenburg</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Potsdam" title="Potsdam">Potsdam</a></td>
-<td style="text-align:right">29,654</td>
 <td style="text-align:right">2,511,917</td>
 <td style="text-align:right">66</td>
-<td style="text-align:right">26,500
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Bremen_(state)" title="Bremen (state)">Bremen</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Bremen" title="Bremen">Bremen</a></td>
-<td style="text-align:right">420</td>
 <td style="text-align:right">682,986</td>
 <td style="text-align:right">32</td>
-<td style="text-align:right">47,600
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Hamburg" title="Hamburg">Hamburg</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Hamburg" title="Hamburg">Hamburg</a></td>
-<td style="text-align:right">755</td>
 <td style="text-align:right">1,841,179</td>
 <td style="text-align:right">110</td>
-<td style="text-align:right">61,800
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Hesse" title="Hesse">Hesse</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Wiesbaden" title="Wiesbaden">Wiesbaden</a></td>
-<td style="text-align:right">21,115</td>
 <td style="text-align:right">6,265,809</td>
 <td style="text-align:right">264</td>
-<td style="text-align:right">43,100
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Mecklenburg-Vorpommern" title="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Schwerin" title="Schwerin">Schwerin</a></td>
-<td style="text-align:right">23,214</td>
 <td style="text-align:right">1,609,675</td>
 <td style="text-align:right">40</td>
-<td style="text-align:right">25,000
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Lower_Saxony" title="Lower Saxony">Lower Saxony</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Hanover" title="Hanover">Hanover</a></td>
-<td style="text-align:right">47,593</td>
 <td style="text-align:right">7,982,448</td>
 <td style="text-align:right">259</td>
-<td style="text-align:right">32,900
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/North_Rhine-Westphalia" title="North Rhine-Westphalia">North Rhine-Westphalia</a></td>
 <td><a href="/wiki/D%C3%BCsseldorf" title="Düsseldorf">Düsseldorf</a></td>
-<td style="text-align:right">34,113</td>
 <td style="text-align:right">17,932,651</td>
 <td style="text-align:right">646</td>
-<td style="text-align:right">36,500
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Rhineland-Palatinate" title="Rhineland-Palatinate">Rhineland-Palatinate</a></td>
 <td><a href="/wiki/Mainz" title="Mainz">Mainz</a></td>
-<td style="text-align:right">19,854</td>
 <td style="text-align:right">4,084,844</td>
 <td style="text-align:right">132</td>
-<td style="text-align:right">32,800
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Saarland" title="Saarland">Saarland</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Saarbr%C3%BCcken" title="Saarbrücken">Saarbrücken</a></td>
-<td style="text-align:right">2,569</td>
 <td style="text-align:right">990,509</td>
 <td style="text-align:right">35</td>
-<td style="text-align:right">35,400
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Saxony" title="Saxony">Saxony</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Dresden" title="Dresden">Dresden</a></td>
-<td style="text-align:right">18,416</td>
 <td style="text-align:right">4,077,937</td>
 <td style="text-align:right">113</td>
-<td style="text-align:right">27,800
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Saxony-Anhalt" title="Saxony-Anhalt">Saxony-Anhalt</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Magdeburg" title="Magdeburg">Magdeburg</a></td>
-<td style="text-align:right">20,452</td>
 <td style="text-align:right">2,208,321</td>
 <td style="text-align:right">57</td>
-<td style="text-align:right">25,200
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Schleswig-Holstein" title="Schleswig-Holstein">Schleswig-Holstein</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Kiel" title="Kiel">Kiel</a></td>
-<td style="text-align:right">15,802</td>
 <td style="text-align:right">2,896,712</td>
 <td style="text-align:right">86</td>
-<td style="text-align:right">31,200
-</td></tr>
+</tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Thuringia" title="Thuringia">Thuringia</a></td>
 <td><a href="https://de.wikipedia.org/wiki/Erfurt" title="Erfurt">Erfurt</a></td>
-<td style="text-align:right">16,202</td>
 <td style="text-align:right">2,143,145</td>
 <td style="text-align:right">57</td>
-<td style="text-align:right">26,400
-</td></tr>
-<tr>
-<td><a href="https://de.wikipedia.org/wiki/Germany" title="Germany">Germany</a></td>
-<td><a href="https://de.wikipedia.org/wiki/Berlin" title="Berlin">Berlin</a></td>
-<td style="text-align:right">357,386</td>
-<td style="text-align:right">83,019,213</td>
-<td style="text-align:right">3025</td>
-<td style="text-align:right">37,100
-</td></tr></tbody></table>
+</tr>
+</tbody></table>
 </td></tr></tbody></table>

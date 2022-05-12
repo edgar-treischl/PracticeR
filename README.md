@@ -4,9 +4,6 @@
 # PracticeR
 
 <!-- badges: start -->
-
-<img src="man/figures/sticker.png" align="right" width="250/" alt="Practice R - Edgar Treischl"/>
-
 <!-- badges: end -->
 
 Practice R is a textbook for the social sciences and contains several
