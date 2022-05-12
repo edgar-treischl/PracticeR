@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   Germany: web_only/Germany.html
   News: web_only/News.html
-last_built: 2022-05-12T15:03Z
+last_built: 2022-05-12T15:39Z
 urls:
   reference: https://edgar-treischl.github.io/PracticeR/reference
   article: https://edgar-treischl.github.io/PracticeR/articles
