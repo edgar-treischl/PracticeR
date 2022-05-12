@@ -52,6 +52,18 @@
 
 
 
+#' List of all loaded packages
+#'
+#' A vector with all loaded packages in Practice R.
+#'
+#'
+#' @docType data
+#' @keywords datasets
+#' @name packages_PR
+#' @format A data frame with 16 rows and one variables.
+#' @source Practice R
+"packages_PR"
+
 
 
 
