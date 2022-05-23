@@ -1,4 +1,4 @@
-#' Shows the R script for each chapter of Practice R.
+#' Shows all R script for each chapter of Practice R.
 #'
 #' @description The function scrapes the book script from Github
 #' opens a new script and insert the code for you.
@@ -47,9 +47,10 @@ show_script <- function(file) {
 }
 
 
-#' show_chapters
-#' @description fetches the book script from Github
-#' opens a new script and insert the code in the script
+#' Copy the R code of Practice R chapter.
+#'
+#' @description The function get the book script from Github
+#' opens a new script and insert the code in the script.
 #'
 #'
 #' @return A tibble
@@ -57,7 +58,7 @@ show_script <- function(file) {
 #'
 
 
-show_chapters <- function() {
+copy_chapter <- function() {
   author <- "edgar-treischl"
   repository <- "Scripts_PracticeR"
   branch <- "main"
@@ -85,8 +86,8 @@ show_chapters <- function() {
 
 #' Copy a Rmarkdown template.
 #'
-#' @description The function scrapes the book template from Github
-#' and opens the template as a new rmarkdown.
+#' @description The function gets the book template from Github
+#' and opens it as a new rmarkdown.
 #'
 #' @param file Name of script
 #'
@@ -94,7 +95,7 @@ show_chapters <- function() {
 #' @export
 #'
 
-template <- function(file) {
+copy_template <- function(file) {
   author <- "edgar-treischl"
   repository <- "Scripts_PracticeR"
   branch <- "main"
