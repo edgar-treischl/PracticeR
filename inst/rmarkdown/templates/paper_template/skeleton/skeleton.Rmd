@@ -10,21 +10,45 @@ output:
     #keep_tex: yes
     includes:
       before_body: "preamble.tex"
+      #in_header: header.tex
+      #after_body: after_body.tex
 
-csl: apa.csl
 
 abstract: |
   \normalsize
   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 bibliography: references.bib
+csl: apa.csl
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 library(tidyverse)
-library(palmerpenguins)
-library(gapminder)
+library(summarytools)
+library(HoRM)
+library(flextable)
+library(huxtable)
+library(dotwhisker)
+
+#Data
+data("JamesBond")
+
+bond_data <- select(JamesBond,
+                    movie = "Movie",
+                    bond = "Bond",
+                    conquests = "Conquests",
+                    martinis = "Martinis",
+                    killings = "Kills_Bond",
+                    rating = "Avg_User_IMDB")
+
+#Global chunk options
+knitr::opts_chunk$set(
+  fig.width = 6, fig.height = 4, fig.path = "images/", cache = FALSE,
+  echo = FALSE, warning = FALSE, message = FALSE, eval = TRUE
+)
+
 ```
 
 \newpage
@@ -47,25 +71,76 @@ Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit ame
 
 # Results
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua from the gapminder package [@gapminder]. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. See the table for details.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua with data from the `HoRM` package [@HoRM]. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. See the table for details.
+
+## Descriptive findings
+
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 ```{r}
-library(knitr)
-kable(head(mtcars))
+table <- descr(bond_data,
+stats = c("n.valid", "min", "mean", "max", "sd"), transpose = TRUE)
+
+table <- as.data.frame(table)
+
+#round results and add rowname to the data
+table <- table %>%
+  round(digits = 2) %>%
+  rownames_to_column(var = "Variable")
+
+#Make a flextable
+table %>%
+  flextable() %>%
+  autofit()%>%
+  fontsize(size = 12, part = "all")
+
 ```
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. For example, see \autoref{1}.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-```{r, echo=TRUE, fig.height=3, fig.cap='\\label{1}Life expectancy in Europe'}
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-library(gapminder)
+## Multvariate analysis findings
 
-gapminder %>% 
-  filter (continent == "Europe") %>%
-  ggplot(aes(x=lifeExp)) +
-  geom_density()+
-  facet_wrap(year ~ ., nrow=2)+
-  ggtitle("Europe")
+```{r}
+## Descriptive findings
+
+#Two example analysis
+m1 <- lm(rating ~ conquests, data=bond_data)
+m2 <- lm(rating ~ conquests + martinis + killings , data=bond_data)
+
+modelfits <- list("Model 1" = m1, "Model 2" = m2)
+
+
+huxreg(modelfits,
+       omit_coefs = "(Intercept)", 
+       statistics = c(`Number of observations` = "nobs",
+                      `R-squared` = "r.squared"),
+       number_format = 2,
+       note = "Note: What tells you this analysis.") %>%
+  as_flextable()%>%
+  fontsize(size = 12, part = "all")
+```
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. For example, see \autoref{Fig1}.
+
+```{r Fig1, fig.cap='\\label{Fig1}Main effects Model 1 and 2'}
+regression_plot <-  dwplot(list(m1, m2),
+                           dot_args = list(size = 2),
+                           vline = geom_vline(xintercept = 0, 
+                                              colour = "red", 
+                                              linetype = 2))+
+  ggtitle("Predicting Bond Movie Ratings")+
+  theme_minimal(base_size = 12)+
+  xlab("Coefficient Estimate") + 
+  ylab("") +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.title = element_blank()
+  ) +
+  scale_colour_grey()
+
+regression_plot
 ```
 
 # Summary
@@ -77,4 +152,3 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 \newpage
 
 # References
-
