@@ -12,6 +12,11 @@ transformer <- function(x, method=NULL) {
   name <- stringr::str_extract(name, "[$](.)+")
   name <- stringr::str_replace(name, "[$]", "")
 
+  if (is.numeric(x) == FALSE) {
+    rlang::abort("Input must be numerical.")
+    }
+
+
   order <- c("cubic", "square", "identity", "sqrt",
              "log", "1/sqrt",
              "inverse", "1/square", "1/cubic")
