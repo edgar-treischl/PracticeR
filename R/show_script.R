@@ -1,4 +1,4 @@
-#' Shows the R script for each chapter of Practice R.
+#' Shows all R script for each chapter of Practice R.
 #'
 #' @description The function scrapes the book script from Github
 #' opens a new script and insert the code for you.
@@ -47,9 +47,10 @@ show_script <- function(file) {
 }
 
 
-#' show_chapters
-#' @description fetches the book script from Github
-#' opens a new script and insert the code in the script
+#' Copy the R code of Practice R chapter.
+#'
+#' @description The function get the book script from Github
+#' opens a new script and insert the code in the script.
 #'
 #'
 #' @return A tibble
@@ -57,7 +58,7 @@ show_script <- function(file) {
 #'
 
 
-show_chapters <- function() {
+copy_chapter <- function() {
   author <- "edgar-treischl"
   repository <- "Scripts_PracticeR"
   branch <- "main"
@@ -81,6 +82,53 @@ show_chapters <- function() {
 
   result <- dplyr::select(query_results, chapters = value)
   result
+}
+
+#' Copy a Rmarkdown template.
+#'
+#' @description The function gets the book template from Github
+#' and opens it as a new rmarkdown.
+#'
+#' @param file Name of script
+#'
+#' @return Rmd
+#' @export
+#'
+
+copy_template <- function(file) {
+  author <- "edgar-treischl"
+  repository <- "Scripts_PracticeR"
+  branch <- "main"
+  gitaddress1 <- "https://raw.githubusercontent.com/"
+
+  x <- paste(gitaddress1, "/",
+             author, "/",
+             repository, "/",
+             branch, "/",
+             "Rmd/",
+             file , ".Rmd", sep ="")
+  #source_url(x)
+  response <- httr::GET(x)
+  text <- as.character(response)
+
+  test <- text == "404: Not Found"
+
+  if (test == TRUE) {
+    print("Sorry, nothing there.")
+  } else {
+    tmp <- fs::dir_create(fs::file_temp())
+    path <- paste(tmp,"/", file, ".Rmd", sep = "")
+    fs::file_create(path)
+    id <- rstudioapi::getSourceEditorContext()$id
+    rstudioapi::navigateToFile(path)
+
+    while(rstudioapi::getSourceEditorContext()$id == id){
+      next()
+      Sys.sleep(0.1) # slow down the while loop to avoid over-processing
+    }
+    id <- rstudioapi::getSourceEditorContext()$id
+    rstudioapi::insertText(text)
+  }
 }
 
 

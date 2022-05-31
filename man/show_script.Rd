@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_script.R
 \name{show_script}
 \alias{show_script}
-\title{Shows the R script for each chapter of Practice R.}
+\title{Shows all R script for each chapter of Practice R.}
 \usage{
 show_script(file)
 }
