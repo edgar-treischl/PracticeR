@@ -6,7 +6,7 @@
 
 catch_errors <- function(script) {
   tryCatch({
-    source(script, local = new.env())
+    source(script, echo = FALSE, local = new.env())
     message(paste("The file", script, "runs smoothly."))
   },
   error = function(cond){
