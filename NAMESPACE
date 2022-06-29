@@ -1,3 +1,4 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("graphics", "grid")
 importFrom("stats", "density", "dnorm", "sd")
+importFrom("utils", "capture.output")
