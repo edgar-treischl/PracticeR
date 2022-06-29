@@ -1,10 +1,10 @@
 pandoc: 2.7.3
-pkgdown: 2.0.3
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   Germany: web_only/Germany.html
   News: web_only/News.html
-last_built: 2022-05-31T06:59Z
+last_built: 2022-06-29T15:24Z
 urls:
   reference: https://edgar-treischl.github.io/PracticeR/reference
   article: https://edgar-treischl.github.io/PracticeR/articles
