@@ -4,9 +4,12 @@ title: Webscraping
 
 Welcome to the example website to learn web scraping with R.
 
-### An example table:
 
-<table class="sortable" style="text-align:left; font-size:85%;">
+<h3 id="head_id">An example table</h1>
+
+
+
+<table class="links" id="gdp" style="text-align:left; font-size:85%;">
 
 <tbody><tr style="font-size:100%; text-align:right;">
 <th style="width:160px;">State</th>
@@ -112,3 +115,24 @@ Welcome to the example website to learn web scraping with R.
 </tr>
 </tbody></table>
 </td></tr></tbody></table>
+
+
+<h3 id="head_id">A second example</h1>
+
+ <table id="company">
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+</table> 
