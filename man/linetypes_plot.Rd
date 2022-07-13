@@ -7,5 +7,5 @@
 linetypes_plot()
 }
 \description{
-Shows linetype
+linetypes_plot
 }

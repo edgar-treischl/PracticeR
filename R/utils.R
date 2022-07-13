@@ -1,5 +1,5 @@
 #' linetypes_plot
-#' @description Shows linetype
+#' @NoRd
 
 linetypes_plot <- function() {
 
@@ -22,8 +22,8 @@ linetypes_plot <- function() {
 }
 
 
-#' shapetypes_plot
-#' @description Shows shapetypes
+#' linetypes_plot
+#' @NoRd
 
 shapetypes_plot <- function() {
   df <- data.frame(

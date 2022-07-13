@@ -2,10 +2,10 @@
 % Please edit documentation in R/utils.R
 \name{shapetypes_plot}
 \alias{shapetypes_plot}
-\title{shapetypes_plot}
+\title{linetypes_plot}
 \usage{
 shapetypes_plot()
 }
 \description{
-Shows shapetypes
+linetypes_plot
 }
