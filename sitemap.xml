@@ -13,10 +13,10 @@
     <loc>https://edgar-treischl.github.io/PracticeR/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://edgar-treischl.github.io/PracticeR/articles/web_only/Germany.html</loc>
+    <loc>https://edgar-treischl.github.io/PracticeR/articles/web_only/News.html</loc>
   </url>
   <url>
-    <loc>https://edgar-treischl.github.io/PracticeR/articles/web_only/News.html</loc>
+    <loc>https://edgar-treischl.github.io/PracticeR/articles/web_only/webscraping.html</loc>
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/authors.html</loc>
@@ -47,5 +47,8 @@
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/reference/transformer.html</loc>
+  </url>
+  <url>
+    <loc>https://edgar-treischl.github.io/PracticeR/reference/unemployment.html</loc>
   </url>
 </urlset>
