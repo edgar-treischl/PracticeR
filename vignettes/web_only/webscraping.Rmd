@@ -1,0 +1,655 @@
+---
+title: Webscraping
+---
+
+Welcome to the example website to learn web scraping with R. On this website you find content such as links and tables. 
+
+```{r, echo=FALSE, eval=FALSE}
+df <- PracticeR::unemployment
+knitr::kable(df)
+```
+
+
+
+<h3 id="headt2">Unemployment as a percentage of labour force</h1>
+
+
+<table style="width:100%;" class="table" id="table1">
+<colgroup>
+<col width="24%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Country</th>
+<th align="right">2011</th>
+<th align="right">2012</th>
+<th align="right">2013</th>
+<th align="right">2014</th>
+<th align="right">2015</th>
+<th align="right">2016</th>
+<th align="right">2017</th>
+<th align="right">2018</th>
+<th align="right">2019</th>
+<th align="right">2020</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Australia</td>
+<td align="right">5.1</td>
+<td align="right">5.2</td>
+<td align="right">5.7</td>
+<td align="right">6.1</td>
+<td align="right">6.1</td>
+<td align="right">5.7</td>
+<td align="right">5.6</td>
+<td align="right">5.3</td>
+<td align="right">5.2</td>
+<td align="right">6.5</td>
+</tr>
+<tr class="even">
+<td align="left">Austria</td>
+<td align="right">4.6</td>
+<td align="right">4.9</td>
+<td align="right">5.3</td>
+<td align="right">5.6</td>
+<td align="right">5.7</td>
+<td align="right">6.0</td>
+<td align="right">5.5</td>
+<td align="right">4.8</td>
+<td align="right">4.5</td>
+<td align="right">5.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Belgium</td>
+<td align="right">7.1</td>
+<td align="right">7.5</td>
+<td align="right">8.4</td>
+<td align="right">8.5</td>
+<td align="right">8.5</td>
+<td align="right">7.8</td>
+<td align="right">7.1</td>
+<td align="right">5.9</td>
+<td align="right">5.4</td>
+<td align="right">5.5</td>
+</tr>
+<tr class="even">
+<td align="left">Canada</td>
+<td align="right">7.6</td>
+<td align="right">7.3</td>
+<td align="right">7.1</td>
+<td align="right">6.9</td>
+<td align="right">6.9</td>
+<td align="right">7.1</td>
+<td align="right">6.4</td>
+<td align="right">5.9</td>
+<td align="right">5.7</td>
+<td align="right">9.6</td>
+</tr>
+<tr class="odd">
+<td align="left">Chile</td>
+<td align="right">7.1</td>
+<td align="right">6.5</td>
+<td align="right">6.1</td>
+<td align="right">6.5</td>
+<td align="right">6.3</td>
+<td align="right">6.7</td>
+<td align="right">7.0</td>
+<td align="right">7.4</td>
+<td align="right">7.2</td>
+<td align="right">10.8</td>
+</tr>
+<tr class="even">
+<td align="left">Colombia</td>
+<td align="right">10.9</td>
+<td align="right">10.4</td>
+<td align="right">9.7</td>
+<td align="right">9.2</td>
+<td align="right">9.0</td>
+<td align="right">9.3</td>
+<td align="right">9.4</td>
+<td align="right">9.7</td>
+<td align="right">10.5</td>
+<td align="right">16.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Costa Rica</td>
+<td align="right">10.3</td>
+<td align="right">10.2</td>
+<td align="right">9.4</td>
+<td align="right">9.6</td>
+<td align="right">9.6</td>
+<td align="right">9.5</td>
+<td align="right">9.1</td>
+<td align="right">10.3</td>
+<td align="right">11.8</td>
+<td align="right">19.6</td>
+</tr>
+<tr class="even">
+<td align="left">Czech Republic</td>
+<td align="right">6.7</td>
+<td align="right">7.0</td>
+<td align="right">7.0</td>
+<td align="right">6.1</td>
+<td align="right">5.0</td>
+<td align="right">4.0</td>
+<td align="right">2.9</td>
+<td align="right">2.2</td>
+<td align="right">2.0</td>
+<td align="right">2.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Denmark</td>
+<td align="right">7.8</td>
+<td align="right">7.8</td>
+<td align="right">7.4</td>
+<td align="right">6.9</td>
+<td align="right">6.3</td>
+<td align="right">6.0</td>
+<td align="right">5.8</td>
+<td align="right">5.1</td>
+<td align="right">5.0</td>
+<td align="right">5.6</td>
+</tr>
+<tr class="even">
+<td align="left">Estonia</td>
+<td align="right">12.3</td>
+<td align="right">10.0</td>
+<td align="right">8.6</td>
+<td align="right">7.4</td>
+<td align="right">6.2</td>
+<td align="right">6.8</td>
+<td align="right">5.8</td>
+<td align="right">5.4</td>
+<td align="right">4.4</td>
+<td align="right">6.8</td>
+</tr>
+<tr class="odd">
+<td align="left">Finland</td>
+<td align="right">7.8</td>
+<td align="right">7.7</td>
+<td align="right">8.2</td>
+<td align="right">8.7</td>
+<td align="right">9.4</td>
+<td align="right">8.8</td>
+<td align="right">8.6</td>
+<td align="right">7.4</td>
+<td align="right">6.7</td>
+<td align="right">7.8</td>
+</tr>
+<tr class="even">
+<td align="left">France</td>
+<td align="right">8.8</td>
+<td align="right">9.4</td>
+<td align="right">9.9</td>
+<td align="right">10.3</td>
+<td align="right">10.4</td>
+<td align="right">10.0</td>
+<td align="right">9.4</td>
+<td align="right">9.0</td>
+<td align="right">8.4</td>
+<td align="right">8.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Germany</td>
+<td align="right">5.8</td>
+<td align="right">5.4</td>
+<td align="right">5.2</td>
+<td align="right">5.0</td>
+<td align="right">4.6</td>
+<td align="right">4.1</td>
+<td align="right">3.7</td>
+<td align="right">3.4</td>
+<td align="right">3.1</td>
+<td align="right">3.8</td>
+</tr>
+<tr class="even">
+<td align="left">Greece</td>
+<td align="right">17.9</td>
+<td align="right">24.4</td>
+<td align="right">27.5</td>
+<td align="right">26.5</td>
+<td align="right">24.9</td>
+<td align="right">23.5</td>
+<td align="right">21.5</td>
+<td align="right">19.3</td>
+<td align="right">17.3</td>
+<td align="right">16.3</td>
+</tr>
+<tr class="odd">
+<td align="left">Hungary</td>
+<td align="right">11.0</td>
+<td align="right">11.0</td>
+<td align="right">10.2</td>
+<td align="right">7.7</td>
+<td align="right">6.8</td>
+<td align="right">5.1</td>
+<td align="right">4.2</td>
+<td align="right">3.7</td>
+<td align="right">3.4</td>
+<td align="right">4.3</td>
+</tr>
+<tr class="even">
+<td align="left">Iceland</td>
+<td align="right">7.0</td>
+<td align="right">6.0</td>
+<td align="right">5.4</td>
+<td align="right">4.9</td>
+<td align="right">4.0</td>
+<td align="right">3.0</td>
+<td align="right">2.7</td>
+<td align="right">2.7</td>
+<td align="right">3.5</td>
+<td align="right">5.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Ireland</td>
+<td align="right">15.4</td>
+<td align="right">15.4</td>
+<td align="right">13.7</td>
+<td align="right">11.9</td>
+<td align="right">9.9</td>
+<td align="right">8.4</td>
+<td align="right">6.7</td>
+<td align="right">5.7</td>
+<td align="right">5.0</td>
+<td align="right">5.6</td>
+</tr>
+<tr class="even">
+<td align="left">Israel</td>
+<td align="right">5.6</td>
+<td align="right">6.9</td>
+<td align="right">6.2</td>
+<td align="right">5.9</td>
+<td align="right">5.2</td>
+<td align="right">4.8</td>
+<td align="right">4.2</td>
+<td align="right">4.0</td>
+<td align="right">3.8</td>
+<td align="right">4.3</td>
+</tr>
+<tr class="odd">
+<td align="left">Italy</td>
+<td align="right">8.4</td>
+<td align="right">10.7</td>
+<td align="right">12.1</td>
+<td align="right">12.7</td>
+<td align="right">11.9</td>
+<td align="right">11.7</td>
+<td align="right">11.2</td>
+<td align="right">10.6</td>
+<td align="right">10.0</td>
+<td align="right">9.2</td>
+</tr>
+<tr class="even">
+<td align="left">Japan</td>
+<td align="right">4.6</td>
+<td align="right">4.4</td>
+<td align="right">4.0</td>
+<td align="right">3.6</td>
+<td align="right">3.4</td>
+<td align="right">3.1</td>
+<td align="right">2.8</td>
+<td align="right">2.4</td>
+<td align="right">2.4</td>
+<td align="right">2.8</td>
+</tr>
+<tr class="odd">
+<td align="left">Korea</td>
+<td align="right">3.4</td>
+<td align="right">3.2</td>
+<td align="right">3.1</td>
+<td align="right">3.5</td>
+<td align="right">3.6</td>
+<td align="right">3.7</td>
+<td align="right">3.7</td>
+<td align="right">3.8</td>
+<td align="right">3.8</td>
+<td align="right">3.9</td>
+</tr>
+<tr class="even">
+<td align="left">Latvia</td>
+<td align="right">16.2</td>
+<td align="right">15.1</td>
+<td align="right">11.9</td>
+<td align="right">10.8</td>
+<td align="right">9.9</td>
+<td align="right">9.6</td>
+<td align="right">8.7</td>
+<td align="right">7.4</td>
+<td align="right">6.3</td>
+<td align="right">8.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Lithuania</td>
+<td align="right">15.4</td>
+<td align="right">13.4</td>
+<td align="right">11.8</td>
+<td align="right">10.7</td>
+<td align="right">9.1</td>
+<td align="right">7.9</td>
+<td align="right">7.1</td>
+<td align="right">6.2</td>
+<td align="right">6.3</td>
+<td align="right">8.5</td>
+</tr>
+<tr class="even">
+<td align="left">Luxembourg</td>
+<td align="right">4.9</td>
+<td align="right">5.1</td>
+<td align="right">5.8</td>
+<td align="right">5.9</td>
+<td align="right">6.7</td>
+<td align="right">6.3</td>
+<td align="right">5.5</td>
+<td align="right">5.6</td>
+<td align="right">5.6</td>
+<td align="right">6.8</td>
+</tr>
+<tr class="odd">
+<td align="left">Mexico</td>
+<td align="right">5.2</td>
+<td align="right">4.9</td>
+<td align="right">4.9</td>
+<td align="right">4.8</td>
+<td align="right">4.3</td>
+<td align="right">3.9</td>
+<td align="right">3.4</td>
+<td align="right">3.3</td>
+<td align="right">3.5</td>
+<td align="right">4.5</td>
+</tr>
+<tr class="even">
+<td align="left">Netherlands</td>
+<td align="right">5.0</td>
+<td align="right">5.8</td>
+<td align="right">7.2</td>
+<td align="right">7.4</td>
+<td align="right">6.9</td>
+<td align="right">6.0</td>
+<td align="right">4.8</td>
+<td align="right">3.8</td>
+<td align="right">3.4</td>
+<td align="right">3.8</td>
+</tr>
+<tr class="odd">
+<td align="left">New Zealand</td>
+<td align="right">6.0</td>
+<td align="right">6.5</td>
+<td align="right">5.9</td>
+<td align="right">5.4</td>
+<td align="right">5.4</td>
+<td align="right">5.1</td>
+<td align="right">4.7</td>
+<td align="right">4.3</td>
+<td align="right">4.1</td>
+<td align="right">4.6</td>
+</tr>
+<tr class="even">
+<td align="left">Norway</td>
+<td align="right">3.2</td>
+<td align="right">3.1</td>
+<td align="right">3.4</td>
+<td align="right">3.5</td>
+<td align="right">4.3</td>
+<td align="right">4.7</td>
+<td align="right">4.2</td>
+<td align="right">3.8</td>
+<td align="right">3.7</td>
+<td align="right">4.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Poland</td>
+<td align="right">9.6</td>
+<td align="right">10.1</td>
+<td align="right">10.3</td>
+<td align="right">9.0</td>
+<td align="right">7.5</td>
+<td align="right">6.2</td>
+<td align="right">4.9</td>
+<td align="right">3.8</td>
+<td align="right">3.3</td>
+<td align="right">3.2</td>
+</tr>
+<tr class="even">
+<td align="left">Portugal</td>
+<td align="right">12.7</td>
+<td align="right">15.5</td>
+<td align="right">16.2</td>
+<td align="right">13.9</td>
+<td align="right">12.4</td>
+<td align="right">11.1</td>
+<td align="right">8.9</td>
+<td align="right">7.0</td>
+<td align="right">6.5</td>
+<td align="right">6.8</td>
+</tr>
+<tr class="odd">
+<td align="left">Slovak Republic</td>
+<td align="right">13.6</td>
+<td align="right">14.0</td>
+<td align="right">14.2</td>
+<td align="right">13.2</td>
+<td align="right">11.5</td>
+<td align="right">9.7</td>
+<td align="right">8.1</td>
+<td align="right">6.5</td>
+<td align="right">5.8</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="even">
+<td align="left">Slovenia</td>
+<td align="right">8.2</td>
+<td align="right">8.8</td>
+<td align="right">10.1</td>
+<td align="right">9.7</td>
+<td align="right">9.0</td>
+<td align="right">8.0</td>
+<td align="right">6.6</td>
+<td align="right">5.1</td>
+<td align="right">4.4</td>
+<td align="right">5.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Spain</td>
+<td align="right">21.4</td>
+<td align="right">24.8</td>
+<td align="right">26.1</td>
+<td align="right">24.4</td>
+<td align="right">22.1</td>
+<td align="right">19.6</td>
+<td align="right">17.2</td>
+<td align="right">15.3</td>
+<td align="right">14.1</td>
+<td align="right">15.5</td>
+</tr>
+<tr class="even">
+<td align="left">Sweden</td>
+<td align="right">7.8</td>
+<td align="right">8.0</td>
+<td align="right">8.1</td>
+<td align="right">8.0</td>
+<td align="right">7.4</td>
+<td align="right">7.0</td>
+<td align="right">6.7</td>
+<td align="right">6.4</td>
+<td align="right">6.8</td>
+<td align="right">8.3</td>
+</tr>
+<tr class="odd">
+<td align="left">Switzerland</td>
+<td align="right">4.4</td>
+<td align="right">4.5</td>
+<td align="right">4.7</td>
+<td align="right">4.8</td>
+<td align="right">4.8</td>
+<td align="right">4.9</td>
+<td align="right">4.8</td>
+<td align="right">4.7</td>
+<td align="right">4.4</td>
+<td align="right">4.8</td>
+</tr>
+<tr class="even">
+<td align="left">Turkey</td>
+<td align="right">8.8</td>
+<td align="right">8.2</td>
+<td align="right">8.7</td>
+<td align="right">9.9</td>
+<td align="right">10.2</td>
+<td align="right">10.8</td>
+<td align="right">10.8</td>
+<td align="right">10.9</td>
+<td align="right">13.7</td>
+<td align="right">13.1</td>
+</tr>
+<tr class="odd">
+<td align="left">United Kingdom</td>
+<td align="right">8.1</td>
+<td align="right">8.0</td>
+<td align="right">7.6</td>
+<td align="right">6.2</td>
+<td align="right">5.4</td>
+<td align="right">4.9</td>
+<td align="right">4.4</td>
+<td align="right">4.1</td>
+<td align="right">3.8</td>
+<td align="right">4.6</td>
+</tr>
+<tr class="even">
+<td align="left">United States</td>
+<td align="right">9.0</td>
+<td align="right">8.1</td>
+<td align="right">7.4</td>
+<td align="right">6.2</td>
+<td align="right">5.3</td>
+<td align="right">4.9</td>
+<td align="right">4.4</td>
+<td align="right">3.9</td>
+<td align="right">3.7</td>
+<td align="right">8.1</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<h3 id="headt2">List of German States</h1>
+
+<table class="table" id="table2" style="text-align:left; font-size:85%;">
+
+<tbody><tr style="font-size:100%; text-align:right;">
+<th style="width:160px;">State</th>
+<th style="width:85px;">Capital</th>
+<th style="width:70px;">Population</th>
+<th style="width:100px;">Nominal GDP (in billions)</th>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Baden-W%C3%BCrttemberg" title="Baden-Württemberg">Baden-Württemberg</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Stuttgart" title="Stuttgart">Stuttgart</a></td>
+<td style="text-align:right">11,069,533</td>
+<td style="text-align:right">461</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Bavaria" title="Bavaria">Bavaria</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Munich" title="Munich">Munich</a></td>
+<td style="text-align:right">13,076,721</td>
+<td style="text-align:right">550</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Berlin" title="Berlin">Berlin</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Berlin" title="Berlin">Berlin</a></td>
+<td style="text-align:right">3,644,826</td>
+<td style="text-align:right">125</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Brandenburg" title="Brandenburg">Brandenburg</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Potsdam" title="Potsdam">Potsdam</a></td>
+<td style="text-align:right">2,511,917</td>
+<td style="text-align:right">66</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Bremen_(state)" title="Bremen (state)">Bremen</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Bremen" title="Bremen">Bremen</a></td>
+<td style="text-align:right">682,986</td>
+<td style="text-align:right">32</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Hamburg" title="Hamburg">Hamburg</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Hamburg" title="Hamburg">Hamburg</a></td>
+<td style="text-align:right">1,841,179</td>
+<td style="text-align:right">110</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Hesse" title="Hesse">Hesse</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Wiesbaden" title="Wiesbaden">Wiesbaden</a></td>
+<td style="text-align:right">6,265,809</td>
+<td style="text-align:right">264</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Mecklenburg-Vorpommern" title="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Schwerin" title="Schwerin">Schwerin</a></td>
+<td style="text-align:right">1,609,675</td>
+<td style="text-align:right">40</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Lower_Saxony" title="Lower Saxony">Lower Saxony</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Hanover" title="Hanover">Hanover</a></td>
+<td style="text-align:right">7,982,448</td>
+<td style="text-align:right">259</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/North_Rhine-Westphalia" title="North Rhine-Westphalia">North Rhine-Westphalia</a></td>
+<td><a href="/wiki/D%C3%BCsseldorf" title="Düsseldorf">Düsseldorf</a></td>
+<td style="text-align:right">17,932,651</td>
+<td style="text-align:right">646</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Rhineland-Palatinate" title="Rhineland-Palatinate">Rhineland-Palatinate</a></td>
+<td><a href="/wiki/Mainz" title="Mainz">Mainz</a></td>
+<td style="text-align:right">4,084,844</td>
+<td style="text-align:right">132</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Saarland" title="Saarland">Saarland</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Saarbr%C3%BCcken" title="Saarbrücken">Saarbrücken</a></td>
+<td style="text-align:right">990,509</td>
+<td style="text-align:right">35</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Saxony" title="Saxony">Saxony</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Dresden" title="Dresden">Dresden</a></td>
+<td style="text-align:right">4,077,937</td>
+<td style="text-align:right">113</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Saxony-Anhalt" title="Saxony-Anhalt">Saxony-Anhalt</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Magdeburg" title="Magdeburg">Magdeburg</a></td>
+<td style="text-align:right">2,208,321</td>
+<td style="text-align:right">57</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Schleswig-Holstein" title="Schleswig-Holstein">Schleswig-Holstein</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Kiel" title="Kiel">Kiel</a></td>
+<td style="text-align:right">2,896,712</td>
+<td style="text-align:right">86</td>
+</tr>
+<tr>
+<td><a href="https://de.wikipedia.org/wiki/Thuringia" title="Thuringia">Thuringia</a></td>
+<td><a href="https://de.wikipedia.org/wiki/Erfurt" title="Erfurt">Erfurt</a></td>
+<td style="text-align:right">2,143,145</td>
+<td style="text-align:right">57</td>
+</tr>
+</tbody></table>
+</td></tr></tbody></table>
+
+
+
