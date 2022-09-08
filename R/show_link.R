@@ -4,12 +4,12 @@
 #' opens the link in the browser.
 #'
 #' @param url URL name
-#'
+#' @param browse Open browser
 #' @return Prints URL
 #' @export
 #'
 
-view_link <- function(url) {
+show_link <- function(url, browse = TRUE) {
   validExamples <- c("r4ds", "pr_website", "master_shiny", "webscraping")
 
   validExamplesMsg <-
@@ -33,9 +33,17 @@ view_link <- function(url) {
                    webscraping = "https://edgar-treischl.github.io/PracticeR/articles/web_only/webscraping.html",
                    pr_website = "https://edgar-treischl.github.io/PracticeR/"
   )
-  url <- adress
-  x <- paste("Go to:", adress)
-  cat(crayon::green(cli::symbol$tick), x)
-  utils::browseURL(url)
+  if (browse == FALSE) {
+    url <- adress
+    x <- paste("Go to:", adress)
+    cat(crayon::green(cli::symbol$tick), x)
+  }
+  else {
+    url <- adress
+    x <- paste("Go to:", adress)
+    cat(crayon::green(cli::symbol$tick), x)
+    utils::browseURL(url)
+  }
+
 }
 

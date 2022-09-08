@@ -3,9 +3,9 @@
 \docType{data}
 \name{unemployment}
 \alias{unemployment}
-\title{List of all loaded packages}
+\title{Unemployment Data}
 \format{
-A data frame with 16 rows and one variables.
+A data frame with 38 rows and eleven variables.
 }
 \source{
 Practice R
@@ -14,6 +14,21 @@ Practice R
 unemployment
 }
 \description{
-A vector with all loaded packages in Practice R.
+Example data from OECD Labour Force Statistics 2011-2020
+}
+\details{
+\itemize{
+\item Country name
+\item 2011
+\item 2012
+\item 2013
+\item 2014
+\item 2015
+\item 2016
+\item 2017
+\item 2018
+\item 2019
+\item 2020
+}
 }
 \keyword{datasets}

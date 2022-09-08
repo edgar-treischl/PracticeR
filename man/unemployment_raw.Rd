@@ -3,9 +3,9 @@
 \docType{data}
 \name{unemployment_raw}
 \alias{unemployment_raw}
-\title{List of all loaded packages}
+\title{Unemployment Data Raw}
 \format{
-A data frame with 16 rows and one variables.
+An object of class \code{character} of length 1.
 }
 \source{
 Practice R
@@ -14,6 +14,6 @@ Practice R
 unemployment_raw
 }
 \description{
-A vector with all loaded packages in Practice R.
+Raw text data from OECD Labour Force Statistics 2011-2020
 }
 \keyword{datasets}
