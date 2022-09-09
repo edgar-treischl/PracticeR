@@ -1,4 +1,4 @@
-#' Opens the Browser with a link from a Practice R book.
+#' Shows Links from the Practice R Book.
 #'
 #' @description The function copies the URL and
 #' opens the link in the browser.

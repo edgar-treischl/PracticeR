@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_graphs.R
 \name{show_linetypes}
 \alias{show_linetypes}
-\title{Shows the linetypes in R}
+\title{Shows the Line Types in R}
 \usage{
 show_linetypes()
 }
@@ -11,5 +11,5 @@ A ggplot2 object
 }
 \description{
 The show_plot returns a graph that shows
-the line types of base R
+the line types in R
 }

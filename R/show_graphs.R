@@ -1,7 +1,7 @@
-#' Shows the linetypes in R
+#' Shows the Line Types in R
 #'
 #' @description The show_plot returns a graph that shows
-#' the line types of base R
+#' the line types in R
 #' @return A ggplot2 object
 #' @export
 #'
@@ -28,9 +28,9 @@ show_linetypes <- function() {
 
 }
 
-#' Shows the shapestypes in R
+#' Shows the Shape Types in R
 #'
-#' @description The show_shapetypes returns a graph that shows
+#' @description The show_shapetypes function returns a graph that shows
 #' the shape type of base R
 #' @return A ggplot2 object
 #' @export

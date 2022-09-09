@@ -2,7 +2,7 @@
 % Please edit documentation in R/transformer.R
 \name{transformer}
 \alias{transformer}
-\title{Transform a numerical input.}
+\title{Transform a Numerical Input.}
 \usage{
 transformer(x, method = NULL)
 }
@@ -15,6 +15,6 @@ transformer(x, method = NULL)
 Graph
 }
 \description{
-Transforms a numerical variable according to the
-ladder of powers and returns histrograms to display them.
+The function transforms a numerical variable according to the
+ladder of powers and displays them with histograms.
 }

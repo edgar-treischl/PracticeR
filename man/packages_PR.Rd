@@ -3,7 +3,7 @@
 \docType{data}
 \name{packages_PR}
 \alias{packages_PR}
-\title{List of packages}
+\title{List of Packages}
 \format{
 An object of class \code{character} of length 16.
 }

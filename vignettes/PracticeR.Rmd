@@ -1,0 +1,41 @@
+---
+title: "PracticeR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PracticeR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `PracticeR` package gives access to tutorials, templates, and further materials of the Practice R book. First of all, it give access to source code of the book. The `show_script()` function returns the source code for each chapter. It copies the code, opens a new R script and inserts the code for the following chapters.
+
+```{r, error=TRUE}
+library(PracticeR)
+show_script()
+```
+
+In addition, the package includes some convenient functions to learn R. For example, the `show_linetypes` function returns the line types graph.
+
+```{r}
+show_linetypes()
+```
+
+The `show_shapetypes` function returns the shape types graph.
+
+```{r}
+show_shapetypes()
+```
+
+And the `transformer()` function transforms a numerical variable according to the ladder of powers and returns histograms to inspect them.
+
+```{r}
+transformer(mtcars$mpg)
+```
+

@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_link.R
 \name{show_link}
 \alias{show_link}
-\title{Opens the Browser with a link from a Practice R book.}
+\title{Shows Links from the Practice R Book.}
 \usage{
 show_link(url, browse = TRUE)
 }

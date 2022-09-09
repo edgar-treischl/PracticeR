@@ -52,7 +52,7 @@
 
 
 
-#' List of packages
+#' List of Packages
 #'
 #' A vector with names of all packages in Practice R.
 #'
