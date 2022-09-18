@@ -18,17 +18,14 @@ show_script <- function(file) {
 
   validExamplesMsg <-
     paste0(
-      "Valid examples are: '",
+      "Please run `show_script()` with a valid file name as an argument. Valid examples are: ",
       paste(validExamples, collapse = "', '"),
       "'")
 
   # if an invalid example is given, throw an error
   if (missing(file) || !nzchar(file) ||
       !file %in% validExamples) {
-    stop(
-      'Please run `show_script()` with a valid file name as an argument.\n',
-      validExamplesMsg,
-      call. = FALSE)
+    rlang::abort(validExamplesMsg)
   }
 
   author <- "edgar-treischl"
