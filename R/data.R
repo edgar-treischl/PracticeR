@@ -52,19 +52,6 @@
 
 
 
-#' List of Packages
-#'
-#' A vector with names of all packages in Practice R.
-#'
-#'
-#' @docType data
-#' @keywords datasets
-#' @name packages_PR
-#' @source Practice R
-"packages_PR"
-
-
-
 #' Unemployment Data
 #'
 #' Example data from OECD Labour Force Statistics 2011-2020
