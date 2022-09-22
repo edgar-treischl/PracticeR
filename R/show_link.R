@@ -3,47 +3,60 @@
 #' @description The function copies the URL and
 #' opens the link in the browser.
 #'
-#' @param url URL name
+#' @param name URL name
 #' @param browse Open browser
 #' @return Prints URL
 #' @export
 #'
 
-show_link <- function(url, browse = TRUE) {
-  validExamples <- c("r4ds", "pr_website", "master_shiny", "webscraping")
-
-  validExamplesMsg <-
-    paste0(
-      "Valid examples are: '",
-      paste(validExamples, collapse = "', '"),
-      "'")
-
-  # if an invalid example is given, throw an error
-  if (missing(url) || !nzchar(url) ||
-      !url %in% validExamples) {
-    stop(
-      'Please run `view_link()` with a valid url name as an argument.\n',
-      validExamplesMsg,
-      call. = FALSE)
-  }
-
-  adress <- switch(url,
-                   r4ds = "https://r4ds.had.co.nz/",
-                   master_shiny = "https://mastering-shiny.org/index.html",
-                   webscraping = "https://edgar-treischl.github.io/PracticeR/articles/web_only/webscraping.html",
-                   pr_website = "https://edgar-treischl.github.io/PracticeR/"
+show_link <- function(name, browse = TRUE) {
+  df <- tidyr::tribble(
+    ~title, ~shortcut, ~link,
+    "R for Data Science", "r4ds", "https://r4ds.had.co.nz/",
+    "Welcome to Text Mining with R", "textmining", "https://www.tidytextmining.com/",
+    "Fundamentals of Data Visualization", "dataviz" , "https://clauswilke.com/dataviz/",
+    "bookdown: Authoring Books and ...", "bookdown", "https://bookdown.org/yihui/bookdown/",
+    "Mastering Shiny", "master_shiny","https://mastering-shiny.org/",
+    "Practice R Website", "pr_website", "https://edgar-treischl.github.io/PracticeR/",
+    "Practice R Webscraping HTML", "webscraping", "https://edgar-treischl.github.io/PracticeR/articles/web_only/webscraping.html"
   )
-  if (browse == FALSE) {
-    url <- adress
-    x <- paste("Go to:", adress)
-    cat(crayon::green(cli::symbol$tick), x)
+
+  if (name == "all") {
+    print(df)
   }
-  else {
-    url <- adress
-    x <- paste("Go to:", adress)
-    cat(crayon::green(cli::symbol$tick), x)
-    utils::browseURL(url)
+
+  if (name != "all") {
+    validExamples <- df$shortcut
+
+    validExamplesMsg <-
+      paste0(
+        "Valid examples are: '",
+        paste(validExamples, collapse = "', '"),
+        "'")
+
+    # if an invalid example is given, throw an error
+    if (missing(name) || !nzchar(name) ||
+        !name %in% validExamples) {
+      cli::cli_abort(validExamplesMsg)
+    }
+
+
+    df <- subset(df, name == shortcut)
+
+    if (browse == FALSE) {
+      url <- df$link
+      x <- paste("Go to:", url)
+      cat(crayon::green(cli::symbol$pointer), x)
+    }
+    else {
+      url <- df$link
+      x <- paste("Go to:", url)
+      cat(crayon::green(cli::symbol$tick), x)
+      utils::browseURL(url)
+    }
+
   }
 
 }
 
+utils::globalVariables(c("shortcut"))

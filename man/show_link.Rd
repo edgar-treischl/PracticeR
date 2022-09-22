@@ -4,10 +4,10 @@
 \alias{show_link}
 \title{Shows Links from the Practice R Book.}
 \usage{
-show_link(url, browse = TRUE)
+show_link(name, browse = TRUE)
 }
 \arguments{
-\item{url}{URL name}
+\item{name}{URL name}
 
 \item{browse}{Open browser}
 }

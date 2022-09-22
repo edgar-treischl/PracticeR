@@ -51,6 +51,27 @@
 
 
 
+#' A Subset of the General Social Survey data, 2018
+#'
+#' The Subset of the General Social Survey 2016
+#' See http://gss.norc.org/Get-Documentation for full
+#' documentation of the variables.
+#'
+#' \itemize{
+#' \item race. race of respondent.
+#' \item sex. respondent's sex.
+#' \item income. total family income.
+#' \item happy. general happiness.
+#' \item age. Age recoded into years.
+#' }
+#'
+#' @docType data
+#' @keywords datasets
+#' @name gssm5
+#' @format A data frame with 2538 rows and 5 variables.
+#' @source National Opinion Research Center, http://gss.norc.org.
+"gssm5"
+
 
 #' Unemployment Data
 #'
