@@ -28,16 +28,13 @@
     <loc>https://edgar-treischl.github.io/PracticeR/index.html</loc>
   </url>
   <url>
-    <loc>https://edgar-treischl.github.io/PracticeR/reference/gss_sm.html</loc>
+    <loc>https://edgar-treischl.github.io/PracticeR/reference/gssm2016.html</loc>
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/reference/gssm5.html</loc>
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://edgar-treischl.github.io/PracticeR/reference/practice.html</loc>
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/reference/show_linetypes.html</loc>
@@ -53,6 +50,9 @@
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/reference/show_shapetypes.html</loc>
+  </url>
+  <url>
+    <loc>https://edgar-treischl.github.io/PracticeR/reference/show_tutorial.html</loc>
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/reference/transformer.html</loc>
