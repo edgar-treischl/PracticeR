@@ -3,7 +3,7 @@
 \docType{data}
 \name{gssm5}
 \alias{gssm5}
-\title{A Subset of the General Social Survey data, 2018}
+\title{A Subset of the General Social Survey data, 2016}
 \format{
 A data frame with 2538 rows and 5 variables.
 }

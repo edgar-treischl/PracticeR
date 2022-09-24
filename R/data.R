@@ -1,4 +1,4 @@
-#' General Social Survey data, 2018
+#' General Social Survey data, 2016
 #'
 #' The General Social Survey 2016
 #' See http://gss.norc.org/Get-Documentation for full
@@ -44,14 +44,14 @@
 #'
 #' @docType data
 #' @keywords datasets
-#' @name gss_sm
+#' @name gssm2016
 #' @format A data frame with 2538 rows and 26 variables.
 #' @source National Opinion Research Center, http://gss.norc.org.
-"gssm2018"
+"gssm2016"
 
 
 
-#' A Subset of the General Social Survey data, 2018
+#' A Subset of the General Social Survey data, 2016
 #'
 #' The Subset of the General Social Survey 2016
 #' See http://gss.norc.org/Get-Documentation for full
