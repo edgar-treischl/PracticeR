@@ -1,6 +1,6 @@
 #' General Social Survey data, 2016
 #'
-#' The General Social Survey 2016
+#' The General Social Survey 2016, adopted by Healy (2019) <ISBN 978-0691181622>.
 #' See http://gss.norc.org/Get-Documentation for full
 #' documentation of the variables.
 #'
