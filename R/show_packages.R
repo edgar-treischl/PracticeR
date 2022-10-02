@@ -42,7 +42,15 @@ show_packages <- function(file) {
   text <- text[!is.na(text)]
   text <- stringr::str_extract(text, "\\(\\w+")
   text <- stringr::str_extract(text, "\\w+")
-  package_name <- stringi::stri_unique(text)
+
+  points <- file$text
+  points <- stringr::str_extract(points, "\\w+\\::\\w+")
+  points <- points[!is.na(points)]
+  points <- stringr::str_extract(points, "\\w+")
+
+
+  package_name <- c(text, points)
+  package_name <- stringi::stri_unique(package_name)
   package_name <- stringr::str_sort(package_name)
   package_name
 
