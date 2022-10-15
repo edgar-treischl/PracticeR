@@ -26,10 +26,14 @@ show_link <- function(name, browse = TRUE) {
     "R Markdown Cookbook", "rmarkdown_cookbook", "https://bookdown.org/yihui/rmarkdown-cookbook/",
     "bookdown_website", "bookdown_website", "https://bookdown.org/",
     "ColorBrewer", "color_brewer", "https://colorbrewer2.org/",
-    "TidyTuesday", "tidy_tuesday", "https://dplyr.tidyverse.org/",
+    "TidyTuesday", "tidy_tuesday", "https://github.com/rfordatascience/tidytuesday",
+    "R Packages", "r_packages", "https://r-pkgs.org/",
+    "Hands-On Programming with R", "hands_on_R", "https://rstudio-education.github.io/hopr/",
     "ggplot2 extension", "ggplot2_ext", "https://exts.ggplot2.tidyverse.org/",
     "What They Forgot to Teach You About R", "forgot_teach", "https://rstats.wtf/",
     "Practice R Website", "pr_website", "https://edgar-treischl.github.io/PracticeR/",
+    "Practice R Repository", "pr_github", "https://github.com/edgar-treischl/PracticeR/",
+    "Penguins Repository", "penguins_report", "https://github.com/edgar-treischl/penguins_report.git",
     "Practice R Webscraping HTML", "webscraping", "https://edgar-treischl.github.io/PracticeR/articles/web_only/webscraping.html"
   )
 
@@ -61,8 +65,9 @@ show_link <- function(name, browse = TRUE) {
 
     if (browse == FALSE) {
       url <- df$link
-      x <- paste("Go to:", url)
-      cat(crayon::green(cli::symbol$pointer), x)
+      return(url)
+      #x <- paste("Go to:", url)
+      #cat(crayon::green(cli::symbol$pointer), x)
     }
     else {
       url <- df$link

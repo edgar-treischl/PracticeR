@@ -1,0 +1,75 @@
+---
+title: "Title"
+subtitle: "Subtitle"
+author: "Author Name"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    seal: true
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+      titleSlideClass: [center, middle]
+      
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+```
+
+
+
+
+
+
+
+---
+# Inhalte der ersten Sitzung
+
+## 1. Ablauf und Inhalte der Lehrveranstaltung
+## 2. Prüfungsleistung
+## 3. Digitale Lehre
+
+
+
+---
+
+# 1. Ablauf und Inhalte
+
+## Ablauf
+
+- Für jede Sitzung wird ein Online Modul zur Verfügung gestellt (StudOn).
+
+- Online Module beinhalten Screencasts, Audio und weitere digitale Elemente.
+
+- Module sind auch als PDF verfügbar.
+
+- Für allgemeine Fragen findest Du auf Studon ein Forum.
+
+## Ziel ist es ...
+
+... sich im Laufe des Semesters mit Hilfe der Online Module in ausgewählte Themenblöcke der empirischen Bildungsforschung einzuarbeiten.
+
+
+
+---
+
+
+## Themenblock I: Grundlagen
+
+1. Einführung und Formalia
+2. Methoden Bootcamp
+3. Zentrale Befunde der EBF
+4. Theorien der EBF
+5. Soziale Herkunft
+
+## Themenblock II: Anwendungsgebiete
+
+1. Evaluationsparadigma der EBF
+2. Effekte der Klassengröße
+3. Maßnahmen zur Reduktion sozialer Herkunftseffekte
+4. Effekte von Studiengebühren
