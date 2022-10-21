@@ -2,28 +2,6 @@ library(tidyverse)
 library(palmerpenguins)
 
 
-knitr::opts_chunk$set(echo = FALSE)
-
-#options(max.print = 100)
-options(tibble.print_max = 25, tibble.print_min = 5)
-
-#knitr::opts_chunk$set(echo = FALSE)
-
-
-
-
-
-
-theme_set(theme_minimal()) # sets a default ggplot theme
-
-#data###
-
-knitr::opts_chunk$set(tidy = "styler")
-
-
-
-knitr::include_graphics('images/Fig0101.png')
-
 #Use R as a calculator:
 1 + 2
 
