@@ -18,7 +18,7 @@ show_script <- function(file) {
 
   validExamplesMsg <-
     paste0(
-      "Please run `show_script()` with a valid file name as an argument. Valid examples are: ",
+      "Please run `show_script()` with a valid file name as an argument. Valid examples are: '",
       paste(validExamples, collapse = "', '"),
       "'")
 
