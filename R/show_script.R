@@ -11,9 +11,9 @@
 
 show_script <- function(file) {
   validExamples <- list.files(system.file("scripts", package = "PracticeR"))
-  validExamples <- stringr::str_split_fixed(validExamples, n = 2, pattern = ".R")
-  validExamples <- validExamples[,1]
-  validExamples <- stringr::str_sort(validExamples)
+  #validExamples <- stringr::str_split_fixed(validExamples, n = 2, pattern = ".R")
+  #validExamples <- validExamples[,1]
+  #validExamples <- stringr::str_sort(validExamples)
 
 
   validExamplesMsg <-
