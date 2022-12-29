@@ -73,7 +73,7 @@ transformer <- function(x, method=NULL) {
     df <- dplyr::filter(df, .data$transform == method)
 
     ggplot2::ggplot(df, ggplot2::aes(y)) +
-      ggplot2::geom_histogram(ggplot2::aes(y = ..density..), bins = 20) +
+      ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)), bins = 20) +
       ggplot2::geom_line(ggplot2::aes(grid, density), col = "red")+
       ggplot2::labs(
         title = paste0(method, "(", name, ")"),
@@ -132,7 +132,7 @@ transformer <- function(x, method=NULL) {
 
 
     ggplot2::ggplot(df, ggplot2::aes(y)) +
-      ggplot2::geom_histogram(ggplot2::aes(y = ..density..), bins = 20) +
+      ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)), bins = 20) +
       ggplot2::geom_line(ggplot2::aes(grid, density), col = "red")+
       ggplot2::facet_wrap(~ .data$transform, scales = "free")+
       ggplot2::labs(title = paste(name, "transformed"),
@@ -143,4 +143,4 @@ transformer <- function(x, method=NULL) {
 
 }
 
-utils::globalVariables(c(".data", "..density.."))
+utils::globalVariables(c(".data"))

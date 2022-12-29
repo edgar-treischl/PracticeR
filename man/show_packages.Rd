@@ -4,10 +4,12 @@
 \alias{show_packages}
 \title{Returns Packages used in Practice R}
 \usage{
-show_packages(file)
+show_packages(file, insert = TRUE)
 }
 \arguments{
 \item{file}{Name of script}
+
+\item{insert}{If TRUE the libraries will be insert in an R Script}
 }
 \value{
 A character vector

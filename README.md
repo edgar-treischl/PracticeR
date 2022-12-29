@@ -1,39 +1,39 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# PracticeR
+# PracticeR <img src="man/figures/logo.png" align="right" width="200" alt="PracticeR - Edgar Treischl"/>
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/edgar-treischl/PracticeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/edgar-treischl/PracticeR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Practice R is a textbook for the social sciences and contains several
-online tutorials based on the `learnr` package. The corresponding
-package `PracticeR` gives access to the tutorials of the book and
-provides further materials and templates to learn R.
+Many students learn to analyze data using commercial packages, even
+though there is an open-source software with cutting-edge possibilities:
+R, a programming language with countless cool features for applied
+empirical research.
+
+Practice R introduces R to social science students, inspiring them to
+consider R as an excellent choice. In a non-technical pragmatic way,
+this book covers all typical steps of applied empirical research. Learn
+how to prepare, analyze, and visualize data in R. Discover how to
+collect data, generate reports, or automate error-prone tasks.
+
+The book is accompanied by an R package. This provides further learning
+materials that include interactive tutorials, challenging you with
+typical problems of applied research. This way, you can immediately
+practice the knowledge you have learned.
+
+The package also includes the source code of each chapter and templates
+that help to create reports. Practice R has social science students in
+mind, nonetheless a broader audience may use Practice R to become a
+proficient R user.
 
 ## Installation
 
-You can install a preview version of PracticeR from my github account:
+You can install a preview version of PracticeR from my GitHub account:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("edgar-treischl/PracticeR")
 ```
-
-## Example
-
-The book is expected for 2022, at the moment there is only one `preview`
-tutorial available. To load a specific tutorial, insert the
-corresponding name in the `practice` function, which calls the `learnr`
-package in the background and hands over the tutorial from Practice R.
-
-``` r
-library(PracticeR)
-## basic example code
-practice("preview")
-```
-
-If everything works, the tutorial will be opened in R Studio or your
-browser:
-
-![](man/figures/preview.png)

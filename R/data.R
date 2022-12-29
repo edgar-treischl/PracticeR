@@ -44,10 +44,10 @@
 #'
 #' @docType data
 #' @keywords datasets
-#' @name gssm2016
+#' @name gss2016
 #' @format A data frame with 2538 rows and 26 variables.
 #' @source National Opinion Research Center, http://gss.norc.org.
-"gssm2016"
+"gss2016"
 
 
 
@@ -67,10 +67,10 @@
 #'
 #' @docType data
 #' @keywords datasets
-#' @name gssm5
+#' @name gss5
 #' @format A data frame with 2538 rows and 5 variables.
 #' @source National Opinion Research Center, http://gss.norc.org.
-"gssm5"
+"gss5"
 
 
 #' Unemployment Data

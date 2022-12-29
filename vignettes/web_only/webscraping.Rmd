@@ -550,7 +550,7 @@ knitr::kable(df)
 <th style="width:160px;">State</th>
 <th style="width:85px;">Capital</th>
 <th style="width:70px;">Population</th>
-<th style="width:100px;">Nominal GDP (in billions)</th>
+<th style="width:100px;">GDP (in billions)</th>
 </tr>
 <tr>
 <td><a href="https://de.wikipedia.org/wiki/Baden-W%C3%BCrttemberg" title="Baden-Württemberg">Baden-Württemberg</a></td>
@@ -651,5 +651,21 @@ knitr::kable(df)
 </tbody></table>
 </td></tr></tbody></table>
 
+
+
+```{r, eval=FALSE, echo=FALSE}
+#library(readr)
+#human_development_index <- #read_csv("~/Downloads/human-development-index.csv")
+
+#head(human_development_index)
+
+# df <- human_development_index |> 
+#   dplyr::filter(Year == 2021)|>
+#   dplyr::select(country = Entity,
+#                 year = Year,
+#                 code = Code,
+#                 hdi = `Human Development Index`)
+# knitr::kable(df)
+```
 
 

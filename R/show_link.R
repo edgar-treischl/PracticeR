@@ -1,4 +1,4 @@
-#' Shows Links from the Practice R Book.
+#' Shows the links from the Practice R Book.
 #'
 #' @description The function copies the URL and
 #' opens the link in the browser.
@@ -42,7 +42,8 @@ show_link <- function(name, browse = TRUE) {
 
 
   if (name == "all") {
-    print(df)
+    x <- as.data.frame(df)
+    print(x)
   }
 
   if (name != "all") {
