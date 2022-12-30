@@ -28,10 +28,10 @@
     <loc>https://edgar-treischl.github.io/PracticeR/index.html</loc>
   </url>
   <url>
-    <loc>https://edgar-treischl.github.io/PracticeR/reference/gssm2016.html</loc>
+    <loc>https://edgar-treischl.github.io/PracticeR/reference/gss2016.html</loc>
   </url>
   <url>
-    <loc>https://edgar-treischl.github.io/PracticeR/reference/gssm5.html</loc>
+    <loc>https://edgar-treischl.github.io/PracticeR/reference/gss5.html</loc>
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/reference/index.html</loc>
@@ -44,6 +44,9 @@
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/reference/show_packages.html</loc>
+  </url>
+  <url>
+    <loc>https://edgar-treischl.github.io/PracticeR/reference/show_packages_all.html</loc>
   </url>
   <url>
     <loc>https://edgar-treischl.github.io/PracticeR/reference/show_script.html</loc>
