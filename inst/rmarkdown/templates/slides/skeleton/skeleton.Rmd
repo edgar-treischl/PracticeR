@@ -1,7 +1,7 @@
 ---
 title: "Title"
 subtitle: "Subtitle"
-author: "Author Name"
+author: "Author"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
@@ -19,57 +19,132 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 
+#Knitr options
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+
+#sets a default ggplot theme
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 20)) 
+
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+
 ```
 
 
 
+# Use your Markdown skills to create a presentation:
 
+## For example:
+
+## 1. Create 
+## 2. a numbered 
+## 3. list
+
+---
+# Insert images
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Mudra-Naruto-KageBunshin.svg" style="width: 50%"/>
+
+
+---
+# Columns
+
+.pull-left[
+...
+![](http://bit.ly/momtocat)
+]
+.pull-right[
+...
+![](http://bit.ly/momtocat)
+]
 
 
 
 ---
-# Inhalte der ersten Sitzung
+background-image: url(`r xaringan:::karl`)
+background-position: 50% 50%
+class: center, bottom, inverse
 
-## 1. Ablauf und Inhalte der Lehrveranstaltung
-## 2. Prüfungsleistung
-## 3. Digitale Lehre
+# Insert background images
+
+
+---
+class: inverse, middle, center
+
+# Insert your R skills 
+## (and inverse colors 😊)
+
+
+---
+background-image: url(https://allisonhorst.github.io/palmerpenguins/logo.png)
+background-position: 90% 5%
+background-size: 10%
+
+
+# For example: The Palmer Penguins
+
+```{r warning=FALSE, message=FALSE}
+library(palmerpenguins)
+library(tidyverse)
+```
+
+```{r, R.options=list(width = 70)}
+glimpse(penguins)
+```
+
+
+---
+# Insert tables
+
+
+```{r}
+knitr::kable(head(penguins[, 1:4]), format = 'html')
+```
+
+
+---
+## Highlight code and display code and output
+
+.pull-left[
+
+### I used this code:
+
+```{r plot-last, fig.show = 'hide'}
+
+ggplot(penguins, 
+       aes(x=bill_depth_mm)) +
+  geom_histogram(colour="black", 
+                 fill="white") #<<
+
+
+```
+]
+.pull-right[
+### The result:
+```{r ref.label = 'plot-last', echo = FALSE}
+```
+]
+
+
+---
+## Themes
+
+The package comes with many predefined CSS themes:
+
+```{r, R.options=list(width = 70)}
+names(xaringan:::list_css())
+```
 
 
 
 ---
+## Themes
 
-# 1. Ablauf und Inhalte
+Add the `css` option in the YAML (without the `.css` extensions). For example:
 
-## Ablauf
-
-- Für jede Sitzung wird ein Online Modul zur Verfügung gestellt (StudOn).
-
-- Online Module beinhalten Screencasts, Audio und weitere digitale Elemente.
-
-- Module sind auch als PDF verfügbar.
-
-- Für allgemeine Fragen findest Du auf Studon ein Forum.
-
-## Ziel ist es ...
-
-... sich im Laufe des Semesters mit Hilfe der Online Module in ausgewählte Themenblöcke der empirischen Bildungsforschung einzuarbeiten.
+```yaml
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+```
 
 
-
----
-
-
-## Themenblock I: Grundlagen
-
-1. Einführung und Formalia
-2. Methoden Bootcamp
-3. Zentrale Befunde der EBF
-4. Theorien der EBF
-5. Soziale Herkunft
-
-## Themenblock II: Anwendungsgebiete
-
-1. Evaluationsparadigma der EBF
-2. Effekte der Klassengröße
-3. Maßnahmen zur Reduktion sozialer Herkunftseffekte
-4. Effekte von Studiengebühren
