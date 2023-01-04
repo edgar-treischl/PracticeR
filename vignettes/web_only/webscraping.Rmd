@@ -11,7 +11,7 @@ knitr::kable(df)
 
 
 
-<h3 id="headt2">Unemployment as a percentage of labour force</h1>
+<h2 id="head">Unemployment as a percentage of labour force</h2>
 
 
 <table style="width:100%;" class="table" id="table1">
@@ -542,12 +542,12 @@ knitr::kable(df)
 
 
 
-<h3 id="headt2">List of German States</h1>
+<h2 id="head2">List of German States</h2>
 
-<table class="table" id="table2" style="text-align:left; font-size:85%;">
+<table class="table" id="table2" style="text-align:right;">
 
 <tbody><tr style="font-size:100%; text-align:right;">
-<th style="width:160px;">State</th>
+<th style="width:160px;" style="text-align:left;">State</th>
 <th style="width:85px;">Capital</th>
 <th style="width:70px;">Population</th>
 <th style="width:100px;">GDP (in billions)</th>
