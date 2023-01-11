@@ -2,6 +2,10 @@ url: https://edgar-treischl.github.io/PracticeR/
 template:
   bootstrap: 5
   bootswatch: simplex
+  bslib:
+    base_font: {google: "Lato"}
+    heading_font: {google: "Lato"}
+
 navbar:
   structure:
     left:
