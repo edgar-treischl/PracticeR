@@ -1,7 +1,7 @@
-#' Shows R Scripts of the Practice R book.
+#' Shows an R Script of the Practice R book.
 #'
-#' @description The function scrapes the book script from Github
-#' opens a new script and insert the code for you.
+#' @description The function scrapes the book script from GitHub,
+#' opens a new script, and inserts the code in RStudio.
 #'
 #' @param file Name of script
 #'

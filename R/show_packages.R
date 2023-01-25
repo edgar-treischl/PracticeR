@@ -1,8 +1,8 @@
-#' Returns Packages used in Practice R
+#' Returns the names of used R Packages in Practice R
 #'
 #' @description The show_packages returns a character vector with
 #' package names used in Practice R
-#' @param file Name of script
+#' @param file Name of script file
 #' @param insert If TRUE the libraries will be insert in an R Script
 #' @return A character vector
 #' @export
@@ -64,9 +64,9 @@ show_packages <- function(file, insert = TRUE) {
 }
 
 
-#' Returns All Packages used in Practice R
+#' Returns All Packages Names used in Practice R
 #'
-#' @description The show_packages returns a character vector with
+#' @description The returns a character vector with
 #' all package names used in Practice R
 #' @return A character vector
 #' @export

@@ -2,7 +2,7 @@
 #'
 #' @description The function transforms a numerical variable according to the
 #' ladder of powers and displays them with histograms.
-#' @param x Variable to transform
+#' @param x Numerical variable
 #' @param method Transformation method
 #' @return Graph
 #'
