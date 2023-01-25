@@ -25,6 +25,7 @@ show_links <- function() {
     "ColorBrewer", "color_brewer", "https://colorbrewer2.org/",
     "TidyTuesday", "tidy_tuesday", "https://github.com/rfordatascience/tidytuesday",
     "R Packages", "r_packages", "https://r-pkgs.org/",
+    "Regression and Other Stories", "regression", "https://avehtari.github.io/ROS-Examples/",
     "Hands-On Programming with R", "hands_on_R", "https://rstudio-education.github.io/hopr/",
     "ggplot2 extension", "ggplot2_ext", "https://exts.ggplot2.tidyverse.org/",
     "What They Forgot to Teach You About R", "forgot_teach", "https://rstats.wtf/",
