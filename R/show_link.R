@@ -11,7 +11,7 @@ show_links <- function() {
   links_pr <- tidyr::tribble(
     ~title, ~shortcut, ~link,
     "R for Data Science", "r4ds", "https://r4ds.had.co.nz/",
-    "Welcome to Text Mining with R", "textmining", "https://www.tidytextmining.com/",
+    "Welcome to Text Mining with R", "text_mining", "https://www.tidytextmining.com/",
     "bookdown: Authoring Books and ...", "bookdown", "https://bookdown.org/yihui/bookdown/",
     "Mastering Shiny", "master_shiny","https://mastering-shiny.org/",
     "dplyr website", "dplyr", "https://dplyr.tidyverse.org/",
