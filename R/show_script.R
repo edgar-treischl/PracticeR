@@ -1,4 +1,4 @@
-#' Shows an R Script of the Practice R book.
+#' Shows an R Script of the Practice R Book.
 #'
 #' @description The function scrapes the book script from GitHub,
 #' opens a new script, and inserts the code in RStudio.
@@ -40,12 +40,12 @@ show_script <- function(file) {
              "R/",
              file , ".R", sep ="")
   #source_url(x)
-  response <- try(httr::GET(x), silent=TRUE)
-  online <- class(response) == "try-error"
+  online <- curl::has_internet()
+  #online <- class(response) == "try-error"
 
 
   #test <- text == "404: Not Found"
-  if (online == TRUE) {
+  if (online == FALSE) {
     print("There is internet connection, go online for the lastest version.")
     tmp <- fs::dir_create(fs::file_temp())
     #path <- paste(tmp,"/", file, "_script.R", sep = "")
@@ -61,6 +61,7 @@ show_script <- function(file) {
     # id <- rstudioapi::getSourceEditorContext()$id
     # rstudioapi::insertText(text)
   } else {
+    response <- try(httr::GET(x), silent=TRUE)
     text <- as.character(response)
     tmp <- fs::dir_create(fs::file_temp())
     path <- paste(tmp,"/", file, "_script.R", sep = "")

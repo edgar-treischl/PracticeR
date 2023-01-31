@@ -19,6 +19,7 @@ Imports:
     bookdown,
     cli,
     crayon,
+    curl,
     dplyr,
     fs,
     ggplot2,

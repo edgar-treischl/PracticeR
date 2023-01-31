@@ -1,4 +1,4 @@
-#' All links from the Practice R Book.
+#' All Links from the Practice R Book.
 #'
 #' @description The function has no input
 #' and returns all links from Practice R
@@ -40,7 +40,7 @@ show_links <- function() {
 }
 
 
-#' Get a link from the Practice R Book.
+#' Get a Link from the Practice R Book.
 #'
 #' @description The function copies the URL and
 #' opens the link in the browser.

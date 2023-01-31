@@ -10,6 +10,6 @@ show_links()
 Prints data frame
 }
 \description{
-The function copies the URL and
-opens the link in the browser.
+The function has no input
+and returns all links from Practice R
 }

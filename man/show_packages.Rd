@@ -2,12 +2,12 @@
 % Please edit documentation in R/show_packages.R
 \name{show_packages}
 \alias{show_packages}
-\title{Returns Packages used in Practice R}
+\title{Returns the names of used R Packages in Practice R}
 \usage{
 show_packages(file, insert = TRUE)
 }
 \arguments{
-\item{file}{Name of script}
+\item{file}{Name of script file}
 
 \item{insert}{If TRUE the libraries will be insert in an R Script}
 }

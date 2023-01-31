@@ -7,7 +7,7 @@
 transformer(x, method = NULL)
 }
 \arguments{
-\item{x}{Variable to transform}
+\item{x}{Numerical variable}
 
 \item{method}{Transformation method}
 }

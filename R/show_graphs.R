@@ -1,4 +1,4 @@
-#' Shows line types in R
+#' Shows Line Types in R
 #'
 #' @description The show_plot returns a graph that shows
 #' the line types in R
@@ -28,7 +28,7 @@ show_linetypes <- function() {
 
 }
 
-#' Shows the shape types in R
+#' Shows the Shape Types in R
 #'
 #' @description The function returns a graph that shows
 #' the shape types of base R

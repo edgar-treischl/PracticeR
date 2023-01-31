@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_packages.R
 \name{show_packages_all}
 \alias{show_packages_all}
-\title{Returns All Packages used in Practice R}
+\title{Returns All Packages Names used in Practice R}
 \usage{
 show_packages_all()
 }
@@ -10,6 +10,6 @@ show_packages_all()
 A character vector
 }
 \description{
-The show_packages returns a character vector with
+The returns a character vector with
 all package names used in Practice R
 }

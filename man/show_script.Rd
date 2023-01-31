@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_script.R
 \name{show_script}
 \alias{show_script}
-\title{Shows R Scripts of the Practice R book.}
+\title{Shows an R Script of the Practice R book.}
 \usage{
 show_script(file)
 }
@@ -13,6 +13,6 @@ show_script(file)
 R script
 }
 \description{
-The function scrapes the book script from Github
-opens a new script and insert the code for you.
+The function scrapes the book script from GitHub,
+opens a new script, and inserts the code in RStudio.
 }

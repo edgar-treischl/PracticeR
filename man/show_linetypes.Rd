@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_graphs.R
 \name{show_linetypes}
 \alias{show_linetypes}
-\title{Shows the Line Types in R}
+\title{Shows line types in R}
 \usage{
 show_linetypes()
 }

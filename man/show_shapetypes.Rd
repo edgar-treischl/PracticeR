@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_graphs.R
 \name{show_shapetypes}
 \alias{show_shapetypes}
-\title{Shows the Shape Types in R}
+\title{Shows the shape types in R}
 \usage{
 show_shapetypes()
 }
@@ -10,6 +10,6 @@ show_shapetypes()
 A ggplot2 object
 }
 \description{
-The show_shapetypes function returns a graph that shows
-the shape type of base R
+The function returns a graph that shows
+the shape types of base R
 }
