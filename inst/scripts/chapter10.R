@@ -32,11 +32,11 @@ library(tidyr)
 
 # 10.1 Reports #################################################################
 
-#How many distinct years has the penguins data? 
+#How many distinct years has the penguins data?
 dplyr::distinct(penguins, year)
 
 #An example scatter plot
-penguins |> 
+penguins |>
   filter(year == 2007) |> #here comes the filter
   ggplot(aes(bill_length_mm , body_mass_g, color = species))+
   geom_point()+
@@ -46,17 +46,17 @@ penguins |>
 
 #The default value of params$year is:
 #The R Script needs params to illustrate (or create a Rmd):
-params <- list(data = "penguins", 
-               species = "Adelie", 
+params <- list(data = "penguins",
+               species = "Adelie",
                x = "flipper_length_mm",
-               y = "body_mass_g", 
-               z = "bill_length_mm", 
+               y = "body_mass_g",
+               z = "bill_length_mm",
                year = 2007L)
 
 params$year
 
 #Insert a parameter to filter the data
-penguins |> 
+penguins |>
   filter(year == params$year) |> #insert the params
   ggplot(aes(bill_length_mm, body_mass_g, color = species))+
   geom_point()+
@@ -64,7 +64,7 @@ penguins |>
 
 
 #Create output of the table
-df <- penguins |> 
+df <- penguins |>
   filter(year ==  params$year)|>
   group_by(species)|>
   drop_na()|>
@@ -80,7 +80,7 @@ df |> flextable()
 
 
 
-#Get returns the values of the object 
+#Get returns the values of the object
 df <- get(params$data)
 glimpse(df)
 
@@ -91,22 +91,32 @@ class(params$x)
 #cor(params$x, params$y)
 #> Error in cor(params$x, params$y) : 'x' must be numeric
 
-#The correlation function lets us select variables as strings 
-cor_xy <- penguins |> 
+#The correlation function lets us select variables as strings
+cor_xy <- penguins |>
   correlation(select = params$x, select2 = params$y)
 
 cor_xy
 
+
+#########
+#NOTE: The aes_string function is soft-deprecated, but you can
+#achieve the same results with tidy evaluation (how expressions
+#and variables in the code are evaluated)
+
 #Insert params via the aes_string function
-ggplot(penguins, aes_string(x = params$x, 
-                            y = params$y)) +
+# ggplot(penguins, aes_string(x = params$x,
+#                             y = params$y)) +
+#   geom_point()
+
+ggplot(penguins, aes(x = .data[[params$x]],
+                     y = .data[[params$y]])) +
   geom_point()
 
 
-#The as.formula function understands the input as a formula 
+#The as.formula function understands the input as a formula
 f <- as.formula(
-  paste(params$y, 
-        paste(c(params$x, params$z), collapse = " + "), 
+  paste(params$y,
+        paste(c(params$x, params$z), collapse = " + "),
         sep = " ~ "))
 print(f)
 
@@ -215,7 +225,7 @@ glue::glue("- We observed {param_specie} {number} times.")
 glue("- We observed {param_specie} {number} times.")
 
 #Describe the data
-report::report(penguins)|> 
+report::report(penguins)|>
   summary()
 
 #Create a small data frame
@@ -227,7 +237,7 @@ df <- data.frame(
 )
 
 #Describe the participants
-report_participants(df, age = "Age", 
+report_participants(df, age = "Age",
                     sex = "Sex",
                     education = "Education")
 
@@ -262,32 +272,32 @@ direction <- "positive"
 
 if (r_xy < 0) {
     direction <- "negative"
-} 
+}
 
 
 #Create fun
 report_correlation <- function(data, x, y) {
-  
+
   corr_estimate <- data |>
     correlation(select = x, select2 = y)
   r_xy <- interpret_r(corr_estimate$r)
   r_round <- round(corr_estimate$r, 2)
-  
+
   direction <- "positive"
-  
+
   if (r_round < 0) {
     direction <- "negative"
-  } 
+  }
 
-  cor_sentence <- glue("There is a {r_xy} {direction} effect between {x} and {y} 
+  cor_sentence <- glue("There is a {r_xy} {direction} effect between {x} and {y}
                        (r = {r_round}).")
   return(cor_sentence)
-  
+
 }
 
 #Does the function work?
-report_correlation(data = iris, 
-                   x = "Sepal.Length", 
+report_correlation(data = iris,
+                   x = "Sepal.Length",
                    y = "Sepal.Width")
 
 #t-statistic
@@ -318,7 +328,7 @@ report(penguins_ttest)
 #   body = "Hello,
 #   I just wanted to give you an update of our work.
 #   Cheers, Edgar")
-# 
+#
 # email
 
 
@@ -350,7 +360,7 @@ report(penguins_ttest)
 #   )
 
 #Create any plot, for example:
-plot <- penguins |> 
+plot <- penguins |>
   ggplot(aes(bill_length_mm , body_mass_g))+
   geom_point()
 
@@ -416,8 +426,8 @@ df <- tibble::tribble(
 
 #List all files of a directory
 list.files(
-  path="~/Documents/GitHub/penguins_report/report_files", 
-  pattern=".pdf", 
+  path="~/Documents/GitHub/penguins_report/report_files",
+  pattern=".pdf",
   full.names=FALSE)
 
 #A for loop is getting complicated ...
@@ -430,27 +440,30 @@ for (row in 1:nrow(df)) {
 
 
 #Estimate a model for male penguins
-male_penguins <- penguins %>% 
-  filter(sex == "male") %>% 
+male_penguins <- penguins %>%
+  filter(sex == "male") %>%
   lm(body_mass_g ~ bill_length_mm, data = .)
 
 #Apply a map function
-penguins %>% 
-  split(.$sex) %>% 
+penguins %>%
+  split(.$sex) %>%
   map(~ lm(body_mass_g ~ bill_length_mm, data = .))
 
 #Run a model, apply a summary, and get R² for each model
-penguins %>% 
-  split(.$sex) %>% 
-  map(~ lm(body_mass_g ~ bill_length_mm, data = .)) %>% 
-  map(summary) %>% 
+penguins %>%
+  split(.$sex) %>%
+  map(~ lm(body_mass_g ~ bill_length_mm, data = .)) %>%
+  map(summary) %>%
   map_dbl("r.squared")
 
 #map2 takes two inputs and applies a function
 #map2(mail_adresses, reports, send_mails)
 
-#Visit the purrr website: 
+#Visit the purrr website:
 #https://purrr.tidyverse.org/
+
+#Run an R script automatically and on schedule
+#With the cronR package (Windows: taskscheduleR)
 
 # 10 Summary ###################################################################
 
