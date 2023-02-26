@@ -6,7 +6,7 @@ Authors@R: person("Edgar", "Treischl",
                 email = "PracticeR@edgar-treischl.de",
                 comment = c(ORCID = "0000-0001-5627-9125"),
                 role = c("aut", "cre"))
-Description: Practice R is an introductory book for social sciences. PracticeR is the 
+Description: Practice R is an introductory book for the social sciences. PracticeR is the 
     corresponding R package that provides tutorials, templates, and further materials to learn R.
 URL: https://github.com/edgar-treischl/PracticeR/,
     https://edgar-treischl.github.io/PracticeR/
