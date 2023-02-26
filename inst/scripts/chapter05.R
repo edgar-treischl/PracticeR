@@ -26,7 +26,7 @@ library(tidyr)
 
 
 #system.file returns the path of system files
-overweight_path <- system.file("files", "overweight_world.csv", 
+overweight_path <- system.file("files", "overweight_world.csv",
                           package = "PracticeR")
 
 overweight_world <- read_csv(overweight_path)
@@ -81,13 +81,13 @@ guess_parser(c("TRUE", "FALSE"))
 
 #Insert backticks
 data.frame(
-  `measurement 1` = 1, 
+  `measurement 1` = 1,
   `2016` = 1
 )
 
 #Tibble let us break name conventions
 tibble(
-  `measurement 1` = 1, 
+  `measurement 1` = 1,
   `2016` = 2
 )
 
@@ -110,28 +110,28 @@ myVar <- 1
 #Upper_Camel
 MyVar <- 1
 
-#kebab-case (hmm-mmmm)
-my-var <- 1
+#kebab-case (hmm-mmmm, but not allowed in R)
+#my-var <- 1
 
 #Rename variable: new_name = variable
 #dplyr::rename(iris, sepal_length = Sepal.Length)
 
 #Include rename() in select
-iris |> 
+iris |>
   select(
     new_var = Sepal.Length
     )
 
-#The janitor package cleans data 
-iris |> 
+#The janitor package cleans data
+iris |>
   janitor::clean_names()
 
 #Another messy data set
-messy_data <- data.frame(firstName   = 1:2, 
-                         Second_name  = 1:2, 
+messy_data <- data.frame(firstName   = 1:2,
+                         Second_name  = 1:2,
                          `income in €`  = 1:2,
-                         `2009`      = 1:2, 
-                         measurement = 1:2, 
+                         `2009`      = 1:2,
+                         measurement = 1:2,
                          measurement = 1:2)
 names(messy_data)
 
@@ -158,7 +158,7 @@ df <- tibble::tribble(
 
 #tidyr::pivot_wider converts long data into the wide format
 df |>
-  pivot_wider(names_from = outcome, 
+  pivot_wider(names_from = outcome,
               values_from = measurement)
 
 df <- tibble::tribble(
@@ -198,7 +198,7 @@ df |>
 df |>
   pivot_wider(
     names_from = time,
-    values_from = c(x, y), 
+    values_from = c(x, y),
     values_fill = 99
   )
 
@@ -226,7 +226,7 @@ df |>
     names_to = "time",
     names_prefix = "x",
     values_to = "outcome"
-  ) |> 
+  ) |>
   head()
 
 
@@ -253,7 +253,7 @@ inner_join(df1, df2, by = "country")
 full_join(df1, df2, by = "country")
 
 #Left join
-left_join(df1, df2, by = "country") 
+left_join(df1, df2, by = "country")
 
 #Right join
 right_join(df1, df2, by = "country")
@@ -294,7 +294,7 @@ mean(x)
 is.na(x)
 
 #na.rm removes NAs
-mean(x, na.rm = TRUE) 
+mean(x, na.rm = TRUE)
 
 #Shall we include na.rm?
 x[x == 99] <- NA
@@ -337,8 +337,8 @@ vis_miss(df)
 #Inspect the data frame one more time
 df
 
-#Select all variables, except -x 
-df |> 
+#Select all variables, except -x
+df |>
   select(-c(age_child2, country))
 
 #coalesce replaces NAs
@@ -348,8 +348,8 @@ coalesce(children, 0)
 #Drop (all) NAs
 library(tidyr)
 
-df |> 
-  select(-c(age_child2, country)) |> 
+df |>
+  select(-c(age_child2, country)) |>
   drop_na()
 
 #na_if takes care of alternative missing values
@@ -357,8 +357,8 @@ x <- c(1, 999, 5, 7, 999)
 dplyr::na_if(x, 999)
 
 #Replace values
-df <- df |> 
-  select(-c(age_child2, country)) |> 
+df <- df |>
+  select(-c(age_child2, country)) |>
   mutate(age = replace(age, age == "999", NA),
          sex = replace(sex, sex == "NA", NA))
 df
@@ -379,7 +379,7 @@ df |> replace_na(list(sex = "Not available"))|>
 #forcats == for categorical variables
 library(forcats)
 
-df <- gss_cat |> 
+df <- gss_cat |>
   select(marital, relig)
 
 head(df)
@@ -388,7 +388,7 @@ head(df)
 fct_count(df$marital)
 
 #Relevel manually
-f <- fct_relevel(df$marital, 
+f <- fct_relevel(df$marital,
                  c("Married", "Never married"))
 fct_count(f)
 
@@ -396,8 +396,8 @@ fct_count(f)
 f <- fct_recode(df$marital,
                 "NA" = "No answer",
                 `Not married` = "Never married",
-                `Not married` = "Separated", 
-                `Not married` = "Divorced", 
+                `Not married` = "Separated",
+                `Not married` = "Divorced",
                 `Not married` = "Widowed"
 )
 
@@ -406,16 +406,16 @@ fct_count(f)
 #Unique levels
 fct_unique(df$relig)
 
-#Collapse levels 
-f <- fct_collapse(df$marital, 
-                  `Not married` = c("Never married", 
-                                  "Separated", 
-                                  "Divorced", 
+#Collapse levels
+f <- fct_collapse(df$marital,
+                  `Not married` = c("Never married",
+                                  "Separated",
+                                  "Divorced",
                                   "Widowed"))
 fct_count(f)
 
 #Keep selected levels and others
-f <-fct_other(df$marital, 
+f <-fct_other(df$marital,
               keep = c("Married", "No answer"))
 
 fct_count(f)
@@ -425,7 +425,7 @@ f <- fct_infreq(df$relig)
 fct_count(f)|> head(n = 6)
 
 #Lump together
-f <- fct_lump(df$relig, n = 5) 
+f <- fct_lump(df$relig, n = 5)
 f <- fct_infreq(f)
 fct_count(f)
 
