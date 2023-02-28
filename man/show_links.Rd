@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_link.R
 \name{show_links}
 \alias{show_links}
-\title{All links from the Practice R Book.}
+\title{All Links from the Practice R Book.}
 \usage{
 show_links()
 }

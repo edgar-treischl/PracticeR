@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_link.R
 \name{show_link}
 \alias{show_link}
-\title{Get a link from the Practice R Book.}
+\title{Get a Link from the Practice R Book.}
 \usage{
 show_link(name, browse = TRUE)
 }
