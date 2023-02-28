@@ -66,8 +66,8 @@ a.edgar:visited {
 <a href="https://www.amazon.de/Practice-Interactive-Textbook-Edgar-Treischl/dp/311070496X/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1MY9JEP05K1OU&keywords=Practice+R&qid=1677311458&sprefix=practice+r%2Caps%2C102&sr=8-2"><img src="man/figures/cover.png" align="right" width="40%" title="Buy it online"/></a>
 
 R is a programming language and a powerful tool to analyze data, but R
-has a lot more to offer than statistics. To mention just a few options,
-R has many capabilities to visualize data, to collect data (e.g., from a
+has a lot more to offer than statistics. To mention a few options, R has
+many capabilities to visualize data, to collect data (e.g., from a
 website), or even to create interactive dashboards. From this
 perspective it is no wonder why R has a huge fan base. Unfortunately,
 learning R can be though. People who struggle may say that the data
