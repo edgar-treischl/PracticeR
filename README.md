@@ -25,10 +25,10 @@ materials that include interactive tutorials, challenging you with
 typical problems of applied research. This way, you can immediately
 practice the knowledge you have learned.
 
-The package also includes the source code of each chapter and templates
-that help to create reports. Practice R has social science students in
-mind, nonetheless a broader audience may use Practice R to become a
-proficient R user.
+The package includes the source code of each chapter and templates that
+help to create reports. Practice R has social science students in mind,
+nonetheless a broader audience may use Practice R to become a proficient
+R user.
 
 ## Installation
 
