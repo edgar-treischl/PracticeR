@@ -1,7 +1,7 @@
 Package: PracticeR
 Type: Package
 Title: PracticeR provides tutorials, templates, and further materials to learn R
-Version: 0.1.0.0
+Version: 0.1.0
 Authors@R: person("Edgar", "Treischl", 
                 email = "PracticeR@edgar-treischl.de",
                 comment = c(ORCID = "0000-0001-5627-9125"),
