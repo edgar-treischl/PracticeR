@@ -23,9 +23,9 @@ show_tutorial <- function(file) {
       !file %in% validExamples) {
     cli::cli_abort(validExamplesMsg)
   }
-
   learnr::run_tutorial(file, package = "PracticeR")
 }
+
 
 
 
