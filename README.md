@@ -62,7 +62,7 @@ a.edgar:visited {
 }
 </style>
 
-<a href="https://www.amazon.de/Practice-Interactive-Textbook-Edgar-Treischl/dp/311070496X/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1MY9JEP05K1OU&keywords=Practice+R&qid=1677311458&sprefix=practice+r%2Caps%2C102&sr=8-2"><img src="man/figures/cover.png" align="right" width="40%" title="Buy it online"/></a>
+<a href="https://www.amazon.de/Practice-Interactive-Textbook-Edgar-Treischl/dp/311070496X/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1MY9JEP05K1OU&keywords=Practice+R&qid=1677311458&sprefix=practice+r%2Caps%2C102&sr=8-2"><img src="man/figures/cover.png" align="right" width="30%" title="Buy it online"/></a>
 
 R is a programming language and a powerful tool to analyze data, but R
 has a lot more to offer than statistics. To mention just a few options,
@@ -79,5 +79,5 @@ how to use R in practice. After reading and working on the materials in
 this book, you will be able to *prepare* and *analyze* data, make
 *visualizations*, and *communicate* key research insights.
 
-<br> <a class="edgar" align="right" href="#">Download a reading sample
+<br> <a class="edgar" align="right" href="#">Download sample
 (20/3/2023)</a>
