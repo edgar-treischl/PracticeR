@@ -1,6 +1,6 @@
 #' Returns the Names of R Packages Used in Practice R
 #'
-#' @description The show_packages returns a character vector with
+#' @description The function returns a character vector with
 #' package names used in Practice R
 #' @param file Name of script file
 #' @param insert If TRUE the libraries will be insert in an R Script
@@ -9,7 +9,7 @@
 #'
 #'
 
-show_packages <- function(file, insert = TRUE) {
+list_package <- function(file, insert = TRUE) {
 
   validExamples <- list.files(system.file("scripts", package = "PracticeR"))
   validExamples <- stringr::str_split_fixed(validExamples, n = 2, pattern = ".R")
@@ -73,12 +73,12 @@ show_packages <- function(file, insert = TRUE) {
 #'
 #'
 
-show_packages_all <- function() {
+list_packages <- function() {
   list <- c('chapter02', 'chapter03', 'chapter04', 'chapter05',
             'chapter06', 'chapter07', 'chapter08', 'chapter09', 'chapter10',
             'chapter11', 'chapter12')
 
-  p_list <- purrr::map(list, PracticeR::show_packages, insert = FALSE) |>
+  p_list <- purrr::map(list, PracticeR::list_package, insert = FALSE) |>
     purrr::flatten_chr()
 
 

@@ -7,7 +7,7 @@
 #' @export
 #'
 
-show_links <- function() {
+PRlinks <- function() {
   links_pr <- tidyr::tribble(
     ~title, ~shortcut, ~link,
     "R for Data Science", "r4ds", "https://r4ds.had.co.nz/",
@@ -126,7 +126,7 @@ show_links <- function() {
 
 show_link <- function(name, browse = TRUE) {
 
-  df <- show_links()
+  df <- PRlinks()
   #df <- df |> dplyr::arrange(title)
   df <- df[order(df$title),]
 
