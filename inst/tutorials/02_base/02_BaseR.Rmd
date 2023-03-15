@@ -360,33 +360,20 @@ In the near future, your code will encompass several steps, try to break it into
 
 All tutorials of Practice R will end with a short code summary of the corresponding book chapter. The summary only contains the function name from the R help file and code example of the most important functions and packages. With regard to Chapter 2, keep the following functions in mind:
 
--   `r copycat::copycat_description("utils", "install.packages")` (`install.packages`)
-
--   `r copycat::copycat_description("base", "library")` (`library`)
-
--   Inspect the help file (`?function`)
-
--   `r copycat::copycat_description("base", "c")` (`c`)
-
--   Compare objects (`<=, >=, ==, !=`)
-
--   `r copycat::copycat_description("base", "rep")` (`rep`)
-
--   `r copycat::copycat_description("base", "seq")` (`seq`)
-
--   `r copycat::copycat_description("base", "sum")` (`sum`)
-
--   `r copycat::copycat_description("base", "length")` (`length`)
-
--   `r copycat::copycat_description("base", "class")` (`class`)
-
--   `r copycat::copycat_description("base", "data.frame")` (`data.frame`)
-
--   `r copycat::copycat_description("tibble", "tibble")` [`tibble::tibble`, @tibble]
-
--   `r copycat::copycat_description("tibble", "tribble")`(`tibble::tribble`)
-
--   `r copycat::copycat_description("base", "nrow")` (`nrow`/`ncol`)
+- Install packages from repositories or local files (install.packages)
+- Loading/attaching and listing of packages (library)
+- Inspect the help file (?function)
+- Combine values into a vector or list (c)
+- Compare objects (<=, >=, ==, !=)
+- Replicate elements of vectors and lists (rep)
+- Sequence generation (seq)
+- Sum of vector elements (sum)
+- Length of an object (length)
+- Object classes (class)
+- Data frames (data.frame)
+- Build a data frame (tibble::tibble, Müller and Wickham 2022)
+- Row-wise tibble creation(tibble::tribble)
+- The number of rows/columns of an array (nrow/ncol)
 
 `Base` R and many R packages have cheat sheets that summarize the most important features. You can inspect them directly from RStudio (via the `<help>` tab) and I included the link to the `base` R cheat sheet in the `PracticeR` package.
 
