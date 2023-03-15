@@ -28,6 +28,7 @@ PRlinks <- function() {
     "R Packages", "r_packages", "https://r-pkgs.org/",
     "Regression and Other Stories", "regression", "https://avehtari.github.io/ROS-Examples/",
     "Hands-On Programming with R", "hands_on_R", "https://rstudio-education.github.io/hopr/",
+    "Web-based data visualization with R", "plotly", "https://plotly-r.com/index.html",
     "ggplot2 extension", "ggplot2_ext", "https://exts.ggplot2.tidyverse.org/",
     "What They Forgot to Teach You About R", "forgot_teach", "https://rstats.wtf/",
     "Practice R Website", "pr_website", "https://edgar-treischl.github.io/PracticeR/",
