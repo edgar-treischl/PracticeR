@@ -30,6 +30,7 @@ body {
 ```{r setup, include=FALSE}
 library(learnr)
 library(knitr)
+library(palmerpenguins)
 
 knitr::opts_chunk$set(
   fig.width = 6,

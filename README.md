@@ -62,22 +62,23 @@ a.edgar:visited {
 }
 </style>
 
-<a href="https://www.amazon.de/Practice-Interactive-Textbook-Edgar-Treischl/dp/311070496X/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1MY9JEP05K1OU&keywords=Practice+R&qid=1677311458&sprefix=practice+r%2Caps%2C102&sr=8-2"><img src="man/figures/cover.png" align="right" width="30%" title="Buy it online"/></a>
+<a href="https://www.amazon.de/Practice-Interactive-Textbook-Edgar-Treischl/dp/311070496X/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1MY9JEP05K1OU&keywords=Practice+R&qid=1677311458&sprefix=practice+r%2Caps%2C102&sr=8-2"><img src="man/figures/cover.png" align="right" width="25%" title="Buy it online"/></a>
 
-R is a programming language and a powerful tool to analyze data, but R
-has a lot more to offer than statistics. To mention just a few options,
-R has many capabilities to visualize data, to collect data (e.g., from a
-website), or even to create interactive dashboards. From this
-perspective it is no wonder why R has a huge fan base. Unfortunately,
-learning R can be though. People who struggle may say that the data
-handling is complicated, some complain that R lacks a graphical
-interface, and probably all agree that beginners face a rather steep
-learning curve. Regardless of our perception, the best way to learn R is
-by means of practice. For this reason, this book introduces R, focuses
-on the most important steps for applied empirical research, and explains
-how to use R in practice. After reading and working on the materials in
-this book, you will be able to *prepare* and *analyze* data, make
-*visualizations*, and *communicate* key research insights.
+When in doubt, consider reading the sample pages of the Practice R book.
+It shows the outline of the book via the table of content and it
+includes the first pages of Practice R, in which I outline what each
+chapter tries to achieve in more detail which will give an idea if
+Practice R might be a good purchase.
 
-<br> <a class="edgar" align="right" href="#">Download sample
-(20/3/2023)</a>
+In addtion, one example tutorial is online available which gives you an
+idea about the tutorial of the book. The *base R* tutorial accompanies
+the second chapter of Practice and discusses typical errors (new) R
+users need to face.
+
+Find the links to the sample pages and the tutorial below.
+
+<br> <a class="edgar" align="right" href="#">Download sample</a>
+<a class="edgar" align="left" href="https://edgar-treischl.shinyapps.io/02_baseR/" target="_blank">Go
+to the tutorial</a>
+
+<br>
