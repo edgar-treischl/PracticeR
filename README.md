@@ -70,14 +70,16 @@ includes the first pages of Practice R, in which I outline what each
 chapter tries to achieve in more detail which will give an idea if
 Practice R might be a good purchase.
 
-In addtion, one example tutorial is online available which gives you an
+In addition, one example tutorial is online available which gives you an
 idea about the tutorial of the book. The *base R* tutorial accompanies
 the second chapter of Practice and discusses typical errors (new) R
 users need to face.
 
 Find the links to the sample pages and the tutorial below.
 
-<br> <a class="edgar" align="right" href="#">Download sample</a>
+<br>
+<a class="edgar" align="right" href="https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/pdfs/Practice%20R%20Reading%20sample.pdf">Download
+sample</a>
 <a class="edgar" align="left" href="https://edgar-treischl.shinyapps.io/02_baseR/" target="_blank">Go
 to the tutorial</a>
 
