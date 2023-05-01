@@ -92,51 +92,68 @@
 <p>The <code>PracticeR</code> package gives access to tutorials,
 templates, and further materials of the Practice R book. This page
 summarizes the main functions of the package.</p>
-<p>First of all, it give access to source code of the book. The
-<code><a href="../reference/show_script.html">show_script()</a></code> function returns the code for each chapter.
-It copies the code from GitHub, opens a new R script and inserts the
-code for a chapters. If no internet connection is available, it copies
-and paste the code from the installed version of the
-<code>PracticeR</code> package. Just insert one of the following script
-names.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edgar-treischl/PracticeR/" class="external-link">PracticeR</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co">#Load package first</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edgar-treischl/PracticeR/" class="external-link">PracticeR</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="get-access-to-the-source-code-of-each-chapter">Get access to the source code of each chapter<a class="anchor" aria-label="anchor" href="#get-access-to-the-source-code-of-each-chapter"></a>
+</h2>
+<p>The <code><a href="../reference/show_script.html">show_script()</a></code> function returns the code for each
+chapter. It copies the most recent version of the code from my GitHub
+account, it opens a new R script and inserts the code of the chapter. It
+copies and paste the code from the installed version of the
+<code>PracticeR</code> package if no internet connection is available.
+Just insert one of the following chapter names, as the next console
+illustrates.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Get source code via</span></span>
 <span><span class="fu"><a href="../reference/show_script.html">show_script</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `show_script()`:</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Please run `show_script()` with a valid file name as an argument.</span></span>
 <span><span class="co">#&gt;   Valid examples are: 'chapter02', 'chapter03', 'chapter04', 'chapter05',</span></span>
 <span><span class="co">#&gt;   'chapter06', 'chapter07', 'chapter08', 'chapter09', 'chapter10', 'chapter11',</span></span>
 <span><span class="co">#&gt;   'chapter12'</span></span></code></pre></div>
-<p>The book is expected for 2023, at the moment there is only one
-<code>preview</code> tutorial available. To load a specific tutorial,
-use the Tutorial pane or insert the corresponding name in the
-<code>practice</code> function, which calls the <code>learnr</code>
-package in the background and hands over the tutorial from the
-<code>PracticeR</code> package.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edgar-treischl/PracticeR/" class="external-link">PracticeR</a></span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span>
-<span><span class="fu">practice</span><span class="op">(</span><span class="st">"preview"</span><span class="op">)</span></span></code></pre></div>
-<p>The tutorial should be opened in RStudio or your browser:</p>
-<p><img src="preview.png" alt="drawing" width="80%"></p>
-<p>In addition, the package includes convenient functions to learn R.
-For example, the <code>show_linetypes</code> function returns the line
-types graph.</p>
+</div>
+<div class="section level2">
+<h2 id="get-access-to-the-tutorials">Get access to the tutorials<a class="anchor" aria-label="anchor" href="#get-access-to-the-tutorials"></a>
+</h2>
+<p>The book is expected for 05/2023, at the moment there is only the
+<code>base</code> R tutorial available which corresponds with Chapter 2.
+To load a specific tutorial, go the Tutorial pane and start it from
+there. Alternatively, insert the corresponding name in the
+<code><a href="../reference/show_tutorial.html">show_tutorial()</a></code> function, which calls the
+<code>learnr</code> package in the background and hands over the
+tutorial from the <code>PracticeR</code> package. The tutorial should be
+opened in RStudio or your browser. A preview version is also online
+available.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/show_linetypes.html">show_linetypes</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PracticeR_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
-<p>The <code>show_shapetypes</code> function returns the shape types
-graph.</p>
+<code class="sourceCode R"><span><span class="co">#Run tutorials via show_tutorial or from the tutorial pane</span></span>
+<span><span class="fu"><a href="../reference/show_tutorial.html">show_tutorial</a></span><span class="op">(</span><span class="st">"02_base"</span><span class="op">)</span></span></code></pre></div>
+<p><a href="https://edgar-treischl.shinyapps.io/02_baseR/" class="external-link"><img src="tutorial.png" alt="Practice R tutorial" width="80%"></a></p>
+</div>
+<div class="section level2">
+<h2 id="further-materials-and-functions">Further materials and functions<a class="anchor" aria-label="anchor" href="#further-materials-and-functions"></a>
+</h2>
+<p>The package includes further convenient functions to learn R. For
+example, the <code><a href="../reference/show_linetypes.html">show_linetypes()</a></code> function returns a graph that
+show which line types exist in R.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/show_shapetypes.html">show_shapetypes</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/show_linetypes.html">show_linetypes</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="PracticeR_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
+<p>The <code><a href="../reference/show_shapetypes.html">show_shapetypes()</a></code> function does the same with shape
+types.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/show_shapetypes.html">show_shapetypes</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="PracticeR_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 <p>And the <code><a href="../reference/transformer.html">transformer()</a></code> function transforms a numerical
 variable according to the ladder of powers and returns histograms to
 inspect the transformation.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/transformer.html">transformer</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span><span class="op">)</span></span></code></pre></div>
-<p><img src="PracticeR_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
-  </main>
+<p><img src="PracticeR_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
