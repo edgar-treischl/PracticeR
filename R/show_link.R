@@ -42,7 +42,7 @@ PRlinks <- function() {
 }
 
 
-#' Get a Link from the Practice R Book.
+#' Show a Link from the Practice R Book
 #'
 #' @description The function copies the URL and
 #' opens the link in the browser.

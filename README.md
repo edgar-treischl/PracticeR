@@ -38,7 +38,7 @@ You can install `PracticeR` from my GitHub account:
 devtools::install_github("edgar-treischl/PracticeR")
 ```
 
-## Book Preview
+## Book Preview <a href="https://www.amazon.de/Practice-Interactive-Textbook-Edgar-Treischl/dp/311070496X/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1MY9JEP05K1OU&keywords=Practice+R&qid=1677311458&sprefix=practice+r%2Caps%2C102&sr=8-2"><img src="man/figures/cover.png" align="right" width="20%" title="Buy it online"/></a>
 
 <style type="text/css">
 a.edgar {
@@ -62,25 +62,22 @@ a.edgar:visited {
 }
 </style>
 
-<a href="https://www.amazon.de/Practice-Interactive-Textbook-Edgar-Treischl/dp/311070496X/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1MY9JEP05K1OU&keywords=Practice+R&qid=1677311458&sprefix=practice+r%2Caps%2C102&sr=8-2"><img src="man/figures/cover.png" align="right" width="25%" title="Buy it online"/></a>
+When in doubt, consider reading the *sample pages of Practice R*. It
+shows the outline of the book via the table of content and it includes
+the first pages of the book. I outline what each chapter tries to
+achieve in more detail which hopefully will give an idea if Practice R
+might be right choice for you.
 
-When in doubt, consider reading the sample pages of the Practice R book.
-It shows the outline of the book via the table of content and it
-includes the first pages of Practice R, in which I outline what each
-chapter tries to achieve in more detail which will give an idea if
-Practice R might be a good purchase.
+<br>
+<a class="edgar" align="center" href="https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/pdfs/Practice%20R%20Reading%20sample.pdf">Download
+sample</a><br> <br>
 
 In addition, one example tutorial is online available which gives you an
-idea about the tutorial of the book. The *base R* tutorial accompanies
-the second chapter of Practice and discusses typical errors (new) R
-users need to face.
-
-Find the links to the sample pages and the tutorial below.
+idea how the tutorials of the book work. The *base R tutorial*
+accompanies the second chapter of Practice R and discusses typical
+errors and struggles that (new) R users need to face.
 
 <br>
-<a class="edgar" align="right" href="https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/pdfs/Practice%20R%20Reading%20sample.pdf">Download
-sample</a>
-<a class="edgar" align="left" href="https://edgar-treischl.shinyapps.io/02_baseR/" target="_blank">Go
+
+<a class="edgar" align="center" href="https://edgar-treischl.shinyapps.io/02_baseR/" target="_blank">Go
 to the tutorial</a>
-
-<br>

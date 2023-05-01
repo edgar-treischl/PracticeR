@@ -1,4 +1,4 @@
-#' Returns the Names of R Packages Used in Practice R
+#' List the Names of R Packages Used in Practice R
 #'
 #' @description The function returns a character vector with
 #' package names used in Practice R
@@ -64,7 +64,7 @@ list_package <- function(file, insert = TRUE) {
 }
 
 
-#' Returns All Packages Names Used in Practice R
+#' List the Names of all Packages Used in Practice R
 #'
 #' @description The returns a character vector with
 #' all package names used in Practice R

@@ -1,4 +1,4 @@
-#' Shows an R Script of the Practice R Book.
+#' Shows an R Script of the Practice R Book
 #'
 #' @description The function scrapes the book script from GitHub,
 #' opens a new script, and inserts the code in RStudio.

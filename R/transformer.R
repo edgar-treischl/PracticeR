@@ -1,4 +1,4 @@
-#' Transform a Numerical Input.
+#' Transform a Numerical Input
 #'
 #' @description The function transforms a numerical variable according to the
 #' ladder of powers and displays them with histograms.

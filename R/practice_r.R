@@ -30,7 +30,7 @@ show_tutorial <- function(file) {
 
 #' Operators
 #'
-#' @description Examine logical and relational operators
+#' @description Get logical and relational operators
 #'
 #' @param operator Name of the operator
 #'
