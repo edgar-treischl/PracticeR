@@ -1,0 +1,456 @@
+---
+title: "Practice R Tutorial 04"
+author: "Edgar Treischl"
+date: "Last update: `r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    highlight: kate
+    theme: flatly
+bibliography: PracticeR_FINAL.bib
+description: >
+  Manipulate data with dplyr.
+   
+runtime: shiny_prerendered
+---
+
+```{css, include=FALSE}
+topicsFooter{
+font-size: large; 
+}
+
+body {
+  background-color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 24;
+}
+
+```
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+library(dplyr)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  fig.path = "images/",
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  eval = TRUE,
+  comment = "#>",
+  error = TRUE
+)
+
+tutorial_options(exercise.lines = 5, 
+                 exercise.eval=FALSE)
+
+#english environment
+Sys.setenv(LANG = "en")
+knitr::opts_chunk$set(tidy = "styler")
+
+```
+
+## Data manipulation with dplyr <a href="https://dplyr.tidyverse.org/" target="_blank"><img src="https://dplyr.tidyverse.org/logo.png" alt="The dplyr package" align="right" width="100"/></a>
+
+
+Welcome to tutorial of the [Practice R](https://www.degruyter.com/document/isbn/9783110704969/html?lang=de "Go to the website") book [@treischl_practice_2023]. Practice R is a text book for the social sciences which provides several tutorials supporting students to learn R. Feel free to inspect the tutorials even if you are not familiar with the book, but keep in mind these tutorials are supposed to complement the Practice R book. 
+
+In Chapter 4 we used the `dplyr` package to manipulate data [@dplyr]. In addition, we will learn how to systemically manipulate categorical variables with the `forcats` package [@forcats] in Chapter 5. Both packages help you to handle many common steps to manipulate data. This tutorial gives a `dplyr` recap and asks you to apply the introduced functions.
+
+
+As the next output shows, we use the `gss2016` again to select variables, create a filter, generate new variables, and summarize the data. Ask R to provide a description of the data (`?data`) if you are not familiar with the `gss2016` data yet.
+
+
+```{r r0, exercise=TRUE}
+#The setup of tutorial 4
+library(dplyr)
+library(PracticeR)
+head(gss2016)[1:9]
+```
+
+## Select
+
+Especially in case of large and cluttered data, we use `select()` to specify which variables we work with. For example, pick only one variable such as school `degree` from the `gss2016` data.
+
+```{r r2, exercise=TRUE}
+#Select a variable
+
+```
+
+```{r r2-solution, echo=FALSE, eval=FALSE}
+#Select a variable
+select(gss2016, degree)
+```
+
+`Select` comes with handy functions and applies the same logic as `base` R. For example, select several columns by providing a start (e.g., `id`) and endpoint (e.g., `degree`).
+
+```{r r3, exercise=TRUE}
+#Select all variables from x to y
+
+```
+
+```{r r3-solution, echo=FALSE, eval=FALSE}
+#Select all variables from x to y
+select(gss2016, id:degree)|> head()
+```
+
+Maybe we need all columns except the variables shown in the last output. Ask for the opposite and insert parentheses and a minus signs to turn the selection around.
+
+```{r r4, exercise=TRUE}
+#Turn around the selection
+
+```
+
+```{r r4-solution, echo=FALSE, eval=FALSE}
+#Turn around the selection
+select(gss2016, -(id:degree)) |> head()
+```
+
+The `gss2016` data does not contain variables with a running number nor other systematic variable names. However, `dplyr` helps to select such variables without much effort. Consider toy data with several measurements and running numbers to illustrate how we can select such variables efficiently.
+
+
+
+```{r r5a, exercise=TRUE, exercise.eval = TRUE, exercise.lines = 9}
+#A new df to illustrate
+df <- tibble(measurement_1 = 1:3, 
+             x1 = 1:3,
+             measurement_2 = 1:3, 
+             x2 = 1:3, 
+             x3 = 1:3,
+             other_variables = 1)
+```
+
+Suppose we measured a variables several times and all start with an identical name (e.g., `measurement_`). Select all variables which start (or end) with a certain string. Thus, insert the `starts_with()` function and select all `measurement` variables. 
+
+```{r r5, exercise=TRUE, exercise.setup = "r5a"}
+#Select variables that start with a string
+
+```
+
+```{r r5-solution, echo=FALSE, eval=FALSE}
+#Select variables that start with a string
+select(df, starts_with("measurement"))
+```
+
+Or pick variables with the running number. The `num_range` functions needs the name (`x`) and the running number.
+
+```{r r6, exercise=TRUE, exercise.setup = "r5a"}
+#Select based on a running number
+
+```
+
+```{r r6-solution, echo=FALSE, eval=FALSE}
+#Select based on a running number
+select(df, num_range("x", 1:3))
+```
+
+The package offers more helpers to select variables than I can possibly outline. For example, `contains()` checks if a variable includes a certain word; `matches()` let us specify search patterns (regular expression, see Chapter 10); and we can also include other functions to select variables. For example, the `is.numeric` function checks if an input is numeric and we can combine it with `where()` to select columns only *where* the content is numeric.
+
+```{r r7, exercise=TRUE}
+#Insert a function to select variables
+
+```
+
+```{r r7-solution, echo=FALSE, eval=FALSE}
+#Insert a function to select variables
+gss2016 |> select(where(is.numeric))
+```
+
+Next, we filter data but since all R outputs are large due to the `gss2016` data, let us first create a smaller subset to reduce the size of the output and the length of this document.
+
+```{r r8, exercise=TRUE}
+#Select a smaller subset for the rest of this tutorial
+gss2016 <- select(PracticeR::gss2016, year:sex, income)
+```
+
+
+
+## Filter
+
+Use `filter()` to subset the data. The `dplyr` filters the data and returns a new data frame depending on the specified conditions. Use one or several relational or logical operators to select observations. For example, suppose you want to analyze persons who have a bachelor's `degree` only.
+
+```{r r9, exercise=TRUE}
+#Apply a filter
+
+
+```
+
+```{r r9-solution, echo=FALSE, eval=FALSE}
+#Apply a filter
+gss2016 |> 
+  filter(degree == "Bachelor")|> 
+  head()
+```
+
+Can you adjust the code so that two conditions have to be fulfilled simultaneously. For example, keep only observations from adults (18 years and older) with a bachelor's degree.
+
+```{r r10, exercise=TRUE}
+#Combine several conditions
+
+
+```
+
+```{r r10-solution, echo=FALSE, eval=FALSE}
+#Combine several conditions
+gss2016 |> 
+  filter(degree == "Bachelor" & age > 17)|> 
+  head()
+```
+
+As outlined, keep your `base` R skills in mind when selecting or filtering data. For example, keep all degrees but exclude persons who have a `Bachelor`.
+
+```{r r11, exercise=TRUE}
+#All degrees, but not! Bachelors
+
+
+```
+
+```{r r11-solution, echo=FALSE, eval=FALSE}
+#All degrees, but not! Bachelors
+gss2016 |> 
+  filter(degree != "Bachelor")|> 
+  head()
+```
+
+Use the `operators()` function from the `PracticeR` package when you have trouble to remember how `logical` and `relational` operators are implemented. The function inserts and runs examples via the console. 
+
+```{r r11a, eval=FALSE}
+PracticeR::operators("logical")
+# ── Logical Operators 
+# > x <- TRUE
+# > y <- FALSE
+# > #Elementwise logical AND
+# > x & y == TRUE
+# [1] FALSE
+# > #Elementwise logical OR
+# > x | y == TRUE
+# [1] TRUE
+# > #Elementwise OR
+# > xor(x, y)
+# [1] TRUE
+# > #Logical NOT
+# > !x
+# [1] FALSE
+# > #In operator
+# > 1:3 %in% rep(1:2)
+# [1]  TRUE  TRUE FALSE
+```
+
+## Mutate
+
+In Chapter 4 I outline several ways to generate new variables based on observed ones. For example, raw data often contains a person's year of birth but not their age. With `mutate()` we can extend the data frame and estimate such a variable. Unfortunately, the `gss2016` has an `age` variable, but the variable does only reveal their age when the survey was conducted. To recap how `mutate()` works, recreate their birth year and a recent age variable, say for the year 2023.
+
+```{r r12, exercise=TRUE, exercise.lines = 9}
+#Create birth_year and a recent (year: 2023) age variable
+
+
+```
+
+```{r r12-solution, echo=FALSE, eval=FALSE}
+#Create birth_year and a recent (year: 2023) age variable
+gss2016 |> 
+  select(id, year, age)|> 
+  mutate(birth_year = year - age,
+         new_age = 2023 - birth_year)|> 
+  head()
+```
+
+Keep in mind that you can use relational and logical operators, as well other functions (e.g., log, rankings, etc.) to generate new variables. For example, generate a logical variable that indicates whether a person was an adult (older than 17) in the year 2016. The `if_else()` function helps you with this job.
+
+```{r r13, exercise=TRUE, exercise.lines = 9}
+#In theory: if_else(condition, true, false, missing = NULL)
+
+
+```
+
+```{r r13-solution, echo=FALSE, eval=FALSE}
+#In theory: if_else(condition, true, false, missing = NULL)
+gss2016 |> 
+  select(id, year, age)|> 
+  mutate(adult = if_else(age > 17, TRUE, FALSE))|> 
+  head()
+```
+
+In terms of generating new variables, also keep the `case_when()` function in mind, which provides a very flexible approach. Suppose we need to identify parents with a academic background. Parents educational background has many levels or attributes in the `gss2016` data, which makes a first attempt harder to apply (and we learn more about factor variables in Chapter 5). For this reason I created a smaller toy data set and I started to prepare the code. Can you complete it? The variable `academic_parents` is supposed to identify persons with a high educational background (`education`) with one or more `kids`. All other conditions are set to `FALSE`.
+
+```{r r14, exercise=TRUE, exercise.lines = 11}
+#Data to illustrate
+df <- data.frame(kids = c(0, 1, 3, 0, NA),
+                educ = c("high", "low", "high", "low", NA)
+                )
+
+#In theory: case_when(condition ~ value)
+
+```
+
+```{r r14-solution, echo=FALSE, eval=FALSE}
+#In theory: case_when(condition ~ value)
+df |> 
+  mutate(academic_parents = case_when(
+    kids >= 1 & educ == "high"  ~ "TRUE",
+    TRUE ~ "FALSE"
+    )
+  )
+```
+
+## Summarize
+
+The `summarize()` function collapses several columns into a single row. By the way, the `dplyr` package understands both, British (e.g., `summarise`) and American English (e.g. `summarize`) and it's up to you to decide which one you prefer. 
+
+Let's calculate the mean age of the survey participants. As outlined in Practice R, the variable has missing values which is why we need to drop them first. In Chapter 5 we will focus on this problem and we learn more about the consequences of such decisions. I already excluded missing values, can you `summarize()` the age?
+
+```{r r15, exercise=TRUE, exercise.lines = 8}
+#Exclude missing values but consider the consequences (see Chapter 5)
+gss2016 <- gss2016 |> 
+  tidyr::drop_na(age, sex)
+
+#Summarize age
+
+```
+
+```{r r15-solution, echo=FALSE, eval=FALSE}
+#Summarize age
+gss2016 |> summarize(mean_age = mean(age))
+```
+
+The `dplyr` package comes with several help functions to summarize data. For example, to count the number of observation per group (e.g., for `sex`), split the data by groups (`group_by`) and apply the `n()` function.
+
+```{r r16, exercise=TRUE, exercise.setup = "r15"}
+#County by (sex)
+
+
+```
+
+```{r r16-solution, echo=FALSE, eval=FALSE}
+#County by (sex)
+gss2016 |> 
+  group_by(sex) %>% 
+  summarize(count = n())
+```
+
+Moreover, compare the groups by calculating the `median` age instead of the mean; add the standard deviation (`sd`); and count the number of distinct values (`n_distinct`) of the `degree` variable.
+
+```{r r17, exercise=TRUE, exercise.lines = 9, exercise.setup = "r15"}
+#Dplyr has more summary functions
+
+
+```
+
+```{r r17-solution, echo=FALSE, eval=FALSE}
+#Dplyr has more summary functions
+gss2016 |> 
+  group_by(sex) |> 
+  summarise(median_age = median(age),
+            sd_age = sd(age),
+            distinct_degree = n_distinct(degree)
+  )
+```
+
+In the last examples we grouped the data and then collapsed it. The counterpart to `group` is `ungroup()` which we may add as a last step to disperse the data again. For example, we can estimate how old men or women are on average and add this information to the original data frame. Use `mutate()` instead of `summarise()` to see the logic behind `ungroup`.
+
+```{r r18, exercise=TRUE, exercise.lines = 9, exercise.setup = "r15"}
+#Mutate ungroups the data again
+
+```
+
+```{r r18-solution, echo=FALSE, eval=FALSE}
+#Mutate ungroups the data again
+gss2016 |> 
+  select(id, sex, age)|>
+  group_by(sex) |>  
+  mutate(count = round(mean(age),2))
+```
+
+## Arrange
+
+Last but not least, keep the `arrange()` function in mind. It is easy to apply and I don't believe there is much to practice. However, it gives us the chance to repeat how `transmute()` and the `between()` function works.
+
+Consider the steps to build a restricted age sample to examine adults only. Use `mutate` to create a logical variable (`age_filter`) that indicates if a person is between 18 and 65. Furthermore, explore the difference between `mutate()` and `transmute()` if you can't remember it.
+
+```{r r20, exercise=TRUE, exercise.lines = 9}
+#Create a restricted analysis sample
+#between: x >= left & x <= right
+
+```
+
+```{r r20-solution, echo=FALSE, eval=FALSE}
+#Create a restricted analysis sample
+#between: x >= left & x <= right
+gss2016 |>
+  transmute(age,
+            age_filter = between(age, 18, 65))
+```
+
+Next, we need a `filter()` to restrict the sample, but how can we know that code worked? We can inspect the entire data frame with `View`, but we can also use `arrange()` to inspect if the filter was correctly applied. Sort in ascending and descending (`desc`) order.
+
+```{r r21, exercise=TRUE, exercise.lines = 9}
+#Filter and arrange the data
+
+```
+
+```{r r21-solution, echo=FALSE, eval=FALSE}
+#Filter and arrange the data
+gss2016 |>
+  transmute(age,
+            age_filter = between(age, 18, 65))|>
+  filter(age_filter == "TRUE") |> 
+  arrange(desc(age)) |> 
+  head()
+```
+
+The `dplyr` package offers many functions to manipulate data and this tutorial only summarizes the main functions. Consider the cheat sheet and the package website for more information. 
+
+```{r, eval=FALSE}
+#The dplyr website
+PracticeR::show_link("dplyr", browse = FALSE)
+#> [1] "https://dplyr.tidyverse.org/"
+```
+
+Keep in mind that data preparation steps may appear simple, but only as long as we are not supposed to prepare data on our own. In the latter case we will often need several attempts to come up with a solution that works. Thus, be patient with yourself when your first attempts will not work. Most of the time we all need more than one shot to come up with a workable solution. In addition, we will use the package one more time to combine data in Chapter 5 and other `dplyr` functions will appear through the Practice R book. Thus, there will be plenty of opportunities to apply and develop your `dplyr` skills. 
+
+There are often different approaches that lead to the same result. As the artwork by Jake Clark illustrates and the Practice R info box about *data manipulation approaches* underlines, the `subset()` function from `base` R does essentially the same as `dplyr::filter`. Base R provides the most stable solution, while `dplyr` is more verbose and often easier to learn. Don't perceive them as two different dialects that forces us to stick to one approach. Instead, embrace them both because you will come across different approaches if you use Google to solve a problem. Fortunately, many roads lead to Rome.
+
+`r if (knitr::is_html_output()) '
+[![Artwork by Jake Clark](images/meme.png){width="50%"}](https://www.youtube.com/watch?v=0J8c3nDms7w)
+'`
+
+
+
+## Summary
+
+Keep the main `dplyr` functions in mind, among them:
+
+- Keep rows that match a condition (`filter`)
+- Order rows using column values (`arrange`)
+- Keep or drop columns using their names and types (`select`)
+- Create, modify, and delete columns (`mutate, transmute`)
+- Summarize each group down to one row (`summarize`)
+- Change column order (`relocate`)
+- Vectorized if-else (`if_else`)
+- A general vectorized if-else (`case_when`)
+- Apply a function (or functions) across multiple columns (`across`)
+- Select all variables or the last variable (e.g., `everything`)
+
+
+And the following `base` functions:
+
+- The names of an object (`names`)
+- Sub-setting vectors, matrices and data frames (`subset`)
+- Apply a function over a list or vector (`lapply, sapply`)
+- Read R code from a file, a connection or expressions (`source`)
+
+
+
+Finally, a link to download this tutorial as PDF file.
+
+```{r, echo=FALSE, eval=T}
+actionButton("download", "PR Tutorial 04", onclick="window.open('https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf')", icon = icon("file-pdf"))
+```
+
+
+## References
+
+
+

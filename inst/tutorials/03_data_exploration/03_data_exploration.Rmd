@@ -1,0 +1,486 @@
+---
+title: "Practice R Tutorial 03"
+author: "Edgar Treischl"
+date: "Last update: `r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    highlight: kate
+    theme: flatly
+bibliography: PracticeR_FINAL.bib
+description: >
+  Explore the Palmerpenguins.
+   
+runtime: shiny_prerendered
+---
+
+```{css, include=FALSE}
+topicsFooter{
+font-size: large; 
+}
+
+body {
+  background-color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 24;
+}
+
+```
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+library(palmerpenguins)
+library(dplyr)
+library(summarytools)
+df <- penguins
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  fig.path = "images/",
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  eval = TRUE,
+  comment = "#>",
+  error = TRUE
+)
+
+tutorial_options(exercise.lines = 5, 
+                 exercise.eval=FALSE)
+
+#english environment
+Sys.setenv(LANG = "en")
+knitr::opts_chunk$set(tidy = "styler")
+
+```
+
+## Data Exploration
+
+Welcome to the data exploration tutorial of the [Practice R](https://www.degruyter.com/document/isbn/9783110704969/html?lang=de "Go to the website") book [@treischl_practice_2023]. Practice R is a text book for the social sciences which provides several tutorials supporting students to learn R. Feel free to inspect the tutorials even if you are not familiar with the book, but keep in mind these tutorials are supposed to complement the Practice R book. 
+
+
+<a href="https://allisonhorst.github.io/palmerpenguins/" target="_blank"><img src="https://allisonhorst.github.io/palmerpenguins/logo.png" alt="The palmerpenguins package" align="right" width="100" style="padding:10px"/></a>
+
+In this tutorial we recapture the most important functions to explore data, but this time you will explore the `palmerpenguins` package and the `penguins` data [@palmerpenguins]. The latter contains information about three different penguins species (Adélie, Chinstrap, and Gentoo) and [Allison Horst](https://allisonhorst.github.io/palmerpenguins/index.html) has made some wonderful illustrations of them. Click on the hex sticker to inspect the package website.
+
+[![Palmerpenguins: Artwork by \@allison_horst](images/penguins.png){width="90%"}](https://allisonhorst.github.io/palmerpenguins/index.html)
+
+```{r}
+#Tutorial 03: Explore data
+library(dplyr)
+library(GGally)
+library(summarytools)
+library(skimr)
+library(palmerpenguins)
+library(visdat)
+```
+
+
+
+The tutorial has the same structure as Chapter 3: We explore categorical variables, continuous variables, and effects. Before we start with variables, it is always a good idea to explore the data in general terms. First, I assigned the data as `df`, which makes it possible for us to recycle a lot of code from Chapter 3. Next, explore which variables does the `penguins` data contain. Use the `glimpse()` or the `str()` function for a first look of the `penguins` data. The `glimpse()` function is loaded via the `dplyr` package, but comes from the `pillar` package [@pillar]. 
+
+```{r r1, exercise=TRUE}
+#Use glimpse, head, or the str function for a first look
+df <- penguins
+
+```
+
+```{r r1-solution, echo=FALSE, eval=FALSE}
+#Use glimpse, head, or the str function for a first look
+df <- penguins
+glimpse(df)
+```
+
+Thus, there are several factor variables such as penguin's `species` or `island`; numerical variables such as bill (`bill_length_mm`) and flipper length (`flipper_length_mm`); and integers such as the `year` variable. Keep in mind that R packages come with help files that show us how functions work and they provide more information about data. Use the help function (`?penguins`) if you feel insecure about the content of the data.
+
+## Categorical variables
+
+We started to explore categorical variables in Chapter 3 and I outlined a few basics about factor variables. Suppose we want to explore the factor variable `island`, which indicates where the penguins live. How can you examine unique group levels?
+
+```{r r3, exercise=TRUE}
+#Inspect the levels() of the penguin's home island
+
+```
+
+```{r r3-solution, echo=FALSE, eval=FALSE}
+#Inspect the levels() of the penguin's home island
+levels(df$island)
+```
+
+
+We will deepen our knowledge about factor variables in Chapter 5, but keep in mind that we can (re-) create and adjust `factor()` variables. For example, suppose the data looks like a messy character vector for penguin's `sex` that I have created in the next console. In such a case it is good to remember that we can give the variable proper text `labels` (e.g., `female` for `f`) and examine the results.
+
+```{r r4, exercise=TRUE, exercise.lines = 10}
+#Example of a messy factor variable
+sex <- c("m", "f", "f")
+
+#Give clearer labels
+
+
+
+
+```
+
+```{r r4-solution, echo=FALSE, eval=FALSE}
+#Example of a messy factor variable
+sex <- c("m", "f", "f")
+
+#Give clearer labels
+sex <- factor(sex,
+              levels = c("f", "m"),
+              labels = c("female", "male"),
+             
+)
+head(sex)
+```
+
+Tables help us to explore data and we used the `summarytools` package to make frequency and cross tables [@summarytools]. Keep in mind that we will learn how to create text documents with tables and graphs in Chapter 8. For the moment it is enough to remember that we can create different sort of tables with the `summarytools` package. For example, create a frequency (`freq`) table to find out on which `island` most of the penguins live.
+
+```{r r5, exercise=TRUE}
+#Create a frequency table
+
+```
+
+```{r r5-solution, echo=FALSE, eval=FALSE}
+#Create a frequency table
+freq(df$island)
+```
+
+
+As outlined in the book, we can use the `table()` function to count categorical variables and plot the result as a bar graph. I introduced the latter approach because it is very easy to apply, but our code becomes clearer if we make the necessary steps visible. First, we need to count the levels before we can plot the results. The `count()` function from the `dplyr` package does this job [@dplyr]. It needs only the data frame and the factor variable.
+
+```{r r6, exercise=TRUE}
+#Count islands with dplyr
+
+
+```
+
+```{r r6-solution, echo=FALSE, eval=FALSE}
+#Count islands with dplyr
+count_island <- dplyr::count(df, island)
+count_island
+```
+
+Next, use the assigned results (`count_island`) and insert the variables into the `barplot()` function (with the formula `y ~ x`).
+
+```{r r7, exercise=TRUE, exercise.setup = "r6"}
+#Create a barplot
+
+
+```
+
+```{r r7-solution, echo=FALSE, eval=FALSE}
+#Create a barplot
+barplot(n ~ island, data = count_island)
+```
+
+
+<br><a href="https://boxuancui.github.io/DataExplorer/" target="_blank"><img src="https://github.com/boxuancui/DataExplorer/raw/master/man/figures/logo.png" alt="The DataExplorer package" align="right" width="100" style="padding:10px"/></a>
+
+In a similar vein, I introduced functions from the `DataExplorer` package that help us to get a quick overview [@DataExplorer]. For example, use the `plot_bar()` function to depict several or all discrete variables of a data frame. <br><br>
+
+```{r r14, exercise=TRUE}
+#Inspect all or several plots at once
+
+```
+
+```{r r14-solution, echo=FALSE, eval=FALSE}
+#Inspect all or several plots at once
+DataExplorer::plot_bar(df[1:2])
+```
+
+
+## Continuous variables
+
+To explore continuous variables, estimate the summary statistics with the `summary()` function. Pick one variable such as penguin's body mass in gram (`body_mass_g`) or use the entire data frame.
+
+```{r r2, exercise=TRUE}
+#Get a summary 
+
+
+```
+
+```{r r2-solution, echo=FALSE, eval=FALSE}
+#Get a summary 
+summary(df[1:4])
+```
+
+The classic approach to visualize the distribution of a continuous variable is a histogram. Use the `hist()` function to display the distribution of the penguins body mass.
+
+```{r r8, exercise=TRUE}
+#Create a histogram
+
+```
+
+```{r r8-solution, echo=FALSE, eval=FALSE}
+#Create a histogram
+hist(df$body_mass_g)
+```
+
+Keep in mind that we only explored the data for the first time. We did not clean the data nor did we prepare the variables. We have to be explicit about missing values when we want to apply functions such as the `mean`. The function returns `NA`, but only because of a missing values problem. Can you remember how to fix this problem and estimate, for example, the mean?
+
+```{r r9, exercise=TRUE}
+#Calculate the mean, but what about missing values (na.rm)?
+
+```
+
+```{r r9-solution, echo=FALSE, eval=FALSE}
+#Calculate the mean, but what about missing values (na.rm)?
+mean(df$body_mass_g, na.rm = TRUE)
+```
+
+I picked data that was more or less prepared to be explored, because data preparation needs more time and effort especially in the beginning. For this reason we will learn how to manipulate data in Chapter 4; and Chapter 5 tries to prepare you for own journey. For example, we use packages such as `visdat` and `naniar` to identify missing values, as the next console illustrates with two examples [@naniar]. The `vis_dat()` function from the corresponding packages shows us which type of data we have with missing values in gray; while `vis_miss()` visualizes missing values in general terms. Keep in mind that Chapter 3 did not introduce data preparation steps which are often necessary to explore data and effects between variables.
+
+```{r, eval=FALSE}
+library(visdat)
+
+#Left plot: vis_dat()
+vis_dat(df) 
+
+#Right plot: vis_miss()
+vis_miss(df)
+```
+
+```{r, echo=FALSE}
+library(visdat)
+library(patchwork)
+p1 <- vis_dat(df) + ggplot2::ggtitle("visdat::vis_dat()")
+p2 <- vis_miss(df) + ggplot2::ggtitle("visdat::vis_miss()")
+
+p1 + p2
+```
+
+
+
+## Explore effects
+
+
+
+Let's start with an *effect between two categorical variables*. There are different packages that provides functions to create (cross) tables, but we used the `summarytools` package. It even provides a simulated data set which we will use the repeat the steps to create a cross table. The package comes with the `tobacco` data, which illustrates that smoking is harmful. As the next console shows, it indicates if a person is a `smoker` and if the person is `diseased`.
+
+```{r}
+head(tobacco)[1:8]
+```
+
+Use the `ctable` function from the `summarytools` package to make a cross table for these variables. See also what happens if you adjust the `prop` option. Insert `c` or `t`. Furthermore, explore what happens if you set the `chisq`, `OR`, or `RR` option to `TRUE`.
+
+```{r r11, exercise=TRUE, exercise.lines = 9, exercise.blanks = "___"}
+#Create a cross table with summarytools
+summarytools::ctable(
+  x = ___,
+  y = ___
+  )
+```
+
+```{r r11-solution, echo=FALSE, eval=FALSE}
+#Create a cross table with summarytools
+summarytools::ctable(
+  x = tobacco$smoker,
+  y = tobacco$diseased,
+  prop = "r",
+  chisq = TRUE,
+  OR = TRUE
+)
+```
+
+
+The `prop` option lets you determine the proportions: rows (`r`), columns (`c`), total (`t`), or none (`n`). Furthermore, the function even adds the chi-square statistic (`chisq`); the odds ratio (`OR`) or the relative risk (`RR`) if we set them to `TRUE`. Never mind if you are not familiar with the latter, the discussed options only illustrated how the `summarytools` package helps us to explore data and effects.
+
+In the social sciences we are often interested in comparing *numerical outcomes between categorical variables* (groups). For example, one of the penguin's species has a higher body mass and we can examine which penguins `species` differ in terms of their body mass (`body_mass_g`). With `base` R, the `aggregate()` function lets us split the data and we are able to estimate the mean for each species.
+
+
+```{r}
+#Aggregate splits the data into subsets and computes summary statistics 
+aggregate(df$body_mass_g, list(df$species), FUN=mean, na.rm = TRUE)
+```
+
+To calculate a group-mean looks quite complicated and I did not introduce the latter since we will systematically work on our skills to manipulate data in the next Chapter. Instead, we used a box plot to explore a continuous outcome between groups. As outlined in the book, box plots can be very helpful to compare groups even though they have graphical limitations since they do not display the data. Keep the `boxplot()` function in mind and practice one more time how it works. Inspect how penguin's body mass differs between the species. 
+
+```{r r10, exercise=TRUE}
+#Inspect group differences with a box plot
+
+```
+
+```{r r10-solution, echo=FALSE, eval=FALSE}
+#Inspect group differences with a box plot
+boxplot(body_mass_g ~ species, data=df)
+```
+
+
+If we examine an *effect between two continuous outcomes*, we have to keep in mind that the `plot` function returns a scatter plot and we may insert a regression line with the `abline` and the `lm` function. Do you still know how it works? Create a scatter plot to examine the association between the body mass (`body_mass_g`) and the flipper length (`flipper_length_mm`) of the `penguins`.
+
+```{r r12, exercise=TRUE, exercise.lines = 9}
+# Create a scatter plot
+
+
+# And a red regression line
+
+```
+
+```{r r12-solution, echo=FALSE, eval=FALSE}
+# Create a scatter plot
+plot(y = df$body_mass_g, x = df$flipper_length_mm)
+
+# And a red regression line
+abline(lm(body_mass_g ~ flipper_length_mm, data = df),
+       col = "red")
+```
+
+
+Furthermore, we learned how to calculate the correlation coefficient. The code of the next console does not work if I apply the `cor()` with the penguins data. Do you have any idea how to fix the problem?
+
+```{r r12a, exercise=TRUE}
+#Calculate the correlation between x and y
+cor_penguins <- cor(df$body_mass_g, df$flipper_length_mm)
+cor_penguins
+```
+
+```{r r12a-solution, echo=FALSE, eval=FALSE}
+#Calculate the correlation between x and y
+cor_penguins <- cor(df$body_mass_g, df$flipper_length_mm, 
+                 use = "complete")
+cor_penguins
+```
+
+
+By the way, the `cor()` also returns Kendall's \tau or Spearman's \rho if you adjust the `method` option:
+
+
+```{r, eval=FALSE}
+#estimate a rank-based measure of association
+cor(x, y = NULL, use = "complete",
+    method = c("pearson", "kendall", "spearman"))
+```
+
+<a href="https://easystats.github.io/effectsize/" target="_blank"><img src="https://github.com/easystats/effectsize/raw/main/man/figures/logo.png" alt="The effectsize package" align="right" width="100" style="padding:10px"/></a>
+
+Finally, the `effectsize` package helped us with the interpretation of Pearson's r (and other stats, see Chapter 6). I copied the code from the book; can you adjust it to interpret the effect of the examined variables with the `effectsize` package [@effectsize]?<br><br><br>
+
+```{r r13, exercise=TRUE, exercise.setup = "r12a"}
+#Use effectsize to interpret R
+effectsize::interpret_r(correlation, rules = "cohen1988")
+```
+
+```{r r13-solution, echo=FALSE, eval=FALSE}
+#Use effectsize to interpret R
+effectsize::interpret_r(cor_penguins, rules = "cohen1988")
+```
+
+
+
+<a href="https://docs.ropensci.org/skimr/" target="_blank"><img src="https://docs.ropensci.org/skimr/reference/figures/logo.png" alt="The skimr package" align="right" width="15%" style="padding:10px"/></a>
+
+There are more R packages to explore data than I could possibly outline. For example, consider the `skimr` package [@skimr]. It skims a data set and returns, for example, a short summary, summary statistics, and missing values. Inspect the vignette and `skim()` the data frame.<br><br><br>
+
+```{r r15, eval=F, exercise=TRUE}
+#Inspect skimr package (and vignette)
+#vignette("skimr")
+
+
+```
+
+```{r r15-solution, echo=FALSE, eval=FALSE}
+#Inspect skimr package (and vignette)
+#vignette("skimr")
+skimr::skim(df)
+```
+
+```{=tex}
+\begin{verbatim}
+--- Data Summary ------------------------
+                           Values  
+Name                       penguins
+Number of rows             344     
+Number of columns          8       
+_______________________            
+Column type frequency:             
+  factor                   3       
+  numeric                  5       
+________________________           
+Group variables            None    
+
+--- Variable type: factor 
+---------------------------------------------------------
+  skim_variable n_missing complete_rate ordered n_unique
+1 species               0         1     FALSE          3
+2 island                0         1     FALSE          3
+3 sex                  11         0.968 FALSE          2
+
+  top_counts                 
+1 Ade: 152, Gen: 124, Chi: 68
+2 Bis: 168, Dre: 124, Tor: 52
+3 mal: 168, fem: 165         
+
+--- Variable type: numeric 
+-----------------------------------------------------------
+  skim_variable     n_missing complete_rate   mean      sd     p0    p25    p50
+1 bill_length_mm            2         0.994   43.9   5.46    32.1   39.2   44.4
+2 bill_depth_mm             2         0.994   17.2   1.97    13.1   15.6   17.3
+3 flipper_length_mm         2         0.994  201.   14.1    172    190    197  
+4 body_mass_g               2         0.994 4202.  802.    2700   3550   4050  
+5 year                      0         1     2008.    0.818 2007   2007   2008  
+     p75   p100  
+1   48.5   59.6
+2   18.7   21.5
+3  213    231
+4 4750   6300
+5 2009   2009
+\end{verbatim} 
+```
+
+Or examine the `ggpairs()` function from the `GGally` package [@GGally]. It provides many extensions to create graphs (with `ggplot2` see Chapter 7); and it also has functions to explore data and effects. The `ggpairs()` function returns a graph for a pairwise comparison of all variables. Depending on the data type, it returns bar plots, density plot, or the correlation between variables and combines all plots in one graph.
+
+```{r r16, exercise=TRUE}
+#GGally: https://ggobi.github.io/ggally/
+
+```
+
+```{r r16-solution, echo=FALSE, eval=FALSE}
+#GGally: https://ggobi.github.io/ggally/
+GGally::ggpairs(df[2:5])
+```
+
+## Summary
+
+Data exploration can be exciting since we explore something new. Unfortunately, it can be painful if the data is complex or messy. For this reason we used a simple and clean data, but we will start to manipulate complex(er) data and prepare messy data soon. Keep the following functions from Chapter 3 in mind:
+
+-   Get a glimpse of your data (`dplyr::glimpse`); display the structure of an object (`str`); and inspect the first or last parts of an object (`head/tail`)
+
+-   Create a factor variable (`factor`); levels attributes (`levels`); object labels (`labels`)
+
+-   Simple cross table (`table`)
+
+-   Get a summary (`summary`)
+
+-   Summary statistics (`min, mean, max, sd`)
+
+-   Correlation, variance and covariance (matrices) via (`cor`); or with the `correlation` package [@correlation]
+
+-   Graphs: Bar plots (`barplot`); histograms (`hist`), spine plot (`spineplot`), box plot (`boxplot`), scatter plot (`plot`), correlation matrix (`corrplot::corrplot`)
+
+-   Packages:
+
+    -   The `summarytools` package provides many tables: (e.g., `freq, ctable`)
+    -   The `DataExplorer` to visualize several variable at once: (e.g., `plot_bar`)
+    -   The `effectsize` package to interpret results: (e.g., `interpret_r`)
+
+
+
+
+
+
+
+
+
+Finally, a link to download this tutorial as PDF file.
+
+```{r, echo=FALSE, eval=T}
+actionButton("download", "PR Tutorial 03", onclick="window.open('https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf')", icon = icon("file-pdf"))
+```
+
+
+## References
+
+
+
