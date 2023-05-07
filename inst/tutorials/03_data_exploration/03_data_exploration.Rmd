@@ -64,7 +64,7 @@ Welcome to the data exploration tutorial of the [Practice R](https://www.degruyt
 
 In this tutorial we recapture the most important functions to explore data, but this time you will explore the `palmerpenguins` package and the `penguins` data [@palmerpenguins]. The latter contains information about three different penguins species (Adélie, Chinstrap, and Gentoo) and [Allison Horst](https://allisonhorst.github.io/palmerpenguins/index.html) has made some wonderful illustrations of them. Click on the hex sticker to inspect the package website.
 
-[![Palmerpenguins: Artwork by \@allison_horst](images/penguins.png){width="90%"}](https://allisonhorst.github.io/palmerpenguins/index.html)
+[![Palmerpenguins: Artwork by \@allison_horst](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png){width="90%"}](https://allisonhorst.github.io/palmerpenguins/index.html)
 
 ```{r}
 #Tutorial 03: Explore data

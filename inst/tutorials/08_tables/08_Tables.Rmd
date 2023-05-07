@@ -436,9 +436,10 @@ bottom_border(mytable)[9, ] <- brdr(1.4, "solid", "black")
 mytable
 ```
 
-Finally, let me briefly introduce Quarto (`.qmd`), a publishing system to create many different document types. In a similar sense as `rmarkdown`, it uses `knitr` and Pandoc to create documents with R as the illustration from Allison Horst shows. However, Quarto is a flexible system since it is not tied to R. As outlined on the homepage: "Quarto was developed to be multilingual, beginning with R, Python, Javascript, and Julia, with the idea that it will work even for languages that don’t yet exist". 
 
-[![Artwork "Hello, Quarto" by Allison Horst](images/qmd.png){width="95%"}](https://allisonhorst.com/cetinkaya-rundel-lowndes-quarto-keynote)
+Finally, let me briefly introduce Quarto (`.qmd`), a publishing system to create many different document types. In a similar sense as `rmarkdown`, it uses `knitr` and Pandoc to create documents with R. As the illustration from Allison Horst underlines, Quarto is a flexible system since it is not tied to R. As outlined on the homepage: "Quarto was developed to be multilingual, beginning with R, Python, Javascript, and Julia, with the idea that it will work even for languages that don’t yet exist". 
+
+[![Artwork "Hello, Quarto" by Allison Horst](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/c2ef45f1-4a68-4c7a-a43f-bdcf0f90e104_rw_3840.png?h=783eba914284e5adfb9feadcf4ba5f1e){width="95%"}](https://allisonhorst.com/cetinkaya-rundel-lowndes-quarto-keynote)
 
 
 

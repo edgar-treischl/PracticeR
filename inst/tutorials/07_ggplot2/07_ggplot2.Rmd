@@ -650,7 +650,7 @@ Edward Tufte underlines: “Clutter and confusion are failures of design, not at
 Consider the next two graphs. I made two bar graphs with a toy data frame and a binary outcome to keep it as simple as possible. I took my quite some time to create a graph that outlines the idea. As the plot on the left side shows, I created a theme that is supposed to look like the old Excel theme with a lot of clutter: The background is gray, I colored the bars even though the color and the legend do not transport any information, and I picked thick, black grid lines for a finishing touch. To compare this ugly beast, the right side shows the `ggplot2` default version. Unfold the code if you want to create a ugly, cluttered graph on your own.
 
 
-```{r, echo=FALSE}
+```{r clutterplot, echo=FALSE}
 #| code-fold: true
 df_clutter <- tibble::tribble(
   ~outcome, ~count, ~percent,

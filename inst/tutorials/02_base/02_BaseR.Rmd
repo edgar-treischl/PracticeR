@@ -8,7 +8,8 @@ output:
     theme: flatly
 bibliography: PracticeR_FINAL.bib
 description: >
-  Explore common and cryptic error messages from base R.
+  Recapture the basics about base R and get in touch with common and cryptic 
+  error messages.
    
 runtime: shiny_prerendered
 ---
@@ -98,7 +99,7 @@ RStudio has an auto-completion function which helps us to avoid such syntax erro
 
 
 `r if (knitr::is_html_output()) '
-[![Debugging: Artwork by Allison Horst](images/debug2.png){width="90%"}](https://allisonhorst.com/everything-else)
+[![Debugging: Artwork by Allison Horst](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/51084276-ab7f-4c57-a0e7-5cf14a277359_rw_3840.png?h=d4d09144139fad473d6333e919c0f45a){width="90%"}](https://allisonhorst.com/everything-else)
 '`
 
 

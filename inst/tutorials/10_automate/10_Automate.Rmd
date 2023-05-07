@@ -510,7 +510,7 @@ Rcade::games$Pacman
 Thus, be curious and don't miss the opportunity to automate work that does not need your full attention, because it will also improve your skills. In a similar sense, consider to write your own R package if you have invested a lot of time and effort in your work. Depending on your goal, this might not be necessary but all the functions would be available if you combine them in a package. Moreover, I couldn't resist to highlight the possibility one more time, especially regarding the *American Chopper* meme. 
 
 `r if (knitr::is_html_output()) '
-[![Meme based on the American Chopper](images/memer.png){width="90%"}](https://www.youtube.com/watch?v=0J8c3nDms7w)
+[![Meme based on the American Chopper](https://github.com/edgar-treischl/Scripts_PracticeR/blob/main/images/memer_ch10.png?raw=true){width="90%"}](https://www.youtube.com/watch?v=0J8c3nDms7w)
 '`
 
 Don’t let fancy packages such as `ggplot2` discourage you when considering to create your own package for the first time: you and your ideas are worth the time and effort. Keep that in mind if you start fooling around with the idea.
