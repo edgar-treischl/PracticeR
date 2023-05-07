@@ -23,8 +23,12 @@ show_tutorial <- function(file) {
       !file %in% validExamples) {
     cli::cli_abort(validExamplesMsg)
   }
-  learnr::run_tutorial(file, package = "PracticeR")
+  options(shiny.launch.browser = .rs.invokeShinyWindowExternal)
+  learnr::run_tutorial(file,
+                       package = "PracticeR")
 }
+
+utils::globalVariables(c(".rs.invokeShinyWindowExternal"))
 
 
 

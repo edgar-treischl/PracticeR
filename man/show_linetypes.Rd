@@ -10,7 +10,7 @@ show_linetypes()
 A ggplot2 object
 }
 \description{
-The function returns a graph that shows
+The function returns a graph with
 the line types in R
 }
 \examples{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/show_packages.R
 \name{list_packages}
 \alias{list_packages}
-\title{Returns All Packages Names Used in Practice R}
+\title{List the Names of all Packages Used in Practice R}
 \usage{
 list_packages()
 }

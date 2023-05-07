@@ -10,8 +10,8 @@ show_shapetypes()
 A ggplot2 object
 }
 \description{
-The function returns a graph that shows
-the shape types of base R
+The function returns a graph with
+the shape types in R
 }
 \examples{
 show_shapetypes()

@@ -476,7 +476,7 @@ Data exploration can be exciting since we explore something new. Unfortunately, 
 Finally, a link to download this tutorial as PDF file.
 
 ```{r, echo=FALSE, eval=T}
-actionButton("download", "PR Tutorial 03", onclick="window.open('https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf')", icon = icon("file-pdf"))
+actionButton("download", "PR Tutorial 03", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial03.pdf')", icon = icon("file-pdf"))
 ```
 
 

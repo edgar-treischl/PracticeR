@@ -3,7 +3,7 @@
 \docType{data}
 \name{gss2016}
 \alias{gss2016}
-\title{General Social Survey data, 2016}
+\title{General Social Survey Data, 2016}
 \format{
 A data frame with 2538 rows and 26 variables.
 }

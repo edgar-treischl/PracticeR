@@ -473,10 +473,10 @@ Keep also the following functions and packages from Chapter 11 in mind:
 -  The `httr` package and its functions for receive information from a website [`GET, content`, @httr]
 -  Create an API with the `plumber` package [@plumber]
 
-Finally, a link to download this tutorial as PDF file.
+The link to download this tutorial as PDF file.
 
 ```{r, echo=FALSE, eval=T}
-actionButton("download", "PR Tutorial 02", onclick="window.open('https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf')", icon = icon("file-pdf"))
+actionButton("download", "PR Tutorial 11", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial11.pdf')", icon = icon("file-pdf"))
 ```
 
 

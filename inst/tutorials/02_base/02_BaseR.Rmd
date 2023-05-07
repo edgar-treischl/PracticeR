@@ -443,7 +443,7 @@ PracticeR::show_link("base_r")
 Finally, a link to download this tutorial as PDF file.
 
 ```{r, echo=FALSE, eval=T}
-actionButton("download", "PR Tutorial 02", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial2.pdf')", icon = icon("file-pdf"))
+actionButton("download", "PR Tutorial 02", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial02.pdf')", icon = icon("file-pdf"))
 ```
 
 ## References

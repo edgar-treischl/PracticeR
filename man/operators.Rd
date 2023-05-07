@@ -13,5 +13,5 @@ operators(operator)
 Returns operators via the console
 }
 \description{
-Examine logical and relational operators
+Get logical and relational operators
 }

@@ -835,7 +835,7 @@ In addition, keep the following functions and packages from Chapter 7 in mind:
 Finally, a link to download this tutorial as PDF file.
 
 ```{r, echo=FALSE, eval=T}
-actionButton("download", "PR Tutorial 02", onclick="window.open('https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf')", icon = icon("file-pdf"))
+actionButton("download", "PR Tutorial 07", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial07.pdf')", icon = icon("file-pdf"))
 ```
 
 

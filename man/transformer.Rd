@@ -2,7 +2,7 @@
 % Please edit documentation in R/transformer.R
 \name{transformer}
 \alias{transformer}
-\title{Transform a Numerical Input.}
+\title{Transform a Numerical Input}
 \usage{
 transformer(x, method = NULL)
 }
