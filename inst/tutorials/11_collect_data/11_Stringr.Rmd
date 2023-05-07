@@ -1,0 +1,486 @@
+---
+title: "Practice R Tutorial 11"
+author: "Edgar Treischl"
+date: "Last update: `r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    highlight: kate
+    theme: flatly
+bibliography: PracticeR_FINAL.bib
+description: >
+  Which str_* function was it again?
+   
+runtime: shiny_prerendered
+---
+
+```{css, include=FALSE}
+topicsFooter{
+font-size: large; 
+}
+
+body {
+  background-color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 24;
+}
+
+```
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  fig.path = "images/",
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  eval = TRUE,
+  comment = "#>",
+  error = TRUE
+)
+
+tutorial_options(exercise.lines = 5, 
+                 exercise.eval=FALSE)
+
+#english environment
+Sys.setenv(LANG = "en")
+knitr::opts_chunk$set(tidy = "styler")
+
+#Libs for Tutorial 11
+library(purrr)
+library(stringi)
+library(stringr)
+
+
+sf_data <- tibble::tribble(
+          ~character,     ~firstname,   ~lastname, ~year,                     ~email,
+            "Eleven", "Millie Bobby",     "Brown",  2004,    "eleven@HawkinsLab.com",
+  "Dustin Henderson",        "Gaten", "Matarazzo",  2002, "Dustin.Henderson@gmx.com",
+        "Will Byers",         "Noah",   "Schnapp",  2004,     "byers-castle@gmx.com",
+    "Erica Sinclair",        "Priah",  "Ferguson",  2006,  "Erica-Sinclair1@aol.com",
+    "Martin Brenner",      "Matthew",    "Modine",  1959, "MBrenner@HawkinsLab.com2",
+        "Jim Hopper",        "David",   "Harbour",  1975, "jim.hopper@hawkinspd.com",
+       "Joyce Byers",       "Winona",     "Ryder",  1971,          "Joyce-B@gmx.com",
+      "Mike Wheeler",         "Finn",  "Wolfhard",  2002,     "Mike@TheWheelers.com",
+     "Nancy Wheeler",      "Natalia",      "Dyer",  1995, "1nancy-wheeler92@gmx.com"
+  )
+
+emails <- sf_data$email
+
+```
+
+
+## 11 Collect data <a href="https://stringr.tidyverse.org" target="_blank"><img src="https://github.com/tidyverse/stringr/raw/main/man/figures/logo.png" alt="The stringr package" align="right" width="100"/></a>
+
+Welcome to the collect data tutorial of the [Practice R](https://www.degruyter.com/document/isbn/9783110704969/html?lang=de "Go to the website") book [@treischl_practice_2023]. Practice R is a text book for the social sciences which provides several tutorials supporting students to learn R. Feel free to inspect the tutorials even if you are not familiar with the book, but keep in mind these tutorials are supposed to complement the Practice R book. 
+
+
+We extracted data from a PDF, I outlined the basics about web scraping, and we got in touch with APIs in Chapter 11. As outlined, to collect data offers unique opportunities for applied empirical research, but can be very tricky, especially web scraping becomes quickly complicated. 
+
+Regardless of the approach to collect data, I introduced the `stringr` package and its main functions before we extracted information from a PDF file and worked with unstructured data from HTML files [@stringr]. To give you a compact overview about the many `str_*` functions, this tutorial is dedicated to the `stringr` package: We recapture the introduced functions and explore further possibilities how we can handle strings. The next console shows data and fictive email addresses from persons you may know from the Netflix series *Stranger Things*. Never mind if you are not familiar with the series, we will use the character variables such as the email addresses to work with `stringr`.
+
+```{r}
+#Libs for Tutorial 11
+library(purrr)
+library(stringi)
+library(stringr)
+
+#The stranger things example data
+head(sf_data)
+```
+
+
+The `stringr` package increases your string powers tremendously, but we need to keep up with many `str_*` functions and names. All you have to do is pick the "right" function in this tutorial. For the compact overview, we focus on the sections of the package cheat sheet: (1) We detect matches; (2) we mutate strings; (3) we subset strings; (4) we join and split strings; and (5) we order strings and manage their length.
+
+## Detect matches
+
+Suppose we want to create an online survey which is why we scraped `emails` of our participants such as in the fictive email addresses from the Stranger Things data. Unfortunately, the strings contain some minor mistakes that need to be fixed:
+
+```{r}
+#Email examples
+emails <- sf_data$email
+emails
+```
+
+Notice, some email addresses start (end) with a number instead of letters. Those signs are not a part of the email address but refer to footnotes on the webpage where we scraped the data. Suppose we do not know how virulent this problem is, can you detect which one does not *start* (`str_starts`) or *end* (`str_ends`) with a letter?
+
+```{r r1a, exercise=TRUE}
+#Does the string start with ...?
+
+```
+
+```{r r1a-solution, eval=FALSE, echo=FALSE}
+#Does the string start with ...?
+str_starts(emails, "[:alpha:]")
+```
+
+```{r r1b, exercise=TRUE}
+#Does the string end with ...?
+
+```
+
+```{r r1b-solution, eval=FALSE, echo=FALSE}
+#Does the string end with ...?
+str_ends(emails, "[:alpha:]")
+```
+
+
+
+Some of the email addresses are private, while others are from a company (e.g., `HawkinsLab.com`). If you need to know how many, use the `str_count()` function and build the sum. How many email addresses are from `HawkinsLab.com`?
+
+```{r r2, exercise=TRUE}
+#Count them
+
+```
+
+```{r r2-solution, eval=FALSE, echo=FALSE}
+#Count them
+sum(str_count(emails, "HawkinsLab.com"))
+```
+
+Use the `str_detect()` function to detect all strings from the HawkinsLab. 
+
+```{r r3a, exercise=TRUE}
+#Detect strings
+
+```
+
+```{r r3a-solution, eval=FALSE, echo=FALSE}
+#Detect strings
+str_detect(emails, "@HawkinsLab.com")
+```
+
+
+The `str_which()` is also handy, it returns *at which position* we observe the search pattern.
+
+```{r r3b, exercise=TRUE}
+#And at which position?
+
+```
+
+```{r r3b-solution, eval=FALSE, echo=FALSE}
+#And at which position?
+str_which(emails, "@HawkinsLab.com")
+```
+
+
+
+Suppose we need to extract the user names because we want to include them in the email invitation for the survey. In order to extract the names, *locate* the position of a string. Use the `str_locate()` to locate where the `@` sign appears, because it splits the string into the user and the provider name.
+
+```{r r4, exercise=TRUE}
+#Locate a start and an end point (here @)
+
+```
+
+```{r r4-solution, eval=FALSE, echo=FALSE}
+#Locate a start and an end point (here @)
+str_locate(emails, "@")
+```
+
+In the next step we will use the position of the `@` sign to mutate the strings and to extract their user names. 
+
+
+
+## Mutate strings
+
+Let us first clean the email addresses. *Remove* strings that do not start or end with a letter but with a number, which is clearly an error. Very similar to the `str_replace()` function, the `str_remove()` searches the string, but it removes a match instead of performing a replacement. Can you still remember how to remove the digits from the beginning (`^`) and the end (`$`) of a string? Replace the `emails` vector and check if it worked.
+
+
+```{r r5, exercise=TRUE, exercise.lines = 7}
+#Remove strings
+
+
+#Did it work?
+
+```
+
+```{r r5-solution, eval=FALSE, echo=FALSE}
+#Remove strings
+emails <- str_remove(emails, "^[:digit:]")
+emails <- str_remove(emails, "[:digit:]$")
+
+#Did it work?
+emails
+```
+
+We could use the `str_extract()` function and our regex knowledge to extract the user names, but regex are hard to build even in the case of a supposedly simple strings. The email addresses make this point clear: Each user name consist of one or several words; some have a separator between the first and the last name, some contains digits (or not), and the user name ends before the `@` sign. There is a much simpler solution to extract the user names, but nevertheless keep the `str_view_all()` function in mind if you are building a regex because it displays the strings in the viewer pane and highlights matched characters.
+
+Instead of building a regex, we can use the `str_sub()` function to create a vector with the user names only. The function needs the strings, a start, and an endpoint to create the subset. For this purpose we already located the positions of the `@` sign with the `str_locate()` function. Thus, all user names start at the first position until the `@` sign appears in the string. I copied the code to locate the `@` sign and saved the results as `x`. Subset `x` to get a vector with the end position of the user name, then subset the `emails`. 
+
+```{r r6, exercise=TRUE, exercise.setup = "r5", exercise.lines = 7}
+#Get and set substrings using their positions
+
+```
+
+```{r r6-solution, eval=FALSE, echo=FALSE}
+#Get and set substrings using their positions
+x <- str_locate(emails, "@")
+end <- x[,1]
+names <- str_sub(emails, 1, end-1)
+names
+```
+
+
+Further steps to manipulate the strings might be easier to apply if all the user would have used the same style regarding their user names. Use the `str_replace()` function and replace the dashes with points.
+
+```{r r9, exercise=TRUE, exercise.setup = "r6"}
+#Replace
+
+```
+
+```{r r9-solution, eval=FALSE, echo=FALSE}
+#Replace
+str_replace(names, "-", ".")
+```
+
+
+Depending on the purpose, it might also be useful to create a uniform formatting of the strings. Use one of the `str_to_*()` functions to make them *lower*, *upper*, or *title* case.
+
+```{r r10, exercise=TRUE, exercise.setup = "r6"}
+#str_to_* (lower, upper, title)
+
+```
+
+```{r r10-solution, eval=FALSE, echo=FALSE}
+#str_to_* (lower, upper, title)
+str_to_lower(names)
+```
+
+
+## Subset strings
+
+We used the `str_sub()` to split strings by their position, but the `str_subset()` function lets us create a subset for a search pattern. For example, consider all participants with an specific email account (e.g., `gmx`):
+
+```{r r11, exercise=TRUE, exercise.setup = "r5"}
+#Find matching elements
+
+```
+
+```{r r11-solution, eval=FALSE, echo=FALSE}
+#Find matching elements
+str_subset(emails, pattern = "gmx")
+```
+
+Furthermore, most of the time we use the `str_detect()` function to detect a pattern. For example, the functions shows us which input has a specific pattern and we can detect if an string has no `@` sign at all. 
+
+```{r r12, exercise=TRUE, exercise.lines = 12}
+strings <- c(
+  "Dustin Henderson", 
+  "hop@gmx.com jim.hopper@hawkinspd.com",
+  "Erica-Sinclair@aol.com", 
+  "nancy-wheeler92@gmx.com"
+)
+
+is_email <- "@"
+
+#Detect a pattern
+
+```
+
+```{r r12-solution, eval=FALSE, echo=FALSE}
+#Detect a pattern
+str_detect(strings, is_email)
+```
+
+We used the function to illustrate the first few things about regular expressions. However, we do not need to filter the data and first detect the email addresses if we want to extract this information. Consider how the `str_extract()` and the `str_extract_all` function work. The function needs `strings` and a pattern (such as `is_email`). It shows us which string does (not) include the given pattern.  
+
+```{r r13, exercise=TRUE, exercise.setup = "r12"}
+#Extract the complete match
+
+```
+
+```{r r13-solution, eval=FALSE, echo=FALSE}
+#Extract the complete match
+str_extract(strings, is_email)
+str_extract_all(strings, is_email)
+```
+
+Finally, the `str_match()` (and `str_match_all`) does essentially the same as `str_extract()`, but returns matches as matrix.
+
+
+```{r r14, exercise=TRUE, exercise.setup = "r12"}
+#Extract components (capturing groups) from a match
+
+```
+
+```{r r14-solution, eval=FALSE, echo=FALSE}
+#Extract components (capturing groups) from a match
+str_match(strings, is_email)
+```
+
+
+## Join and splits
+
+The `stringr` package has join and split functions. Suppose we scraped the first and the last name of a person separately, but for the survey invitation we need to combine them. Use `str_c()` for this job and assign them as `names`. Combine the `firstname` with the `lastname` from the `sf_data`. Use a blank space as a separator (`sep`).
+
+```{r r16, exercise=TRUE, exercise.lines = 8}
+#Use str_c to combine strings
+
+```
+
+```{r r16-solution, eval=FALSE, echo=FALSE}
+#Use str_c to combine strings
+names <- str_c(sf_data$firstname, sf_data$lastname, sep = " ")
+names
+```
+
+
+
+Use the `str_split_fixed()` in the opposite scenario. Split the `names` vector from the last task: Use the blank space as a `pattern` and each name consist of two text chunks we want to split (`n`).
+
+```{r, r17, exercise=TRUE, exercise.setup = "r16"}
+#Split strings
+
+```
+
+```{r r17-solution, eval=FALSE, echo=FALSE}
+#Split strings
+str_split_fixed(names, pattern = " ", n = 2)
+```
+
+
+We used the `str_sub()` function to extract the user names, but we could also use the `str_split()` function to split the strings before and after the `@` sign. Say we want to extract unique provider names this time. The `str_split()` function returns a list as the next console shows. Use the pipe and the `map_chr()` functions from `purrr` to get the first or second element of each list [@purrr]. Furthermore, apply the `stri_unique()` function from `stringi` to examine unique provider names only [@stringi].
+
+```{r r16a, exercise=TRUE, exercise.setup = "r16", exercise.lines = 7}
+#Split email, get provider names, but only unique ones
+
+
+```
+
+
+```{r r16a-solution, eval=FALSE, echo=FALSE}
+#Split email, get provider names, but only unique ones
+str_split(emails, pattern = '@') |> 
+  purrr::map_chr(2)|> 
+  stringi::stri_unique()
+```
+
+
+The `glue` package offers some useful features to work with strings, especially if we create texts and documents. Suppose we want to create a sentence that describe how old a person like *Jim Hopper* is. I already calculated his age (`hopper_age`); use the `paste` function to create a sentences that describes how old he is.  
+
+```{r r19, exercise=TRUE}
+#Traditional approach
+hopper_age <- lubridate::year(Sys.time()) - sf_data$year[6]
+
+```
+
+```{r r19-solution, eval=FALSE, echo=FALSE}
+#Traditional approach
+hopper_age <- lubridate::year(Sys.time()) - sf_data$year[6]
+paste("Jim Hopper is", hopper_age, "years old.")
+```
+
+
+Did you realize that we need a lot of quotation marks and that we need to be careful not to introduce any error. The `str_glue()` tries to improve this case. We can refer to objects with curved braces without further ado. 
+
+
+```{r r20, exercise=TRUE, exercise.setup = "r19"}
+#Glue strings
+
+```
+
+```{r r20-solution, eval=FALSE, echo=FALSE}
+#Glue strings
+str_glue("Hop is {hopper_age} years.")
+```
+
+One step further goes the `str_glue_data()` function. It returns strings for each observation of a data set. For example, build a sentence that outlines the `firstname`, `lastname` and the birth `year` of the Stranger Things actors.
+
+
+```{r r21, exercise=TRUE}
+#Glue strings from data
+
+```
+
+```{r r21-solution, eval=FALSE, echo=FALSE}
+#Glue strings from data
+str_glue_data(sf_data, "- {firstname} {lastname} is born in {year}.")
+```
+
+Finally, the package offers functions to order strings and manage their length.
+
+
+## Length and order 
+
+Do not forget that `stringr` comes with example strings (`fruit`, `sentences`) that lets you test the functions before you run them in the wild, but of course we can also build our own `fruits`. So, do you remember how we can estimate the length of strings? 
+
+```{r r22, exercise=TRUE}
+#Length of a string
+fruits <- c("banana", "apricot", "apple", "pear     ")
+
+```
+
+```{r r22-solution, eval=FALSE, echo=FALSE}
+#Length of a string
+fruits <- c("banana", "apricot", "apple", "pear     ")
+str_length(fruits)
+```
+
+Unfortunately, the `fruits` vector includes an mistake. There is a lot of white space around the last fruit. Do you know how to get rid of such noise.
+
+```{r r23, exercise=TRUE, exercise.setup = "r22"}
+#Trim your strings
+
+```
+
+```{r r23-solution, eval=FALSE, echo=FALSE}
+#Trim your strings
+fruits <- str_trim(fruits)
+fruits
+```
+
+Finally, order (`str_order`) and sort (`str_sort`) the fruits. 
+
+```{r r24setup, echo=FALSE}
+fruits <- c("banana", "apricot", "apple", "pear")
+```
+
+
+```{r r24a, exercise=TRUE, exercise.lines = 6, exercise.setup = "r24setup"}
+#Order strings
+
+```
+
+```{r r24a-solution, eval=FALSE, echo=FALSE}
+#Order strings
+str_order(fruits)
+```
+
+```{r r24b, exercise=TRUE, exercise.lines = 6, exercise.setup = "r24setup"}
+#Sort strings
+
+```
+
+```{r r24b-solution, eval=FALSE, echo=FALSE}
+#Sort strings
+str_sort(fruits, decreasing = F)
+```
+
+
+## Summary
+
+Keep also the following functions and packages from Chapter 11 in mind:
+
+- PDF utilities [e.g., `pdf_text`, @pdftools]
+- Coerce a list to a vector (`purrr::as_vector`)
+- The Names of an object (`names`)
+- Subset rows using their positions [`dplyr::slice_*`, @dplyr]
+- Bind multiple data frames by row (`dplyr::bind_rows`)
+-  The `rvest` package and its functions for web scraping [e.g., `read_html, html_table`, @rvest]
+-  The `httr` package and its functions for receive information from a website [`GET, content`, @httr]
+-  Create an API with the `plumber` package [@plumber]
+
+Finally, a link to download this tutorial as PDF file.
+
+```{r, echo=FALSE, eval=T}
+actionButton("download", "PR Tutorial 02", onclick="window.open('https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf')", icon = icon("file-pdf"))
+```
+
+
+## References
+
+
+
