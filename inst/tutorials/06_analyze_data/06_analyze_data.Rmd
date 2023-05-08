@@ -1,0 +1,536 @@
+---
+title: "Practice R Tutorial 06"
+author: "Edgar Treischl"
+date: "Last update: `r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    highlight: kate
+    theme: flatly
+bibliography: PracticeR_FINAL.bib
+description: >
+  Run a linear regression analysis.
+   
+runtime: shiny_prerendered
+---
+
+```{css, include=FALSE}
+topicsFooter{
+font-size: large; 
+}
+
+body {
+  background-color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 24;
+}
+
+```
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  fig.path = "images/",
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  eval = TRUE,
+  comment = "#>",
+  error = TRUE
+)
+
+tutorial_options(exercise.lines = 5, 
+                 exercise.eval=FALSE)
+
+#english environment
+Sys.setenv(LANG = "en")
+knitr::opts_chunk$set(tidy = "styler")
+
+library(dplyr)
+library(PracticeR)
+varlist <- c("income", "age", "sex", "happy", "degree")
+
+#Variable select and mutate a numerical degree variable
+df <- PracticeR::gss2016 |>
+  select(all_of(varlist)) |>
+  mutate(degree_num = case_when(degree == "Lt High School" ~ 9 ,
+                                degree == "High School" ~ 10 ,
+                                degree == "Junior College" ~ 12 ,
+                                degree == "Bachelor" ~ 14 ,
+                                degree == "Graduate" ~ 16,
+                                degree == NA ~ NA)
+         )
+
+library(effectsize)
+library(estimatr)
+library(dotwhisker)
+library(huxtable)
+library(interactions)
+library(jtools)
+library(lmtest)
+library(performance)
+
+m1 <- lm(income ~ sex, data = df)
+m2 <- lm(income ~ sex + degree_num, data = df)
+m_all <- lm(income ~ sex + degree_num, data = df)
+
+```
+
+## Analyze data
+
+Welcome to the tutorial six of the [Practice R](https://www.degruyter.com/document/isbn/9783110704969/html?lang=de "Go to the website") book [@treischl_practice_2023]. Practice R is a text book for the social sciences which provides several tutorials supporting students to learn R. Feel free to inspect the tutorials even if you are not familiar with the book, but keep in mind these tutorials are supposed to complement the Practice R book. 
+
+We explored how a linear regression analysis works in Chapter 6. I introduced the corresponding `lm()` function and many packages that help us to develop a linear regression model. This tutorial summarizes the discussed steps and asks you to apply them by running an example analysis. We examine whether life satisfaction, participant's sex, or age has an effect on people's income. 
+
+In order to focus on data analysis steps, I have already prepared the `gss2016` data. Keep its limitations in mind. It is a cross-sectional survey and some of the variables such as `income` and `happy` are not a measured on a numerical scale, as the raw data shows. The same applies to `degree`, the educational background is measured as a categorical variable, which is why I transformed it (`degree_num`). We will nonetheless use the `gss2016` data to summarize how a linear regression analysis is implemented in R and which packages help us to develop a model. 
+
+```{r}
+#Select variables
+library(dplyr)
+library(PracticeR)
+varlist <- c("income", "age", "sex", "happy", "degree")
+
+#And mutate to create a numerical variable for degree
+df <- PracticeR::gss2016 |>
+  select(all_of(varlist)) |>
+  mutate(degree_num = case_when(degree == "Lt High School" ~ 8,
+                                degree == "High School" ~ 9,
+                                degree == "Junior College" ~ 12,
+                                degree == "Bachelor" ~ 15 ,
+                                degree == "Graduate" ~ 17,
+                                degree == NA ~ NA)
+         )
+
+```
+
+
+
+Furthermore, we implicitly assume that an independent variable `x` influences a dependent variable `y`, although the research design and the data may not allow such a wide-ranging assumptions. For this reason, Chapter 6 introduced the main idea of causality and elaborated which variables we need to control in a linear regression analysis. The *correlation vs. causation* comic strip underlines this point once more. 
+
+`r if (knitr::is_html_output()) '
+[![Correlation vs. Causation: xkcd.com](https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/images/correlation.png){width="99%"}](https://xkcd.com/552/)
+'`
+
+
+
+This tutorial focus on the coding skills to run a linear regression and not on the underlying causal structure between the examined variables. First, we repeat the basics to estimate a linear regression analysis. Next, I ask you to develop your model by examining non-linear effects, interaction effects, and by comparing the performance of such adjustment steps. Finally, I briefly summarize several package that help us with the model specification and assumptions. 
+
+
+```{r}
+#Setup of tutorial 6
+library(effectsize)
+library(estimatr)
+library(dotwhisker)
+library(huxtable)
+library(interactions)
+library(jtools)
+library(lmtest)
+library(performance)
+```
+
+
+
+
+## Estimate a linear regression analysis
+
+I used data for teaching purposes to introduce a linear regression analysis in Practice R. This made it possible to focus on the code and its implementation; we did not explore the data, there was no need to clean the data, prepare variables, or deal with missing values. Such steps are necessary to analyze data and the process is not linear: We start to explore the data, we prepare variables, and run a first analysis. However, often we need to circle back to improve the model due to different reasons (e.g. to include control variables, check on implausible values, etc.). Thus, the first estimation results are preliminary and may substantially change during the course of the model development.
+
+So, we need to explore the variable first. Suppose we examine the gender wage gap: how large is the effect of `sex` on `income`? Explore the distribution of each variable. This gives us an overview how many men and women we observe and whether we may transform the outcome variable in a later step. I already adjusted the graphical parameters (`par`) to put the two graphs next to each other (`mfrow` creates one row and two columns). Create a bar plot and a histogram to examine the variables.
+
+```{r r0, exercise=TRUE, exercise.lines = 9}
+#Count sex
+
+#Plot two graphs
+par(mfrow=c(1,2))
+```
+
+```{r r0-solution, eval=FALSE, echo=FALSE}
+#Count sex
+count_sex <- dplyr::count(df, sex)
+
+#Plot two graphs
+par(mfrow=c(1,2))
+barplot(n ~ sex, data = count_sex)
+hist(df$income)
+```
+
+We may run a first analysis after we have explored the data, cleaned, and prepared the variables. Use the `lm()` function to estimate a linear regression analysis. The function needs the data and a formula (`y ~ x1`) to estimate the effect of sex on income.
+
+
+```{r r1, exercise=TRUE}
+#The lm function
+
+
+```
+
+```{r r1-solution, eval=FALSE, echo=FALSE}
+lm(income ~ sex, data = df)
+```
+
+Since income is not measured on a numeric scale, this coefficient is hard to interpret, but in accordance with theoretical expectations, females have a lower income. The `summary()` function helps us with the interpretation of the model. It returns the estimated coefficients, R², and further information about the model. In addition, add a second variable with a plus sign (`+`) and examine whether the educational background (`degree_num`) mediates the effect.
+
+```{r r2, exercise=TRUE}
+#The summary function
+
+
+```
+
+```{r r2-solution, eval=FALSE, echo=FALSE}
+summary(lm(income ~ sex + degree_num, data = df))
+```
+
+Apparently, the wage gap can't be explained by the educational background of the participants since sex has a significant effect. Use the `predict()` function to apply the model. I have already saved the `model` and I created a new data frame with example values. Apply the model and predict how income changes if `degree_num` increases; or examine how predicted values differ between male and female participants. Predicting values give you a better intuition about the model.
+
+
+```{r r3, exercise=TRUE,  exercise.lines = 13}
+#The model
+model <- lm(income ~ sex + degree_num, data = df)
+
+#Generate example data
+new_data <- data.frame(sex = c("Female", "Male") ,
+                      degree_num = c(10, 10))
+
+#Apply the model with predict(model, data)
+
+```
+
+```{r r3-solution, eval=FALSE, echo=FALSE}
+predict(model, new_data)
+```
+
+
+Finally, keep in mind that the `effectsize` package helps us to interpret model parameters such as R² [@effectsize]. I have saved the summary as `sum_model`. Can you extract R² (`r.squared`) from the latter and interpret it with `interpret_r2()` function. As default, it uses the Cohen's `rules` to interpret the effect size. 
+
+
+```{r r4, exercise=TRUE, exercise.setup = "r3"}
+#Assign summary of the model
+sum_model <- summary(model)
+
+#Interpret R2
+
+```
+
+```{r r4-solution, eval=FALSE, echo=FALSE}
+effectsize::interpret_r2(sum_model$r.squared, rules = "cohen1988")
+```
+
+
+
+## Develop the model
+
+As outlined in Chapter 6, we develop models step by step. We start simple with a bivariate model. We include control variables to inspect how our estimation results change; we examine whether interaction effects mediate the effect; and to which extent an effect is linear. This is not an all-encompassing list, but developing a model step by step implies that we need to compare models to see how the estimation results change between steps. For this purpose we need tables and visualization to compare the estimated models.
+
+We already started to develop a model as we included a second independent variable, but our approach made it hard to comprehend how the estimations results change if we add (drop) a variable. Use the `huxreg()` function from the `huxtable` package to compare models [@huxtable].
+
+```{r r5, exercise=TRUE, exercise.lines = 7}
+#Models
+m1 <- lm(income ~ sex, data = df)
+m2 <- lm(income ~ sex + degree_num, data = df)
+
+#Develop models step by step
+
+```
+
+```{r r5-solution, eval=FALSE, echo=FALSE}
+huxtable::huxreg(m1, m2)
+```
+
+
+In addition, use dot-and-whisker plots to compare model graphically. The `plot_summs()` function from the `jtools` package only needs the model names [@jtools].
+
+
+```{r r6, exercise=TRUE, fig.height=2}
+#jtools returns a dot-and-whisker plot
+
+```
+
+```{r r6-solution, eval=FALSE, echo=FALSE}
+jtools::plot_summs(m1, m2)
+```
+
+Now that we have established the framework to develop models, let us inspect how we can examine non-linear effects, transform variables, and include interaction effects. Finally we need to check how model changes affect the performance of the model.
+
+
+
+We have already applied to `lm()` function when we first created a scatter plot. Since we assume a linear relationship, we should start to examine the effect with a scatter plot in the case of a numerical independent variable. As outlined in Chapter 3, we may insert a regression line with `abline` and the `lm()` function.  For example, consider the scatter plot for the effect of age on income. 
+
+```{r r7, exercise=TRUE, fig.height = 3.2}
+#Create a scatter plot
+
+
+```
+
+```{r r7-solution, eval=FALSE, echo=FALSE}
+plot(y = df$income, x = df$age)
+abline(lm(income ~ age, data = df), col = "red")
+```
+
+It seems though that both variables are not or only weakly related. Does this mean that we are supposed to stop here since there is no (large) effect? A linear regression assumes a linear effect, but the effect of age on income might not be linear. For example, create a squared age variable and including it in second model to examine if age has a non-linear effect. By including a squared variable for age, we can estimate if the effect increases (decreases) for older people.
+
+```{r r8, exercise=TRUE, exercise.lines = 9}
+# Make a squared age variable
+
+
+# Compare models
+m1 <- lm(income ~ age, data = df)
+m2 <- lm(income ~ age + age_sqr, data = df)
+huxtable::huxreg(m1, m2)
+```
+
+```{r r8-solution, eval=FALSE, echo=FALSE}
+df$age_sqr <- df$age^2
+```
+
+
+We may transform the outcome variable to increase the model fit as well. In the case of income, we often observe many people with little or average income while the amount of people with of a very high income is low. In such a case a logarithm of the income may help to increase the model fit. Keep in mind that the interpretation of the coefficient will change if we transform the variables. Regardless of the interpretation, the `transformer()` function shows what the distribution of a numerical variable would look like (e.g. `log`) if you transform it.
+
+
+```{r r9, exercise=TRUE, fig.height=3.5}
+# Transform a numerical variable
+
+```
+
+```{r r9-solution, eval=FALSE, echo=FALSE}
+PracticeR::transformer(df$income)
+```
+
+
+
+Next, we examine interaction effects: I estimated a model with an interaction effect between `happy` and `sex`. Certainly, I only included it to repeat how this works, but it implies that the effect of happiness on income is moderated by sex. Regardless of my ad-hoc hypothesis, visualize the effect with `cat_plot()` function from the `interactions` package [@interactions]; it needs the model, the name of the predictor (`pred`) and the moderator variable (`modx`). As the plots shows, there is no significant interaction effect.
+
+```{r r10, exercise=TRUE, fig.height=2.5, exercise.lines = 8}
+#Interaction of two categorical variables
+library(interactions)
+m3 <- lm(income ~ happy*sex, data = df)
+
+#cat_plot for categorical predictors
+
+```
+
+```{r r10-solution, eval=FALSE, echo=FALSE}
+cat_plot(m3, pred = happy, modx = sex)
+```
+
+Suppose we believe there is an interaction between sex and education. We may expect that male participants gain much more advantages from education than female participants. Use the `interact_plot()` function with the predictor variable (`pred`) and the moderator (`modx`) variable. The `interval` option shows the confidence interval and we can see the overlap.
+
+
+```{r r11, exercise=TRUE, exercise.lines = 9}
+#Interaction model
+m3 <- lm(income ~ sex*degree_num, data = df)
+
+#Interaction between sex*degree_num
+
+
+
+```
+
+```{r r11-solution, eval=FALSE, echo=FALSE}
+interact_plot(m3,
+  pred = degree_num, modx = sex,
+  interval = TRUE, plot.points = FALSE
+)
+```
+
+
+Finally, keep the `performance` package in mind when developing models [@performance]. Check how the performance changes if you insert a non-linear parameter, include interaction terms or if you compare different model specifications. The `compare_performance()` function returns several performance indicators and it even creates a radar plot if we assign and plot the results.
+
+```{r r12, exercise=TRUE, exercise.lines = 9}
+#Compare performance
+library(performance)
+
+
+
+
+```
+
+```{r r12-solution, eval=FALSE, echo=FALSE}
+performance_models <- compare_performance(m1, m2,
+  metrics = c("AIC", "BIC", "R2_adj")
+)
+
+#Compare performance
+performance_models
+```
+
+```{r r13setup, echo=FALSE}
+performance_models <- compare_performance(m1, m2,
+  metrics = c("AIC", "BIC", "R2_adj")
+)
+```
+
+
+```{r r13, exercise=TRUE, exercise.setup = "r13setup"}
+#Plot results
+
+```
+
+```{r r13-solution, eval=FALSE, echo=FALSE}
+plot(performance_models)
+```
+
+
+
+
+## Improve the model
+
+There are more steps to develop and improve the model. Up to this point we developed the model from a theoretical point of view: we checked if variables interact with each other or in case of a non-linear effect. There is still much room for improvement after we worked off theoretical points. At least we should be aware about the assumptions of a linear regression analysis and the packages that can help us to address such concerns. So, what shall we do if we finalized the first model(s)?
+
+```{r r14, exercise=TRUE}
+#Final model(s)
+m_all <- lm(income ~ sex + degree_num, data = df)
+```
+
+
+
+I introduce the performance package because it gives you a quick overview about potential violations. First, the `check_model()` returns an overview with several plots to check the model assumptions.
+
+
+
+```{r r15, exercise=TRUE, eval=FALSE}
+#Get a quick overview
+
+```
+
+```{r r15-solution, eval=FALSE, echo=FALSE}
+check_model(m_all)
+```
+
+Second, the package has several `check_*` functions to examine assumptions individually. For example, what about multicollinearity and heteroscedasticity?
+
+
+```{r r16, exercise=TRUE}
+#multicollinearity
+
+
+```
+
+```{r r16-solution, eval=FALSE, echo=FALSE}
+check_collinearity(m_all)
+```
+
+
+
+```{r r17, exercise=TRUE}
+#check_heteroscedasticity
+
+```
+
+```{r r17-solution, eval=FALSE, echo=FALSE}
+check_heteroscedasticity(m_all)
+```
+
+
+
+
+The last function runs a statistical test to check on the assumptions; in the case of heteroscedasticity we can apply the Breusch & Pagan (1979) test (`bptest`), which runs in the background. The `lmtest` package gives you access to such statistical tests [@lmtest].
+
+
+```{r r18, exercise=TRUE}
+#Breusch & Pagan test (1979)
+
+```
+
+```{r r18-solution, eval=FALSE, echo=FALSE}
+lmtest::bptest(m1)
+```
+
+
+The error of our model is heteroscedastic and the `estimatr` package runs a regression with (cluster) robust standard errors to address this point [@estimatr]. Run a regression with the `lm_robust()` function and adjust the type of standard errors with the `se_type` option.
+
+
+```{r r19, exercise=TRUE, exercise.lines = 8}
+#Robust standard errors
+library(estimatr)
+
+
+
+```
+
+```{r r19-solution, eval=FALSE, echo=FALSE}
+robust_model <- lm_robust(income ~ age,
+                          data = df,
+                          se_type = "stata"
+)
+
+summary(robust_model)
+```
+
+
+
+```{r dotwhisker, echo=FALSE}
+library(dotwhisker)
+
+ visualize_model <- function(..., p1, p2) {
+  dwplot(list(...),
+         dot_args = list(size = 2),
+         vline = geom_vline(xintercept = 0, 
+                            colour = "black", 
+                            linetype = 2)) |>
+    relabel_predictors(c(sexFemale = p1, 
+                         degree_num = p2))+
+    ggtitle("Results")+
+    theme_minimal(base_size = 12)+
+    xlab("Effect on body mass") + 
+    ylab("Coefficient") +
+    theme(plot.title = element_text(face = "bold"),
+          legend.title = element_blank()) +
+    scale_color_viridis_d(option = "plasma")
+
+}
+```
+
+
+Finally, one last word about the visualization of regression results. The `jtools` package provides convenient solutions to create dot-and-whisker plots; and the `dotwhisker` package lets us customize the graph [@dotwhisker]. For this purpose I introduce the package, but this does not mean that we have to build a long and complicated code from the ground up each time we need an individual dot-and-whisker plot. In the next chapter we learn more about `ggplot2` which will boost your visualization skills and in a later step we will create functions to create plots efficiently [@ggplot2]. 
+
+The same applies to the `dotwhisker` package. Once you have built a graph, you can build your own function to create such plots. Don’t let complicated code scare you off, we’ll soon work on strategies how to create plots without the trouble of memorizing complex code. For example, I created a function called `visualize_model()` which rebuilds the complicated code to create a dot-and-whisker plot from Chapter 6. However, it only needs the models and the names for each predictor to create the plot.
+
+
+```{r r20, exercise=TRUE, fig.height=2.5, exercise.setup = "dotwhisker"}
+#visualize_model() runs dotwhisker in the background
+visualize_model(m_all, p1 = "Sex", p2 = "Education")
+```
+
+
+
+## Summary
+
+
+
+Keep the following R functions and packages in mind:
+
+- Fitting linear models (`lm`)
+- Model predictions (`predict`)
+- Interpret coefficient of determination (`effectsize::interpret_r2`)
+- Reorder levels of factor (`relevel`)
+- Create a huxtable to display model output (`huxtable::huxreg`)
+- Plot regression summaries (`jtools::plot_summs`)
+- Plot interaction effects in regression models (e.g., `interactions::interact_plot`)
+
+- The `performance` package and its functions to examine the performance of a model.
+  - Compute the model’s R2 ( `r2`)
+  - Compare performance of different models (`compare_performance`)
+  - Visual check of model assumptions (e.g.,`check_model, check_outliers, check_heteroscedasticity`)
+
+- Transform a numerical input (`PracticeR::transformer`)
+- Export regression summaries to tables (`jtools::export_summs`)
+- OLS with robust standard errors (`estimatr::lm_robust`)
+- Create fine tuned dot-and-whisker plots API with the `dotwhisker` package
+
+
+
+
+Download this tutorial as PDF file.
+
+```{r, echo=FALSE, eval=T}
+actionButton("download", "PR Tutorial 06", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial06.pdf')", icon = icon("file-pdf"))
+```
+
+
+## References
+
+
+
+
