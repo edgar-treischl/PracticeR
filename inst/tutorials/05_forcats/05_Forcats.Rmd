@@ -1,0 +1,486 @@
+---
+title: "Practice R Tutorial 05"
+author: "Edgar Treischl"
+date: "Last update: `r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    highlight: kate
+    theme: flatly
+bibliography: PracticeR_FINAL.bib
+description: >
+  The forcats tutorial.
+   
+runtime: shiny_prerendered
+---
+
+```{css, include=FALSE}
+topicsFooter{
+font-size: large; 
+}
+
+body {
+  background-color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 24;
+}
+
+```
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  fig.path = "images/",
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  eval = TRUE,
+  comment = "#>",
+  error = TRUE
+)
+
+tutorial_options(exercise.lines = 5, 
+                 exercise.eval=FALSE)
+
+#english environment
+Sys.setenv(LANG = "en")
+knitr::opts_chunk$set(tidy = "styler")
+
+
+#Packages for Tutorial Nr. 5
+library(naniar)
+library(dplyr)
+library(tidyr)
+library(forcats)
+library(PracticeR)
+
+#The gss2016 data
+df <- PracticeR::gss2016 |> 
+  select(id, degree, relig, income16, happy, marital)
+head(df)
+
+```
+
+
+## Prepare categorical variables <a href="https://forcats.tidyverse.org" target="_blank"><img src="https://github.com/tidyverse/forcats/raw/main/man/figures/logo.png" alt="The forcats package" align="right" width="100"/></a>
+
+Welcome to the data preparation tutorial of the [Practice R](https://www.degruyter.com/document/isbn/9783110704969/html?lang=de "Go to the website") book [@treischl_practice_2023]. Practice R is a text book for the social sciences which provides several tutorials supporting students to learn R. Feel free to inspect the tutorials even if you are not familiar with the book, but keep in mind these tutorials are supposed to complement the Practice R book. 
+
+
+Chapter 5 was dedicated to support you to prepare data. We learned how to import, clean, and combine data. In addition, we got in touch with the `naniar` package which offers many functions to inspect missing values [@naniar]; and I introduced the `forcats` package to prepare categorical variables for the analysis [@forcats]. 
+
+
+What preparation steps you need to apply is dependent on the data at hand and the analysis intended, which is why Chapter 5 provided a detailed overview of what happens under the hood when we import data. Keep in mind that RStudio has many cool features (e.g., data preview) to import data and packages such as `readr` helps us with this task:
+
+```{r, eval=FALSE}
+# Import a csv file
+library(readr)
+my_data <- read_csv("path_to_the_file/data.csv")
+```
+
+Since I have no idea what your data looks, this tutorial will not focus on how to import and clean data. Instead, let's focus systematically on the `forcats` package. Suppose we started to analyze whether participant's income has an effect on their happiness, but we need to control for participant's educational background, religious beliefs, and if other categorical variables affect our estimation results. I already introduced several functions of the `forcats` package, but this tutorial systematically focuses on the main tasks of the package, as is outlined in its cheat sheet (click on the hex sticker to download the cheat sheet from the website). 
+
+Thus, we repeat and systematize our forcats skills: (1) We inspect factors; (2) change the order of levels; (3) change the value of levels; (4) and we add or drop levels. For this purpose, we use the `gss2016` data and I assigned a smaller subset as `df` with several categorical variables. 
+
+```{r}
+#Packages for Tutorial Nr. 5
+library(naniar)
+library(dplyr)
+library(tidyr)
+library(forcats)
+library(PracticeR)
+
+#The gss2016 data
+df <- PracticeR::gss2016 |> 
+  select(id, degree, relig, income16, happy, marital)
+head(df)
+```
+
+Finally, we transform and combine data once more given that such steps are often necessary before we can start to prepare data. However, this time we examine how built-in data sets from the `tidyr` and the `dplyr` package make the first move a bit easier.
+
+
+
+## Inspect factors 
+
+Suppose we need to prepare several categorical variables, such as religion  (`relig`) or marital status (`marital`), for an analysis. To inspect factors, count them with `fct_count()`.
+
+
+```{r r1, exercise=TRUE}
+#Count factor variable
+
+```
+
+```{r r1-solution, eval=FALSE, echo=FALSE}
+#Count factor variable
+fct_count(df$marital) 
+```
+
+Or examine the unique levels of a variable with the `fct_unique()` function:
+
+```{r r2, exercise=TRUE}
+#How many unique levels do we observe
+
+```
+
+```{r r2-solution, eval=FALSE, echo=FALSE}
+#How many unique levels do we observe
+fct_unique(df$marital)
+```
+
+
+
+## Change the order of levels
+
+The variable religion (`relig`) has 13 different levels. Let's assume we want to control for the largest religious groups only in the analysis. Use the `fct_infreq()` function to identify how often each level appears.
+
+```{r, r3, exercise=TRUE}
+#fct_infreq: Reorder factor levels by frequency 
+
+```
+
+```{r r3-solution, eval=FALSE, echo=FALSE}
+#fct_infreq: Reorder factor levels by frequency 
+f <- fct_infreq(df$relig)
+fct_count(f) 
+```
+
+
+The `fct_infreq()` sorts them in order of their frequency, but note we can also order the levels by first appearance (`fct_inorder`) or in a numeric order (`fct_inseq`). As the next console illustrates, R sorts levels alphabetically, which is clearly not always a desirable default behavior. Use the `fct_inorder()` to sort them by appearance. 
+
+
+```{r r4, exercise=TRUE, exercise.lines = 7}
+#Example factor
+f <- factor(c("b", "a", "c"))
+levels(f)
+
+#fct_inorder: Reorder factor levels by first appearance  
+
+```
+
+```{r r4-solution, eval=FALSE, echo=FALSE}
+#fct_inorder: Reorder factor levels by first appearance  
+fct_inorder(f)
+```
+
+
+Can you still remember how to manually relevel? Use the `fct_relevel()` and sort the level `Never Married` at the second position. You can provide a vector with level names or use the `after` option to change the position of the level.
+
+
+```{r r5, exercise=TRUE}
+# Relevel manually
+
+```
+
+```{r r5-solution, eval=FALSE, echo=FALSE}
+# Relevel manually
+#f <- fct_relevel(df$marital, c("Married", "Never Married"))
+f <- fct_relevel(df$marital, "Never Married", after = 1)
+fct_count(f)
+```
+
+
+Sometimes we need to turn the order around. Reverse the order of the levels with `fct_rev()`.
+
+```{r r6, exercise=TRUE}
+#fct_rev: Reverse order of factor levels
+
+
+```
+
+```{r r6-solution, eval=FALSE, echo=FALSE}
+#fct_rev: Reverse order of factor levels
+f <- fct_rev(df$marital)
+fct_count(f)
+```
+
+
+## Change the value of levels
+
+The `relig` variable has many levels and even has a category named `other`, since there are so many religious groups. The same logic applies the `fct_other()` function which collapses all levels but the one we actually need. Create a variable that includes the five largest groups only. Use the `fct_other()` function and tell R which variables to `keep`. 
+
+
+```{r r7, exercise=TRUE, exercise.lines = 7}
+#Create a variable with the five largest, rest are others
+
+
+
+```
+
+```{r r7-solution, eval=FALSE, echo=FALSE}
+#Create a variable with the five largest, rest are others
+df$relig5 <- fct_other(df$relig,
+                       keep = c("Protestant", "Catholic", "None", "Jewish")
+)
+
+fct_count(df$relig5)
+```
+
+The `fct_other()` function includes in the code the used levels. If we are unconcerned about this information, you can use one of the `fct_lump()` functions. The function picks between different methods to lump together factor levels. Nowadays the authors recommend to use one of the specific `fct_lump_*` functions (`fct_lump_min`, `fct_lump_prop`, `fct_lump_lowfreq`) as outlined in the help file. In our case, use the `fct_lump_n()` function to lump together the most frequent (`n`) ones.
+
+
+```{r r8, exercise=TRUE}
+#Lump uncommon factor together levels into "other"
+
+
+```
+
+```{r r8-solution, eval=FALSE, echo=FALSE}
+#Lump uncommon factor together levels into "other"
+f <- fct_lump_n(df$relig, n = 5, other_level = "Further groups") 
+fct_count(f)
+```
+
+
+
+Next, we are going to prepare the educational background. The variable `degree` includes several levels, as the console shows.
+
+
+```{r r9, exercise=TRUE}
+#Count degrees
+
+```
+
+```{r r9-solution, eval=FALSE, echo=FALSE}
+#Count degrees
+fct_count(df$degree)
+```
+
+
+We already used the `fct_recode()` function to change factor levels by hand. The lowest category of `degree` is called *less than high school* but the text label is confusing. Recode the variable, insert the new label in back ticks to replace the old label (`Lt High School`). 
+
+
+```{r r10, exercise=TRUE}
+#fct_recode: Change factor levels by hand
+
+
+```
+
+```{r r10-solution, eval=FALSE, echo=FALSE}
+#fct_recode: Change factor levels by hand
+f <- fct_recode(df$degree, `Less than high school` = "Lt High School")
+fct_count(f)
+```
+
+
+Suppose we want to control only if participants have a high educational background. Use the `fct_collapse()` function to create a binary dummy variable. The variable should indicate if a person's educational background is low (`Lt High School`; `High School`, and `Junior College`) or high (`Bachelor` and `Graduate`).
+
+
+```{r r11, exercise=TRUE, exercise.lines = 10}
+#Collapse factor variable
+
+
+
+```
+
+
+```{r r11-solution, eval=FALSE, echo=FALSE}
+#Collapse factor variable
+df$edu_dummy <- fct_collapse(df$degree, 
+                  low = c("Lt High School",
+                            "High School",
+                            "Junior College"),
+                  high = c("Bachelor", "Graduate") 
+                  )
+
+fct_count(df$edu_dummy)
+```
+
+
+
+
+## Add or drop levels
+
+
+As always, the `forcats` package has more to offer than I can outline. For example, suppose we observed the following `religion` variable. 
+
+
+```{r r12a, exercise=TRUE}
+#New religion variable
+religion <- factor(x = c("Protestant","Jewish", NA,  NA), 
+             levels = c("Protestant","Jewish","Catholic")) 
+
+religion
+```
+
+
+Did you notice that the variable has a level for `Catholic` even though we do not observe it. The `fct_expand()` can be used to expand levels, while the `fct_drop()` function helps us to get rid of unused levels.
+
+```{r r12, exercise=TRUE, exercise.setup = "r12a"}
+#Drop unused levels
+
+```
+
+```{r r12-solution, eval=FALSE, echo=FALSE}
+#Drop unused levels
+fct_drop(religion)
+```
+
+Furthermore, I included missing values on purpose and the latter may have an impact on our analysis. We can make them explicit and include them as a level with `fct_na_value_to_level()`.
+
+```{r r13, exercise=TRUE, exercise.setup = "r12a"}
+#Make NAs explicit
+
+
+```
+
+```{r r13-solution, eval=FALSE, echo=FALSE}
+#Make NAs explicit
+fct_na_value_to_level(religion, level="Missing")
+```
+
+
+
+## Further steps
+
+Chapter 5 discussed many steps to prepare data, but of course this was not an all-encompassing list. I introduced data formats and we learned how to combine data given that many official data sets are split into several files. Unfortunately, transforming and combining data can be tricky and we may introduce mistakes if we neglected to prepare and clean the data properly. Thus, it is up to you to assure that the data can be transformed (combined) and further cleaning steps might be necessary. 
+
+Instead of re-running these steps with the `gss2016` data, let us explore how the `tidyr` package can help with the task [@tidyr]. As other packages, `tidyr` has a cheat sheet and provides a tiny data set that lets us repeat how the functions work. For example, the `table4a` data is a wide data set with observations of three countries and two years. 
+
+
+```{r}
+#Example wide table
+head(table4a)
+```
+
+Use the `pivot_longer()` function to transform the data. The long data should have a new variable for the `year` (via `names_to`) and you can give the values (`values_to`) to a variable named `cases`.
+
+```{r r14, exercise=TRUE}
+#Make em longer
+
+
+
+```
+
+```{r r14-solution, eval=FALSE, echo=FALSE}
+#Make em longer
+pivot_longer(table4a, cols = 2:3, names_to ="year",
+             values_to = "cases")
+```
+
+Or consider the `table2` data, the variable `type` has two outcome types (`cases` and `population`) which underline why we should transform the data into the wide format. 
+
+
+```{r}
+#Example long table
+head(table2)
+```
+
+Keep in mind that we need to provide *where* the names (`names_from`) and the values (`values_from`) are coming from to transform the data. 
+
+
+```{r r15, exercise=TRUE}
+#Make it wider
+
+
+
+```
+
+```{r r15-solution, eval=FALSE, echo=FALSE}
+#Make it wider
+pivot_wider(table2, 
+            names_from = type,
+            values_from = count)
+```
+
+
+<a href="https://edgar-treischl.github.io/CopyCat/" target="_blank"><img src="https://edgar-treischl.github.io/CopyCat/logo.png" alt="The CopyCat package" align="right" width="15%" style="padding:10px"/></a>  
+
+I introduced these data sets because `tidyr` offers such simple examples in the cheat sheet that demonstrates how we can transform data. In addition, the `copycat` package has the code snippets from the `tidyverse` cheat sheets included. As the animation shows, it only takes a few seconds to insert these examples via the add-in. Start with such a simple example if you do not transform and combine data on a regular basis. After you made sure that the code works, adjust it for your purpose, but be careful how the data is transformed. 
+
+`r if (knitr::is_html_output()) '
+<a href="https://edgar-treischl.github.io/CopyCat/" target="_blank"><img src="https://edgar-treischl.github.io/CopyCat/reference/figures/addin_animated.gif" alt="The CopyCat package" align="center" width="90%" style="padding:10px"/></a>
+'`
+
+The same applies if you need to combine data. The `dplyr` also offers a small data set to practice mutating joins [@dplyr]. The `band_members` data includes `names` from members of two different music bands; and the `band_instruments` data includes their instruments.
+
+```{r}
+#Small data to recapture the join_* functions
+band_members
+band_instruments
+```
+
+Use one of the `join` function (e.g., `inner_join`, `full_join`) to combine the data.
+
+```{r r16, exercise=TRUE}
+#Mutating joins
+
+
+
+```
+
+
+```{r r16-solution, eval=FALSE, echo=FALSE}
+#Mutating joins
+band_members |> inner_join(band_instruments, by = "name")
+band_members |> full_join(band_instruments, by = "name")
+
+#Further joins:
+#band_members |> left_join(band_instruments)
+#band_members |> right_join(band_instruments)
+```
+
+
+
+<a href="https://naniar.njtierney.com" target="_blank"><img src="https://github.com/njtierney/naniar/raw/master/man/figures/logo.png" alt="The naniar package" align="right" width="100"/></a>
+
+Finally, one last word about missing values: make sure you explore the data before you run an analysis, but don’t neglect to inspect missing and implausible values as well. The `naniar` package has a lot to offer for this task and of course I did not introduce everything it is capable of in Chapter 5. For example, we used the `vis_miss()` function to visualize missing values, but not the amount of missing values. Give the `gg_miss_var()` function a try. It returns a lollipop chart to visualize the amount of missing values. To display percentages, set the `show_pct` option to `TRUE`.
+
+
+```{r r17, exercise=TRUE}
+#Visualize the amount of missing values
+library(naniar)
+
+
+```
+
+```{r r17-solution, eval=FALSE, echo=FALSE}
+#Visualize the amount of missing values
+library(naniar)
+gg_miss_var(df, show_pct = TRUE)
+```
+
+
+
+## Summary
+
+In addition to the discussed content, keep the following R functions and packages in mind:
+
+- Import data with different packages. For example: 
+  - CSV with the `readr` package [@readr]
+  - Excel with the `readxl` package [@readxl] 
+  - SPSS or Stata with the `haven` package [@haven]
+  
+- Convert objects into numeric (character) vectors (`as.numeric, as.character`)
+- Rename columns (`dplyr::rename`)
+- Cleans names of an object [`janitor::clean_names`: @janitor]
+
+- Combine data:
+  - Pivot data from long to wide (`tidyr::pivot_wider`)
+  - Pivot data from wide to long (`tidyr::pivot_longer`) 
+  - Mutating joins (`dplyr::inner_join, left_join, right_join, full_join`)
+  - Filtering joins (`dplyr::semi_join, anti_join`)
+  - Set pperations (`base::union, intersect, setdiff, setequal`)
+
+- Missing (and implausible) values:
+  -  The `naniar` package and its function to explore missing values (e.g., `n_miss, n_complete, vis_miss`)
+  - Check if something is not available (e.g., `base::is.na`)
+  - Convert values to NA (`dplyr::na_if`)
+  - Drop rows containing missing values (`tidyr::drop_na`)
+  - Replace NAs with specified values (`tidyr::replace_na`)
+
+
+
+And the link to download this tutorial as PDF file.
+
+```{r, echo=FALSE, eval=T}
+actionButton("download", "PR Tutorial 05", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial05.pdf')", icon = icon("file-pdf"))
+```
+
+
+## References
+
+
+
