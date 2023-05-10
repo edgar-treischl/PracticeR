@@ -113,7 +113,6 @@ Notice, some email addresses start (end) with a number instead of letters. Those
 ```
 
 ```{r r1a-solution, eval=FALSE, echo=FALSE}
-#Does the string start with ...?
 str_starts(emails, "[:alpha:]")
 ```
 
@@ -123,7 +122,6 @@ str_starts(emails, "[:alpha:]")
 ```
 
 ```{r r1b-solution, eval=FALSE, echo=FALSE}
-#Does the string end with ...?
 str_ends(emails, "[:alpha:]")
 ```
 
@@ -137,7 +135,6 @@ Some of the email addresses are private, while others are from a company (e.g., 
 ```
 
 ```{r r2-solution, eval=FALSE, echo=FALSE}
-#Count them
 sum(str_count(emails, "HawkinsLab.com"))
 ```
 
@@ -149,7 +146,6 @@ Use the `str_detect()` function to detect all strings from the HawkinsLab.
 ```
 
 ```{r r3a-solution, eval=FALSE, echo=FALSE}
-#Detect strings
 str_detect(emails, "@HawkinsLab.com")
 ```
 
@@ -162,7 +158,6 @@ The `str_which()` is also handy, it returns *at which position* we observe the s
 ```
 
 ```{r r3b-solution, eval=FALSE, echo=FALSE}
-#And at which position?
 str_which(emails, "@HawkinsLab.com")
 ```
 
@@ -176,7 +171,6 @@ Suppose we need to extract the user names because we want to include them in the
 ```
 
 ```{r r4-solution, eval=FALSE, echo=FALSE}
-#Locate a start and an end point (here @)
 str_locate(emails, "@")
 ```
 
@@ -216,7 +210,6 @@ Instead of building a regex, we can use the `str_sub()` function to create a vec
 ```
 
 ```{r r6-solution, eval=FALSE, echo=FALSE}
-#Get and set substrings using their positions
 x <- str_locate(emails, "@")
 end <- x[,1]
 names <- str_sub(emails, 1, end-1)
@@ -226,26 +219,31 @@ names
 
 Further steps to manipulate the strings might be easier to apply if all the user would have used the same style regarding their user names. Use the `str_replace()` function and replace the dashes with points.
 
-```{r r9, exercise=TRUE, exercise.setup = "r6"}
+```{r r9setup, echo=FALSE}
+x <- str_locate(emails, "@")
+end <- x[,1]
+names <- str_sub(emails, 1, end-1)
+```
+
+
+```{r r9, exercise=TRUE, exercise.setup = "r9setup"}
 #Replace
 
 ```
 
 ```{r r9-solution, eval=FALSE, echo=FALSE}
-#Replace
 str_replace(names, "-", ".")
 ```
 
 
 Depending on the purpose, it might also be useful to create a uniform formatting of the strings. Use one of the `str_to_*()` functions to make them *lower*, *upper*, or *title* case.
 
-```{r r10, exercise=TRUE, exercise.setup = "r6"}
+```{r r10, exercise=TRUE, exercise.setup = "r9setup"}
 #str_to_* (lower, upper, title)
 
 ```
 
 ```{r r10-solution, eval=FALSE, echo=FALSE}
-#str_to_* (lower, upper, title)
 str_to_lower(names)
 ```
 
@@ -260,7 +258,6 @@ We used the `str_sub()` to split strings by their position, but the `str_subset(
 ```
 
 ```{r r11-solution, eval=FALSE, echo=FALSE}
-#Find matching elements
 str_subset(emails, pattern = "gmx")
 ```
 
@@ -281,7 +278,6 @@ is_email <- "@"
 ```
 
 ```{r r12-solution, eval=FALSE, echo=FALSE}
-#Detect a pattern
 str_detect(strings, is_email)
 ```
 
@@ -293,7 +289,6 @@ We used the function to illustrate the first few things about regular expression
 ```
 
 ```{r r13-solution, eval=FALSE, echo=FALSE}
-#Extract the complete match
 str_extract(strings, is_email)
 str_extract_all(strings, is_email)
 ```
@@ -307,7 +302,6 @@ Finally, the `str_match()` (and `str_match_all`) does essentially the same as `s
 ```
 
 ```{r r14-solution, eval=FALSE, echo=FALSE}
-#Extract components (capturing groups) from a match
 str_match(strings, is_email)
 ```
 
@@ -322,7 +316,6 @@ The `stringr` package has join and split functions. Suppose we scraped the first
 ```
 
 ```{r r16-solution, eval=FALSE, echo=FALSE}
-#Use str_c to combine strings
 names <- str_c(sf_data$firstname, sf_data$lastname, sep = " ")
 names
 ```
@@ -331,13 +324,16 @@ names
 
 Use the `str_split_fixed()` in the opposite scenario. Split the `names` vector from the last task: Use the blank space as a `pattern` and each name consist of two text chunks we want to split (`n`).
 
-```{r, r17, exercise=TRUE, exercise.setup = "r16"}
+```{r r17setup, echo=FALSE}
+names <- str_c(sf_data$firstname, sf_data$lastname, sep = " ")
+```
+
+```{r, r17, exercise=TRUE, exercise.setup = "r17setup"}
 #Split strings
 
 ```
 
 ```{r r17-solution, eval=FALSE, echo=FALSE}
-#Split strings
 str_split_fixed(names, pattern = " ", n = 2)
 ```
 
@@ -352,7 +348,6 @@ We used the `str_sub()` function to extract the user names, but we could also us
 
 
 ```{r r16a-solution, eval=FALSE, echo=FALSE}
-#Split email, get provider names, but only unique ones
 str_split(emails, pattern = '@') |> 
   purrr::map_chr(2)|> 
   stringi::stri_unique()
@@ -368,8 +363,6 @@ hopper_age <- lubridate::year(Sys.time()) - sf_data$year[6]
 ```
 
 ```{r r19-solution, eval=FALSE, echo=FALSE}
-#Traditional approach
-hopper_age <- lubridate::year(Sys.time()) - sf_data$year[6]
 paste("Jim Hopper is", hopper_age, "years old.")
 ```
 
@@ -383,7 +376,6 @@ Did you realize that we need a lot of quotation marks and that we need to be car
 ```
 
 ```{r r20-solution, eval=FALSE, echo=FALSE}
-#Glue strings
 str_glue("Hop is {hopper_age} years.")
 ```
 
@@ -396,7 +388,6 @@ One step further goes the `str_glue_data()` function. It returns strings for eac
 ```
 
 ```{r r21-solution, eval=FALSE, echo=FALSE}
-#Glue strings from data
 str_glue_data(sf_data, "- {firstname} {lastname} is born in {year}.")
 ```
 
@@ -414,8 +405,6 @@ fruits <- c("banana", "apricot", "apple", "pear     ")
 ```
 
 ```{r r22-solution, eval=FALSE, echo=FALSE}
-#Length of a string
-fruits <- c("banana", "apricot", "apple", "pear     ")
 str_length(fruits)
 ```
 
@@ -427,7 +416,6 @@ Unfortunately, the `fruits` vector includes an mistake. There is a lot of white 
 ```
 
 ```{r r23-solution, eval=FALSE, echo=FALSE}
-#Trim your strings
 fruits <- str_trim(fruits)
 fruits
 ```
@@ -445,7 +433,6 @@ fruits <- c("banana", "apricot", "apple", "pear")
 ```
 
 ```{r r24a-solution, eval=FALSE, echo=FALSE}
-#Order strings
 str_order(fruits)
 ```
 
@@ -455,7 +442,6 @@ str_order(fruits)
 ```
 
 ```{r r24b-solution, eval=FALSE, echo=FALSE}
-#Sort strings
 str_sort(fruits, decreasing = F)
 ```
 
@@ -473,7 +459,7 @@ Keep also the following functions and packages from Chapter 11 in mind:
 -  The `httr` package and its functions for receive information from a website [`GET, content`, @httr]
 -  Create an API with the `plumber` package [@plumber]
 
-The link to download this tutorial as PDF file.
+Finally, a link to download this tutorial as PDF file.
 
 ```{r, echo=FALSE, eval=T}
 actionButton("download", "PR Tutorial 11", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial11.pdf')", icon = icon("file-pdf"))

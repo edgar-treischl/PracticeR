@@ -262,8 +262,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r1a-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Does the string start with ...?
-str_starts(emails, &quot;[:alpha:]&quot;)</code></pre>
+<pre class="text"><code>str_starts(emails, &quot;[:alpha:]&quot;)</code></pre>
 </div>
 <div class="tutorial-exercise" data-label="r1b" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="5">
@@ -273,8 +272,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r1b-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Does the string end with ...?
-str_ends(emails, &quot;[:alpha:]&quot;)</code></pre>
+<pre class="text"><code>str_ends(emails, &quot;[:alpha:]&quot;)</code></pre>
 </div>
 <p>Some of the email addresses are private, while others are from a
 company (e.g., <code>HawkinsLab.com</code>). If you need to know how
@@ -288,8 +286,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r2-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Count them
-sum(str_count(emails, &quot;HawkinsLab.com&quot;))</code></pre>
+<pre class="text"><code>sum(str_count(emails, &quot;HawkinsLab.com&quot;))</code></pre>
 </div>
 <p>Use the <code>str_detect()</code> function to detect all strings from
 the HawkinsLab.</p>
@@ -301,8 +298,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r3a-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Detect strings
-str_detect(emails, &quot;@HawkinsLab.com&quot;)</code></pre>
+<pre class="text"><code>str_detect(emails, &quot;@HawkinsLab.com&quot;)</code></pre>
 </div>
 <p>The <code>str_which()</code> is also handy, it returns <em>at which
 position</em> we observe the search pattern.</p>
@@ -314,8 +310,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r3b-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># And at which position?
-str_which(emails, &quot;@HawkinsLab.com&quot;)</code></pre>
+<pre class="text"><code>str_which(emails, &quot;@HawkinsLab.com&quot;)</code></pre>
 </div>
 <p>Suppose we need to extract the user names because we want to include
 them in the email invitation for the survey. In order to extract the
@@ -331,8 +326,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r4-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Locate a start and an end point (here @)
-str_locate(emails, &quot;@&quot;)</code></pre>
+<pre class="text"><code>str_locate(emails, &quot;@&quot;)</code></pre>
 </div>
 <p>In the next step we will use the position of the <code>@</code> sign
 to mutate the strings and to extract their user names.</p>
@@ -393,8 +387,7 @@ data-diagnostics="1" data-startover="1" data-lines="7">
 <div class="tutorial-exercise-support" data-label="r6-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Get and set substrings using their positions
-x &lt;- str_locate(emails, &quot;@&quot;)
+<pre class="text"><code>x &lt;- str_locate(emails, &quot;@&quot;)
 end &lt;- x[, 1]
 names &lt;- str_sub(emails, 1, end - 1)
 names</code></pre>
@@ -411,8 +404,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r9-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Replace
-str_replace(names, &quot;-&quot;, &quot;.&quot;)</code></pre>
+<pre class="text"><code>str_replace(names, &quot;-&quot;, &quot;.&quot;)</code></pre>
 </div>
 <p>Depending on the purpose, it might also be useful to create a uniform
 formatting of the strings. Use one of the <code>str_to_*()</code>
@@ -426,8 +418,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r10-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># str_to_* (lower, upper, title)
-str_to_lower(names)</code></pre>
+<pre class="text"><code>str_to_lower(names)</code></pre>
 </div>
 </div>
 <div id="section-subset-strings" class="section level2">
@@ -444,8 +435,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r11-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Find matching elements
-str_subset(emails, pattern = &quot;gmx&quot;)</code></pre>
+<pre class="text"><code>str_subset(emails, pattern = &quot;gmx&quot;)</code></pre>
 </div>
 <p>Furthermore, most of the time we use the <code>str_detect()</code>
 function to detect a pattern. For example, the functions shows us which
@@ -468,8 +458,7 @@ is_email &lt;- &quot;@&quot;
 <div class="tutorial-exercise-support" data-label="r12-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Detect a pattern
-str_detect(strings, is_email)</code></pre>
+<pre class="text"><code>str_detect(strings, is_email)</code></pre>
 </div>
 <p>We used the function to illustrate the first few things about regular
 expressions. However, we do not need to filter the data and first detect
@@ -486,8 +475,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r13-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Extract the complete match
-str_extract(strings, is_email)
+<pre class="text"><code>str_extract(strings, is_email)
 str_extract_all(strings, is_email)</code></pre>
 </div>
 <p>Finally, the <code>str_match()</code> (and
@@ -501,8 +489,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r14-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Extract components (capturing groups) from a match
-str_match(strings, is_email)</code></pre>
+<pre class="text"><code>str_match(strings, is_email)</code></pre>
 </div>
 </div>
 <div id="section-join-and-splits" class="section level2">
@@ -522,8 +509,7 @@ data-diagnostics="1" data-startover="1" data-lines="8">
 <div class="tutorial-exercise-support" data-label="r16-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Use str_c to combine strings
-names &lt;- str_c(sf_data$firstname, sf_data$lastname, sep = &quot; &quot;)
+<pre class="text"><code>names &lt;- str_c(sf_data$firstname, sf_data$lastname, sep = &quot; &quot;)
 names</code></pre>
 </div>
 <p>Use the <code>str_split_fixed()</code> in the opposite scenario.
@@ -538,8 +524,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r17-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Split strings
-str_split_fixed(names, pattern = &quot; &quot;, n = 2)</code></pre>
+<pre class="text"><code>str_split_fixed(names, pattern = &quot; &quot;, n = 2)</code></pre>
 </div>
 <p>We used the <code>str_sub()</code> function to extract the user
 names, but we could also use the <code>str_split()</code> function to
@@ -559,8 +544,7 @@ data-diagnostics="1" data-startover="1" data-lines="7">
 <div class="tutorial-exercise-support" data-label="r16a-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Split email, get provider names, but only unique ones
-str_split(emails, pattern = &quot;@&quot;) |&gt;
+<pre class="text"><code>str_split(emails, pattern = &quot;@&quot;) |&gt;
   purrr::map_chr(2) |&gt;
   stringi::stri_unique()</code></pre>
 </div>
@@ -579,9 +563,7 @@ hopper_age &lt;- lubridate::year(Sys.time()) - sf_data$year[6]</code></pre>
 <div class="tutorial-exercise-support" data-label="r19-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Traditional approach
-hopper_age &lt;- lubridate::year(Sys.time()) - sf_data$year[6]
-paste(&quot;Jim Hopper is&quot;, hopper_age, &quot;years old.&quot;)</code></pre>
+<pre class="text"><code>paste(&quot;Jim Hopper is&quot;, hopper_age, &quot;years old.&quot;)</code></pre>
 </div>
 <p>Did you realize that we need a lot of quotation marks and that we
 need to be careful not to introduce any error. The
@@ -595,8 +577,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r20-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Glue strings
-str_glue(&quot;Hop is {hopper_age} years.&quot;)</code></pre>
+<pre class="text"><code>str_glue(&quot;Hop is {hopper_age} years.&quot;)</code></pre>
 </div>
 <p>One step further goes the <code>str_glue_data()</code> function. It
 returns strings for each observation of a data set. For example, build a
@@ -610,8 +591,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r21-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Glue strings from data
-str_glue_data(sf_data, &quot;- {firstname} {lastname} is born in {year}.&quot;)</code></pre>
+<pre class="text"><code>str_glue_data(sf_data, &quot;- {firstname} {lastname} is born in {year}.&quot;)</code></pre>
 </div>
 <p>Finally, the package offers functions to order strings and manage
 their length.</p>
@@ -632,9 +612,7 @@ fruits &lt;- c(&quot;banana&quot;, &quot;apricot&quot;, &quot;apple&quot;, &quot
 <div class="tutorial-exercise-support" data-label="r22-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Length of a string
-fruits &lt;- c(&quot;banana&quot;, &quot;apricot&quot;, &quot;apple&quot;, &quot;pear     &quot;)
-str_length(fruits)</code></pre>
+<pre class="text"><code>str_length(fruits)</code></pre>
 </div>
 <p>Unfortunately, the <code>fruits</code> vector includes an mistake.
 There is a lot of white space around the last fruit. Do you know how to
@@ -647,8 +625,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r23-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Trim your strings
-fruits &lt;- str_trim(fruits)
+<pre class="text"><code>fruits &lt;- str_trim(fruits)
 fruits</code></pre>
 </div>
 <p>Finally, order (<code>str_order</code>) and sort
@@ -661,8 +638,7 @@ data-diagnostics="1" data-startover="1" data-lines="6">
 <div class="tutorial-exercise-support" data-label="r24a-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Order strings
-str_order(fruits)</code></pre>
+<pre class="text"><code>str_order(fruits)</code></pre>
 </div>
 <div class="tutorial-exercise" data-label="r24b" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="6">
@@ -672,8 +648,7 @@ data-diagnostics="1" data-startover="1" data-lines="6">
 <div class="tutorial-exercise-support" data-label="r24b-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Sort strings
-str_sort(fruits, decreasing = F)</code></pre>
+<pre class="text"><code>str_sort(fruits, decreasing = F)</code></pre>
 </div>
 </div>
 <div id="section-summary" class="section level2">
@@ -699,7 +674,7 @@ class="citation">(<code>GET, content</code>, Wickham 2022a)</span></li>
 <li>Create an API with the <code>plumber</code> package <span
 class="citation">(Schloerke and Allen 2022)</span></li>
 </ul>
-<p>The link to download this tutorial as PDF file.</p>
+<p>Finally, a link to download this tutorial as PDF file.</p>
 <button id="download" type="button" class="btn btn-default action-button" onclick="window.open(&#39;https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial11.pdf&#39;)">
 <i class="far fa-file-pdf" role="presentation" aria-label="file-pdf icon"></i>
 PR Tutorial 11
@@ -805,26 +780,25 @@ learnr:::store_exercise_cache(structure(list(label = "r1a", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r1a", code = "#Does the string start with ...?\n", 
         opts = list(label = "\"r1a\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Does the string start with ...?", 
-    "str_starts(emails, \"[:alpha:]\")"), chunk_opts = list(label = "r1a-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r1a", exercise = TRUE, code = c("#Does the string start with ...?", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_starts(emails, \"[:alpha:]\")", chunk_opts = list(
+        label = "r1a-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r1a", exercise = TRUE, code = c("#Does the string start with ...?", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r1a, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -862,26 +836,25 @@ learnr:::store_exercise_cache(structure(list(label = "r1b", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r1b", code = "#Does the string end with ...?\n", 
         opts = list(label = "\"r1b\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Does the string end with ...?", 
-    "str_ends(emails, \"[:alpha:]\")"), chunk_opts = list(label = "r1b-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r1b", exercise = TRUE, code = c("#Does the string end with ...?", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_ends(emails, \"[:alpha:]\")", chunk_opts = list(
+        label = "r1b-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r1b", exercise = TRUE, code = c("#Does the string end with ...?", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r1b, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -919,8 +892,7 @@ learnr:::store_exercise_cache(structure(list(label = "r2", global_setup = struct
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r2", code = "#Count them\n", opts = list(label = "\"r2\"", 
         exercise = "TRUE"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Count them", 
-    "sum(str_count(emails, \"HawkinsLab.com\"))"), chunk_opts = list(
+    error_check = NULL, check = NULL, solution = structure("sum(str_count(emails, \"HawkinsLab.com\"))", chunk_opts = list(
         label = "r2-solution", eval = FALSE, echo = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -976,8 +948,7 @@ learnr:::store_exercise_cache(structure(list(label = "r3a", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r3a", code = "#Detect strings\n", opts = list(
         label = "\"r3a\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Detect strings", 
-    "str_detect(emails, \"@HawkinsLab.com\")"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_detect(emails, \"@HawkinsLab.com\")", chunk_opts = list(
         label = "r3a-solution", eval = FALSE, echo = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1033,8 +1004,7 @@ learnr:::store_exercise_cache(structure(list(label = "r3b", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r3b", code = "#And at which position?\n", opts = list(
         label = "\"r3b\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#And at which position?", 
-    "str_which(emails, \"@HawkinsLab.com\")"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_which(emails, \"@HawkinsLab.com\")", chunk_opts = list(
         label = "r3b-solution", eval = FALSE, echo = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1090,26 +1060,25 @@ learnr:::store_exercise_cache(structure(list(label = "r4", global_setup = struct
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r4", code = "#Locate a start and an end point (here @)\n", 
         opts = list(label = "\"r4\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Locate a start and an end point (here @)", 
-    "str_locate(emails, \"@\")"), chunk_opts = list(label = "r4-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r4", exercise = TRUE, code = c("#Locate a start and an end point (here @)", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_locate(emails, \"@\")", chunk_opts = list(
+        label = "r4-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r4", exercise = TRUE, code = c("#Locate a start and an end point (here @)", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r4, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1209,9 +1178,9 @@ learnr:::store_exercise_cache(structure(list(label = "r6", global_setup = struct
         engine = "r"), list(label = "r6", code = "#Get and set substrings using their positions\n", 
         opts = list(label = "\"r6\"", exercise = "TRUE", exercise.setup = "\"r5\"", 
             exercise.lines = "7"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Get and set substrings using their positions", 
-    "x <- str_locate(emails, \"@\")", "end <- x[,1]", "names <- str_sub(emails, 1, end-1)", 
-    "names"), chunk_opts = list(label = "r6-solution", eval = FALSE, 
+    error_check = NULL, check = NULL, solution = structure(c("x <- str_locate(emails, \"@\")", 
+    "end <- x[,1]", "names <- str_sub(emails, 1, end-1)", "names"
+    ), chunk_opts = list(label = "r6-solution", eval = FALSE, 
         echo = FALSE)), tests = NULL, options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -1264,36 +1233,33 @@ learnr:::store_exercise_cache(structure(list(label = "r9", global_setup = struct
 "      \"Mike Wheeler\",         \"Finn\",  \"Wolfhard\",  2002,     \"Mike@TheWheelers.com\",", 
 "     \"Nancy Wheeler\",      \"Natalia\",      \"Dyer\",  1995, \"1nancy-wheeler92@gmx.com\"", 
 "  )", "", "emails <- sf_data$email", ""), chunk_opts = list(
-    label = "setup", include = FALSE)), setup = "#Remove strings\n\n\n#Did it work?\n\n#Get and set substrings using their positions\n", 
-    chunks = list(list(label = "r5", code = "#Remove strings\n\n\n#Did it work?\n", 
-        opts = list(label = "\"r5\"", exercise = "TRUE", exercise.lines = "7"), 
-        engine = "r"), list(label = "r6", code = "#Get and set substrings using their positions\n", 
-        opts = list(label = "\"r6\"", exercise = "TRUE", exercise.setup = "\"r5\"", 
-            exercise.lines = "7"), engine = "r"), list(label = "r9", 
-        code = "#Replace\n", opts = list(label = "\"r9\"", exercise = "TRUE", 
-            exercise.setup = "\"r6\""), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Replace", 
-    "str_replace(names, \"-\", \".\")"), chunk_opts = list(label = "r9-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r9", exercise = TRUE, exercise.setup = "r6", 
+    label = "setup", include = FALSE)), setup = "x <- str_locate(emails, \"@\")\nend <- x[,1]\nnames <- str_sub(emails, 1, end-1)", 
+    chunks = list(list(label = "r9setup", code = "x <- str_locate(emails, \"@\")\nend <- x[,1]\nnames <- str_sub(emails, 1, end-1)", 
+        opts = list(label = "\"r9setup\"", echo = "FALSE"), engine = "r"), 
+        list(label = "r9", code = "#Replace\n", opts = list(label = "\"r9\"", 
+            exercise = "TRUE", exercise.setup = "\"r9setup\""), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = structure("str_replace(names, \"-\", \".\")", chunk_opts = list(
+        label = "r9-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r9", exercise = TRUE, exercise.setup = "r9setup", 
         code = c("#Replace", ""), out.width.px = 576, out.height.px = 384, 
-        params.src = "r9, exercise=TRUE, exercise.setup = \"r6\"", 
+        params.src = "r9, exercise=TRUE, exercise.setup = \"r9setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1327,37 +1293,33 @@ learnr:::store_exercise_cache(structure(list(label = "r10", global_setup = struc
 "      \"Mike Wheeler\",         \"Finn\",  \"Wolfhard\",  2002,     \"Mike@TheWheelers.com\",", 
 "     \"Nancy Wheeler\",      \"Natalia\",      \"Dyer\",  1995, \"1nancy-wheeler92@gmx.com\"", 
 "  )", "", "emails <- sf_data$email", ""), chunk_opts = list(
-    label = "setup", include = FALSE)), setup = "#Remove strings\n\n\n#Did it work?\n\n#Get and set substrings using their positions\n", 
-    chunks = list(list(label = "r5", code = "#Remove strings\n\n\n#Did it work?\n", 
-        opts = list(label = "\"r5\"", exercise = "TRUE", exercise.lines = "7"), 
-        engine = "r"), list(label = "r6", code = "#Get and set substrings using their positions\n", 
-        opts = list(label = "\"r6\"", exercise = "TRUE", exercise.setup = "\"r5\"", 
-            exercise.lines = "7"), engine = "r"), list(label = "r10", 
-        code = "#str_to_* (lower, upper, title)\n", opts = list(
-            label = "\"r10\"", exercise = "TRUE", exercise.setup = "\"r6\""), 
-        engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#str_to_* (lower, upper, title)", 
-    "str_to_lower(names)"), chunk_opts = list(label = "r10-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r10", exercise = TRUE, exercise.setup = "r6", 
+    label = "setup", include = FALSE)), setup = "x <- str_locate(emails, \"@\")\nend <- x[,1]\nnames <- str_sub(emails, 1, end-1)", 
+    chunks = list(list(label = "r9setup", code = "x <- str_locate(emails, \"@\")\nend <- x[,1]\nnames <- str_sub(emails, 1, end-1)", 
+        opts = list(label = "\"r9setup\"", echo = "FALSE"), engine = "r"), 
+        list(label = "r10", code = "#str_to_* (lower, upper, title)\n", 
+            opts = list(label = "\"r10\"", exercise = "TRUE", 
+                exercise.setup = "\"r9setup\""), engine = "r")), 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_to_lower(names)", chunk_opts = list(
+        label = "r10-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r10", exercise = TRUE, exercise.setup = "r9setup", 
         code = c("#str_to_* (lower, upper, title)", ""), out.width.px = 576, 
-        out.height.px = 384, params.src = "r10, exercise=TRUE, exercise.setup = \"r6\"", 
+        out.height.px = 384, params.src = "r10, exercise=TRUE, exercise.setup = \"r9setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1397,8 +1359,7 @@ learnr:::store_exercise_cache(structure(list(label = "r11", global_setup = struc
         engine = "r"), list(label = "r11", code = "#Find matching elements\n", 
         opts = list(label = "\"r11\"", exercise = "TRUE", exercise.setup = "\"r5\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Find matching elements", 
-    "str_subset(emails, pattern = \"gmx\")"), chunk_opts = list(
+    check = NULL, solution = structure("str_subset(emails, pattern = \"gmx\")", chunk_opts = list(
         label = "r11-solution", eval = FALSE, echo = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1456,30 +1417,30 @@ learnr:::store_exercise_cache(structure(list(label = "r12", global_setup = struc
     list(label = "r12", code = "strings <- c(\n  \"Dustin Henderson\", \n  \"hop@gmx.com jim.hopper@hawkinspd.com\",\n  \"Erica-Sinclair@aol.com\", \n  \"nancy-wheeler92@gmx.com\"\n)\n\nis_email <- \"@\"\n\n#Detect a pattern\n", 
         opts = list(label = "\"r12\"", exercise = "TRUE", exercise.lines = "12"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Detect a pattern", 
-    "str_detect(strings, is_email)"), chunk_opts = list(label = "r12-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 12, 
-        label = "r12", exercise = TRUE, code = c("strings <- c(", 
-        "  \"Dustin Henderson\", ", "  \"hop@gmx.com jim.hopper@hawkinspd.com\",", 
-        "  \"Erica-Sinclair@aol.com\", ", "  \"nancy-wheeler92@gmx.com\"", 
-        ")", "", "is_email <- \"@\"", "", "#Detect a pattern", 
-        ""), out.width.px = 576, out.height.px = 384, params.src = "r12, exercise=TRUE, exercise.lines = 12", 
+    check = NULL, solution = structure("str_detect(strings, is_email)", chunk_opts = list(
+        label = "r12-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 12, label = "r12", exercise = TRUE, 
+        code = c("strings <- c(", "  \"Dustin Henderson\", ", 
+        "  \"hop@gmx.com jim.hopper@hawkinspd.com\",", "  \"Erica-Sinclair@aol.com\", ", 
+        "  \"nancy-wheeler92@gmx.com\"", ")", "", "is_email <- \"@\"", 
+        "", "#Detect a pattern", ""), out.width.px = 576, out.height.px = 384, 
+        params.src = "r12, exercise=TRUE, exercise.lines = 12", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1519,14 +1480,14 @@ learnr:::store_exercise_cache(structure(list(label = "r13", global_setup = struc
         engine = "r"), list(label = "r13", code = "#Extract the complete match\n", 
         opts = list(label = "\"r13\"", exercise = "TRUE", exercise.setup = "\"r12\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Extract the complete match", 
-    "str_extract(strings, is_email)", "str_extract_all(strings, is_email)"
-    ), chunk_opts = list(label = "r13-solution", eval = FALSE, 
-        echo = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+    check = NULL, solution = structure(c("str_extract(strings, is_email)", 
+    "str_extract_all(strings, is_email)"), chunk_opts = list(
+        label = "r13-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1580,26 +1541,25 @@ learnr:::store_exercise_cache(structure(list(label = "r14", global_setup = struc
         engine = "r"), list(label = "r14", code = "#Extract components (capturing groups) from a match\n", 
         opts = list(label = "\"r14\"", exercise = "TRUE", exercise.setup = "\"r12\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Extract components (capturing groups) from a match", 
-    "str_match(strings, is_email)"), chunk_opts = list(label = "r14-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r14", exercise = TRUE, exercise.setup = "r12", 
+    check = NULL, solution = structure("str_match(strings, is_email)", chunk_opts = list(
+        label = "r14-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r14", exercise = TRUE, exercise.setup = "r12", 
         code = c("#Extract components (capturing groups) from a match", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r14, exercise=TRUE, exercise.setup = \"r12\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
@@ -1639,8 +1599,7 @@ learnr:::store_exercise_cache(structure(list(label = "r16", global_setup = struc
     list(label = "r16", code = "#Use str_c to combine strings\n", 
         opts = list(label = "\"r16\"", exercise = "TRUE", exercise.lines = "8"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Use str_c to combine strings", 
-    "names <- str_c(sf_data$firstname, sf_data$lastname, sep = \" \")", 
+    check = NULL, solution = structure(c("names <- str_c(sf_data$firstname, sf_data$lastname, sep = \" \")", 
     "names"), chunk_opts = list(label = "r16-solution", eval = FALSE, 
         echo = FALSE)), tests = NULL, options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
@@ -1693,19 +1652,19 @@ learnr:::store_exercise_cache(structure(list(label = "r17", global_setup = struc
 "      \"Mike Wheeler\",         \"Finn\",  \"Wolfhard\",  2002,     \"Mike@TheWheelers.com\",", 
 "     \"Nancy Wheeler\",      \"Natalia\",      \"Dyer\",  1995, \"1nancy-wheeler92@gmx.com\"", 
 "  )", "", "emails <- sf_data$email", ""), chunk_opts = list(
-    label = "setup", include = FALSE)), setup = "#Use str_c to combine strings\n", 
-    chunks = list(list(label = "r16", code = "#Use str_c to combine strings\n", 
-        opts = list(label = "\"r16\"", exercise = "TRUE", exercise.lines = "8"), 
+    label = "setup", include = FALSE)), setup = "names <- str_c(sf_data$firstname, sf_data$lastname, sep = \" \")", 
+    chunks = list(list(label = "r17setup", code = "names <- str_c(sf_data$firstname, sf_data$lastname, sep = \" \")", 
+        opts = list(label = "\"r17setup\"", echo = "FALSE"), 
         engine = "r"), list(label = "r17", code = "#Split strings\n", 
-        opts = list(label = "\"r17\"", exercise = "TRUE", exercise.setup = "\"r16\""), 
+        opts = list(label = "\"r17\"", exercise = "TRUE", exercise.setup = "\"r17setup\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Split strings", "str_split_fixed(names, pattern = \" \", n = 2)"
-    ), chunk_opts = list(label = "r17-solution", eval = FALSE, 
-        echo = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+    check = NULL, solution = structure("str_split_fixed(names, pattern = \" \", n = 2)", chunk_opts = list(
+        label = "r17-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1717,9 +1676,9 @@ learnr:::store_exercise_cache(structure(list(label = "r17", global_setup = struc
         warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
         ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
         include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
-        exercise.lines = 5, label = "r17", exercise = TRUE, exercise.setup = "r16", 
+        exercise.lines = 5, label = "r17", exercise = TRUE, exercise.setup = "r17setup", 
         code = c("#Split strings", ""), out.width.px = 576, out.height.px = 384, 
-        params.src = " r17, exercise=TRUE, exercise.setup = \"r16\"", 
+        params.src = " r17, exercise=TRUE, exercise.setup = \"r17setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1759,28 +1718,27 @@ learnr:::store_exercise_cache(structure(list(label = "r16a", global_setup = stru
         engine = "r"), list(label = "r16a", code = "#Split email, get provider names, but only unique ones\n\n", 
         opts = list(label = "\"r16a\"", exercise = "TRUE", exercise.setup = "\"r16\"", 
             exercise.lines = "7"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Split email, get provider names, but only unique ones", 
-    "str_split(emails, pattern = '@') |> ", "  purrr::map_chr(2)|> ", 
-    "  stringi::stri_unique()"), chunk_opts = list(label = "r16a-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 7, 
-        label = "r16a", exercise = TRUE, exercise.setup = "r16", 
-        code = c("#Split email, get provider names, but only unique ones", 
+    error_check = NULL, check = NULL, solution = structure(c("str_split(emails, pattern = '@') |> ", 
+    "  purrr::map_chr(2)|> ", "  stringi::stri_unique()"), chunk_opts = list(
+        label = "r16a-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 7, label = "r16a", exercise = TRUE, 
+        exercise.setup = "r16", code = c("#Split email, get provider names, but only unique ones", 
         "", ""), out.width.px = 576, out.height.px = 384, params.src = "r16a, exercise=TRUE, exercise.setup = \"r16\", exercise.lines = 7", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1818,9 +1776,7 @@ learnr:::store_exercise_cache(structure(list(label = "r19", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r19", code = "#Traditional approach\nhopper_age <- lubridate::year(Sys.time()) - sf_data$year[6]\n", 
         opts = list(label = "\"r19\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Traditional approach", 
-    "hopper_age <- lubridate::year(Sys.time()) - sf_data$year[6]", 
-    "paste(\"Jim Hopper is\", hopper_age, \"years old.\")"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("paste(\"Jim Hopper is\", hopper_age, \"years old.\")", chunk_opts = list(
         label = "r19-solution", eval = FALSE, echo = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1880,13 +1836,13 @@ learnr:::store_exercise_cache(structure(list(label = "r20", global_setup = struc
         list(label = "r20", code = "#Glue strings\n", opts = list(
             label = "\"r20\"", exercise = "TRUE", exercise.setup = "\"r19\""), 
             engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Glue strings", "str_glue(\"Hop is {hopper_age} years.\")"
-    ), chunk_opts = list(label = "r20-solution", eval = FALSE, 
-        echo = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+    check = NULL, solution = structure("str_glue(\"Hop is {hopper_age} years.\")", chunk_opts = list(
+        label = "r20-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1937,14 +1893,13 @@ learnr:::store_exercise_cache(structure(list(label = "r21", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r21", code = "#Glue strings from data\n", opts = list(
         label = "\"r21\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Glue strings from data", 
-    "str_glue_data(sf_data, \"- {firstname} {lastname} is born in {year}.\")"
-    ), chunk_opts = list(label = "r21-solution", eval = FALSE, 
-        echo = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_glue_data(sf_data, \"- {firstname} {lastname} is born in {year}.\")", chunk_opts = list(
+        label = "r21-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1994,27 +1949,25 @@ learnr:::store_exercise_cache(structure(list(label = "r22", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r22", code = "#Length of a string\nfruits <- c(\"banana\", \"apricot\", \"apple\", \"pear     \")\n", 
         opts = list(label = "\"r22\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Length of a string", 
-    "fruits <- c(\"banana\", \"apricot\", \"apple\", \"pear     \")", 
-    "str_length(fruits)"), chunk_opts = list(label = "r22-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r22", exercise = TRUE, code = c("#Length of a string", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_length(fruits)", chunk_opts = list(
+        label = "r22-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r22", exercise = TRUE, code = c("#Length of a string", 
         "fruits <- c(\"banana\", \"apricot\", \"apple\", \"pear     \")", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r22, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
@@ -2056,14 +2009,13 @@ learnr:::store_exercise_cache(structure(list(label = "r23", global_setup = struc
         list(label = "r23", code = "#Trim your strings\n", opts = list(
             label = "\"r23\"", exercise = "TRUE", exercise.setup = "\"r22\""), 
             engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Trim your strings", 
-    "fruits <- str_trim(fruits)", "fruits"), chunk_opts = list(
-        label = "r23-solution", eval = FALSE, echo = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+    check = NULL, solution = structure(c("fruits <- str_trim(fruits)", 
+    "fruits"), chunk_opts = list(label = "r23-solution", eval = FALSE, 
+        echo = FALSE)), tests = NULL, options = list(eval = FALSE, 
+        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
+        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
+        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
+        cache = 0, cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -2117,28 +2069,27 @@ learnr:::store_exercise_cache(structure(list(label = "r24a", global_setup = stru
         engine = "r"), list(label = "r24a", code = "#Order strings\n", 
         opts = list(label = "\"r24a\"", exercise = "TRUE", exercise.lines = "6", 
             exercise.setup = "\"r24setup\""), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Order strings", 
-    "str_order(fruits)"), chunk_opts = list(label = "r24a-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 6, 
-        label = "r24a", exercise = TRUE, exercise.setup = "r24setup", 
-        code = c("#Order strings", ""), out.width.px = 576, out.height.px = 384, 
-        params.src = "r24a, exercise=TRUE, exercise.lines = 6, exercise.setup = \"r24setup\"", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_order(fruits)", chunk_opts = list(
+        label = "r24a-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 6, label = "r24a", exercise = TRUE, 
+        exercise.setup = "r24setup", code = c("#Order strings", 
+        ""), out.width.px = 576, out.height.px = 384, params.src = "r24a, exercise=TRUE, exercise.lines = 6, exercise.setup = \"r24setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -2178,28 +2129,27 @@ learnr:::store_exercise_cache(structure(list(label = "r24b", global_setup = stru
         engine = "r"), list(label = "r24b", code = "#Sort strings\n", 
         opts = list(label = "\"r24b\"", exercise = "TRUE", exercise.lines = "6", 
             exercise.setup = "\"r24setup\""), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Sort strings", 
-    "str_sort(fruits, decreasing = F)"), chunk_opts = list(label = "r24b-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "11_Stringr_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 6, 
-        label = "r24b", exercise = TRUE, exercise.setup = "r24setup", 
-        code = c("#Sort strings", ""), out.width.px = 576, out.height.px = 384, 
-        params.src = "r24b, exercise=TRUE, exercise.lines = 6, exercise.setup = \"r24setup\"", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("str_sort(fruits, decreasing = F)", chunk_opts = list(
+        label = "r24b-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "11_Stringr_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 6, label = "r24b", exercise = TRUE, 
+        exercise.setup = "r24setup", code = c("#Sort strings", 
+        ""), out.width.px = 576, out.height.px = 384, params.src = "r24b, exercise=TRUE, exercise.lines = 6, exercise.setup = \"r24setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -2277,7 +2227,7 @@ href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/packa
 <h1 class="title toc-ignore" style="display:none;">Practice R Tutorial
 11</h1>
 <h4 class="author"><em>Edgar Treischl</em></h4>
-<h4 class="date"><em>Last update: 2023-05-07</em></h4>
+<h4 class="date"><em>Last update: 2023-05-10</em></h4>
 </div>
 <!-- end doc-metadata -->
 
