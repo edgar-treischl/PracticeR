@@ -230,8 +230,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r2-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Select a variable
-select(gss2016, degree)</code></pre>
+<pre class="text"><code>select(gss2016, degree)</code></pre>
 </div>
 <p><code>Select</code> comes with handy functions and applies the same
 logic as <code>base</code> R. For example, select several columns by
@@ -245,8 +244,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r3-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Select all variables from x to y
-select(gss2016, id:degree) |&gt; head()</code></pre>
+<pre class="text"><code>select(gss2016, id:degree) |&gt; head()</code></pre>
 </div>
 <p>Maybe we need all columns except the variables shown in the last
 output. Ask for the opposite and insert parentheses and a minus signs to
@@ -259,8 +257,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r4-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Turn around the selection
-select(gss2016, -(id:degree)) |&gt; head()</code></pre>
+<pre class="text"><code>select(gss2016, -(id:degree)) |&gt; head()</code></pre>
 </div>
 <p>The <code>gss2016</code> data does not contain variables with a
 running number nor other systematic variable names. However,
@@ -293,8 +290,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r5-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Select variables that start with a string
-select(df, starts_with(&quot;measurement&quot;))</code></pre>
+<pre class="text"><code>select(df, starts_with(&quot;measurement&quot;))</code></pre>
 </div>
 <p>Or pick variables with the running number. The <code>num_range</code>
 functions needs the name (<code>x</code>) and the running number.</p>
@@ -306,8 +302,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r6-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Select based on a running number
-select(df, num_range(&quot;x&quot;, 1:3))</code></pre>
+<pre class="text"><code>select(df, num_range(&quot;x&quot;, 1:3))</code></pre>
 </div>
 <p>The package offers more helpers to select variables than I can
 possibly outline. For example, <code>contains()</code> checks if a
@@ -325,8 +320,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r7-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Insert a function to select variables
-gss2016 |&gt; select(where(is.numeric))</code></pre>
+<pre class="text"><code>gss2016 |&gt; select(where(is.numeric))</code></pre>
 </div>
 <p>Next, we filter data but since all R outputs are large due to the
 <code>gss2016</code> data, let us first create a smaller subset to
@@ -353,8 +347,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r9-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Apply a filter
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   filter(degree == &quot;Bachelor&quot;) |&gt;
   head()</code></pre>
 </div>
@@ -369,8 +362,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r10-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Combine several conditions
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   filter(degree == &quot;Bachelor&quot; &amp; age &gt; 17) |&gt;
   head()</code></pre>
 </div>
@@ -385,8 +377,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r11-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># All degrees, but not! Bachelors
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   filter(degree != &quot;Bachelor&quot;) |&gt;
   head()</code></pre>
 </div>
@@ -433,8 +424,7 @@ data-diagnostics="1" data-startover="1" data-lines="9">
 <div class="tutorial-exercise-support" data-label="r12-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Create birth_year and a recent (year: 2023) age variable
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   select(id, year, age) |&gt;
   mutate(
     birth_year = year - age,
@@ -455,8 +445,7 @@ data-diagnostics="1" data-startover="1" data-lines="9">
 <div class="tutorial-exercise-support" data-label="r13-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># In theory: if_else(condition, true, false, missing = NULL)
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   select(id, year, age) |&gt;
   mutate(adult = if_else(age &gt; 17, TRUE, FALSE)) |&gt;
   head()</code></pre>
@@ -486,8 +475,7 @@ df &lt;- data.frame(
 <div class="tutorial-exercise-support" data-label="r14-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># In theory: case_when(condition ~ value)
-df |&gt;
+<pre class="text"><code>df |&gt;
   mutate(academic_parents = case_when(
     kids &gt;= 1 &amp; educ == &quot;high&quot; ~ &quot;TRUE&quot;,
     TRUE ~ &quot;FALSE&quot;
@@ -518,8 +506,7 @@ gss2016 &lt;- gss2016 |&gt;
 <div class="tutorial-exercise-support" data-label="r15-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Summarize age
-gss2016 |&gt; summarize(mean_age = mean(age))</code></pre>
+<pre class="text"><code>gss2016 |&gt; summarize(mean_age = mean(age))</code></pre>
 </div>
 <p>The <code>dplyr</code> package comes with several help functions to
 summarize data. For example, to count the number of observation per
@@ -533,8 +520,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r16-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># County by (sex)
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   group_by(sex) %&gt;%
   summarize(count = n())</code></pre>
 </div>
@@ -550,8 +536,7 @@ data-diagnostics="1" data-startover="1" data-lines="9">
 <div class="tutorial-exercise-support" data-label="r17-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Dplyr has more summary functions
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   group_by(sex) |&gt;
   summarise(
     median_age = median(age),
@@ -574,8 +559,7 @@ data-diagnostics="1" data-startover="1" data-lines="9">
 <div class="tutorial-exercise-support" data-label="r18-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Mutate ungroups the data again
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   select(id, sex, age) |&gt;
   group_by(sex) |&gt;
   mutate(count = round(mean(age), 2))</code></pre>
@@ -601,9 +585,7 @@ data-diagnostics="1" data-startover="1" data-lines="9">
 <div class="tutorial-exercise-support" data-label="r20-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Create a restricted analysis sample
-# between: x &gt;= left &amp; x &lt;= right
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   transmute(age,
     age_filter = between(age, 18, 65)
   )</code></pre>
@@ -621,8 +603,7 @@ data-diagnostics="1" data-startover="1" data-lines="9">
 <div class="tutorial-exercise-support" data-label="r21-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Filter and arrange the data
-gss2016 |&gt;
+<pre class="text"><code>gss2016 |&gt;
   transmute(age,
     age_filter = between(age, 18, 65)
   ) |&gt;
@@ -689,7 +670,7 @@ style="width:50.0%" alt="Artwork by Jake Clark" /></a></p>
 <li>Read R code from a file, a connection or expressions
 (<code>source</code>)</li>
 </ul>
-<p>Finally, a link to download this tutorial as PDF file.</p>
+<p>The link to download this tutorial as PDF file.</p>
 <button id="download" type="button" class="btn btn-default action-button" onclick="window.open(&#39;https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial04.pdf&#39;)">
 <i class="far fa-file-pdf" role="presentation" aria-label="file-pdf icon"></i>
 PR Tutorial 04
@@ -807,26 +788,25 @@ learnr:::store_exercise_cache(structure(list(label = "r2", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r2", code = "#Select a variable\n", 
         opts = list(label = "\"r2\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Select a variable", 
-    "select(gss2016, degree)"), chunk_opts = list(label = "r2-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "04_data_manipulation_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r2", exercise = TRUE, code = c("#Select a variable", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("select(gss2016, degree)", chunk_opts = list(
+        label = "r2-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "04_data_manipulation_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r2", exercise = TRUE, code = c("#Select a variable", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r2, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -852,8 +832,7 @@ learnr:::store_exercise_cache(structure(list(label = "r3", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r3", code = "#Select all variables from x to y\n", 
         opts = list(label = "\"r3\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Select all variables from x to y", 
-    "select(gss2016, id:degree)|> head()"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("select(gss2016, id:degree)|> head()", chunk_opts = list(
         label = "r3-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -897,8 +876,7 @@ learnr:::store_exercise_cache(structure(list(label = "r4", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r4", code = "#Turn around the selection\n", 
         opts = list(label = "\"r4\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Turn around the selection", 
-    "select(gss2016, -(id:degree)) |> head()"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("select(gss2016, -(id:degree)) |> head()", chunk_opts = list(
         label = "r4-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -993,8 +971,7 @@ learnr:::store_exercise_cache(structure(list(label = "r5", global_setup = struct
         code = "#Select variables that start with a string\n", 
         opts = list(label = "\"r5\"", exercise = "TRUE", exercise.setup = "\"r5a\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Select variables that start with a string", 
-    "select(df, starts_with(\"measurement\"))"), chunk_opts = list(
+    check = NULL, solution = structure("select(df, starts_with(\"measurement\"))", chunk_opts = list(
         label = "r5-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1043,26 +1020,25 @@ learnr:::store_exercise_cache(structure(list(label = "r6", global_setup = struct
         code = "#Select based on a running number\n", opts = list(
             label = "\"r6\"", exercise = "TRUE", exercise.setup = "\"r5a\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Select based on a running number", 
-    "select(df, num_range(\"x\", 1:3))"), chunk_opts = list(label = "r6-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "04_data_manipulation_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r6", exercise = TRUE, exercise.setup = "r5a", 
+    check = NULL, solution = structure("select(df, num_range(\"x\", 1:3))", chunk_opts = list(
+        label = "r6-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "04_data_manipulation_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r6", exercise = TRUE, exercise.setup = "r5a", 
         code = c("#Select based on a running number", ""), out.width.px = 576, 
         out.height.px = 384, params.src = "r6, exercise=TRUE, exercise.setup = \"r5a\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
@@ -1089,8 +1065,7 @@ learnr:::store_exercise_cache(structure(list(label = "r7", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r7", code = "#Insert a function to select variables\n", 
         opts = list(label = "\"r7\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Insert a function to select variables", 
-    "gss2016 |> select(where(is.numeric))"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("gss2016 |> select(where(is.numeric))", chunk_opts = list(
         label = "r7-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1178,27 +1153,26 @@ learnr:::store_exercise_cache(structure(list(label = "r9", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r9", code = "#Apply a filter\n\n", 
         opts = list(label = "\"r9\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Apply a filter", 
-    "gss2016 |> ", "  filter(degree == \"Bachelor\")|> ", "  head()"
-    ), chunk_opts = list(label = "r9-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "04_data_manipulation_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r9", exercise = TRUE, code = c("#Apply a filter", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("gss2016 |> ", 
+    "  filter(degree == \"Bachelor\")|> ", "  head()"), chunk_opts = list(
+        label = "r9-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "04_data_manipulation_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r9", exercise = TRUE, code = c("#Apply a filter", 
         "", ""), out.width.px = 576, out.height.px = 384, params.src = "r9, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1224,9 +1198,9 @@ learnr:::store_exercise_cache(structure(list(label = "r10", global_setup = struc
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r10", code = "#Combine several conditions\n\n", 
         opts = list(label = "\"r10\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Combine several conditions", 
-    "gss2016 |> ", "  filter(degree == \"Bachelor\" & age > 17)|> ", 
-    "  head()"), chunk_opts = list(label = "r10-solution", echo = FALSE, 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("gss2016 |> ", 
+    "  filter(degree == \"Bachelor\" & age > 17)|> ", "  head()"
+    ), chunk_opts = list(label = "r10-solution", echo = FALSE, 
         eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -1270,27 +1244,26 @@ learnr:::store_exercise_cache(structure(list(label = "r11", global_setup = struc
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r11", code = "#All degrees, but not! Bachelors\n\n", 
         opts = list(label = "\"r11\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#All degrees, but not! Bachelors", 
-    "gss2016 |> ", "  filter(degree != \"Bachelor\")|> ", "  head()"
-    ), chunk_opts = list(label = "r11-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "04_data_manipulation_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r11", exercise = TRUE, code = c("#All degrees, but not! Bachelors", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("gss2016 |> ", 
+    "  filter(degree != \"Bachelor\")|> ", "  head()"), chunk_opts = list(
+        label = "r11-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "04_data_manipulation_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r11", exercise = TRUE, code = c("#All degrees, but not! Bachelors", 
         "", ""), out.width.px = 576, out.height.px = 384, params.src = "r11, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1317,27 +1290,27 @@ learnr:::store_exercise_cache(structure(list(label = "r12", global_setup = struc
     chunks = list(list(label = "r12", code = "#Create birth_year and a recent (year: 2023) age variable\n\n", 
         opts = list(label = "\"r12\"", exercise = "TRUE", exercise.lines = "9"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Create birth_year and a recent (year: 2023) age variable", 
-    "gss2016 |> ", "  select(id, year, age)|> ", "  mutate(birth_year = year - age,", 
-    "         new_age = 2023 - birth_year)|> ", "  head()"), chunk_opts = list(
-        label = "r12-solution", echo = FALSE, eval = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "04_data_manipulation_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "images/", dev = "png", 
-        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
-        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
-        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
-        out.height = NULL, out.extra = NULL, fig.retina = 2, 
-        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
-        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
-        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
-        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
-        exercise.lines = 9, label = "r12", exercise = TRUE, code = c("#Create birth_year and a recent (year: 2023) age variable", 
+    check = NULL, solution = structure(c("gss2016 |> ", "  select(id, year, age)|> ", 
+    "  mutate(birth_year = year - age,", "         new_age = 2023 - birth_year)|> ", 
+    "  head()"), chunk_opts = list(label = "r12-solution", echo = FALSE, 
+        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
+        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
+        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
+        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
+        cache = 0, cache.path = "04_data_manipulation_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "images/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
+        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
+        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.eval = FALSE, exercise.lines = 9, 
+        label = "r12", exercise = TRUE, code = c("#Create birth_year and a recent (year: 2023) age variable", 
         "", ""), out.width.px = 576, out.height.px = 384, params.src = "r12, exercise=TRUE, exercise.lines = 9", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1364,9 +1337,9 @@ learnr:::store_exercise_cache(structure(list(label = "r13", global_setup = struc
     chunks = list(list(label = "r13", code = "#In theory: if_else(condition, true, false, missing = NULL)\n\n", 
         opts = list(label = "\"r13\"", exercise = "TRUE", exercise.lines = "9"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#In theory: if_else(condition, true, false, missing = NULL)", 
-    "gss2016 |> ", "  select(id, year, age)|> ", "  mutate(adult = if_else(age > 17, TRUE, FALSE))|> ", 
-    "  head()"), chunk_opts = list(label = "r13-solution", echo = FALSE, 
+    check = NULL, solution = structure(c("gss2016 |> ", "  select(id, year, age)|> ", 
+    "  mutate(adult = if_else(age > 17, TRUE, FALSE))|> ", "  head()"
+    ), chunk_opts = list(label = "r13-solution", echo = FALSE, 
         eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -1411,29 +1384,28 @@ learnr:::store_exercise_cache(structure(list(label = "r14", global_setup = struc
     chunks = list(list(label = "r14", code = "#Data to illustrate\ndf <- data.frame(kids = c(0, 1, 3, 0, NA),\n                educ = c(\"high\", \"low\", \"high\", \"low\", NA)\n                )\n\n#In theory: case_when(condition ~ value)\n", 
         opts = list(label = "\"r14\"", exercise = "TRUE", exercise.lines = "11"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#In theory: case_when(condition ~ value)", 
-    "df |> ", "  mutate(academic_parents = case_when(", "    kids >= 1 & educ == \"high\"  ~ \"TRUE\",", 
-    "    TRUE ~ \"FALSE\"", "    )", "  )"), chunk_opts = list(
-        label = "r14-solution", echo = FALSE, eval = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "04_data_manipulation_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "images/", dev = "png", 
-        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
-        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
-        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
-        out.height = NULL, out.extra = NULL, fig.retina = 2, 
-        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
-        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
-        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
-        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
-        exercise.lines = 11, label = "r14", exercise = TRUE, 
-        code = c("#Data to illustrate", "df <- data.frame(kids = c(0, 1, 3, 0, NA),", 
-        "                educ = c(\"high\", \"low\", \"high\", \"low\", NA)", 
+    check = NULL, solution = structure(c("df |> ", "  mutate(academic_parents = case_when(", 
+    "    kids >= 1 & educ == \"high\"  ~ \"TRUE\",", "    TRUE ~ \"FALSE\"", 
+    "    )", "  )"), chunk_opts = list(label = "r14-solution", 
+        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "04_data_manipulation_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "images/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
+        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
+        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.eval = FALSE, exercise.lines = 11, 
+        label = "r14", exercise = TRUE, code = c("#Data to illustrate", 
+        "df <- data.frame(kids = c(0, 1, 3, 0, NA),", "                educ = c(\"high\", \"low\", \"high\", \"low\", NA)", 
         "                )", "", "#In theory: case_when(condition ~ value)", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r14, exercise=TRUE, exercise.lines = 11", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
@@ -1461,26 +1433,25 @@ learnr:::store_exercise_cache(structure(list(label = "r15", global_setup = struc
     chunks = list(list(label = "r15", code = "#Exclude missing values but consider the consequences (see Chapter 5)\ngss2016 <- gss2016 |> \n  tidyr::drop_na(age, sex)\n\n#Summarize age\n", 
         opts = list(label = "\"r15\"", exercise = "TRUE", exercise.lines = "8"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Summarize age", "gss2016 |> summarize(mean_age = mean(age))"
-    ), chunk_opts = list(label = "r15-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "04_data_manipulation_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 8, 
-        label = "r15", exercise = TRUE, code = c("#Exclude missing values but consider the consequences (see Chapter 5)", 
+    check = NULL, solution = structure("gss2016 |> summarize(mean_age = mean(age))", chunk_opts = list(
+        label = "r15-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "04_data_manipulation_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 8, label = "r15", exercise = TRUE, code = c("#Exclude missing values but consider the consequences (see Chapter 5)", 
         "gss2016 <- gss2016 |> ", "  tidyr::drop_na(age, sex)", 
         "", "#Summarize age", ""), out.width.px = 576, out.height.px = 384, 
         params.src = "r15, exercise=TRUE, exercise.lines = 8", 
@@ -1511,14 +1482,13 @@ learnr:::store_exercise_cache(structure(list(label = "r16", global_setup = struc
         engine = "r"), list(label = "r16", code = "#County by (sex)\n\n", 
         opts = list(label = "\"r16\"", exercise = "TRUE", exercise.setup = "\"r15\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#County by (sex)", 
-    "gss2016 |> ", "  group_by(sex) %>% ", "  summarize(count = n())"
-    ), chunk_opts = list(label = "r16-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "04_data_manipulation_cache/html/", 
+    check = NULL, solution = structure(c("gss2016 |> ", "  group_by(sex) %>% ", 
+    "  summarize(count = n())"), chunk_opts = list(label = "r16-solution", 
+        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "04_data_manipulation_cache/html/", 
         cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
         autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
         fig.show = "asis", fig.align = "default", fig.path = "images/", 
@@ -1561,8 +1531,8 @@ learnr:::store_exercise_cache(structure(list(label = "r17", global_setup = struc
         engine = "r"), list(label = "r17", code = "#Dplyr has more summary functions\n\n", 
         opts = list(label = "\"r17\"", exercise = "TRUE", exercise.lines = "9", 
             exercise.setup = "\"r15\""), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Dplyr has more summary functions", 
-    "gss2016 |> ", "  group_by(sex) |> ", "  summarise(median_age = median(age),", 
+    error_check = NULL, check = NULL, solution = structure(c("gss2016 |> ", 
+    "  group_by(sex) |> ", "  summarise(median_age = median(age),", 
     "            sd_age = sd(age),", "            distinct_degree = n_distinct(degree)", 
     "  )"), chunk_opts = list(label = "r17-solution", echo = FALSE, 
         eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
@@ -1612,27 +1582,27 @@ learnr:::store_exercise_cache(structure(list(label = "r18", global_setup = struc
         engine = "r"), list(label = "r18", code = "#Mutate ungroups the data again\n", 
         opts = list(label = "\"r18\"", exercise = "TRUE", exercise.lines = "9", 
             exercise.setup = "\"r15\""), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Mutate ungroups the data again", 
-    "gss2016 |> ", "  select(id, sex, age)|>", "  group_by(sex) |>  ", 
-    "  mutate(count = round(mean(age),2))"), chunk_opts = list(
-        label = "r18-solution", echo = FALSE, eval = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "04_data_manipulation_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "images/", dev = "png", 
-        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
-        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
-        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
-        out.height = NULL, out.extra = NULL, fig.retina = 2, 
-        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
-        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
-        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
-        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
-        exercise.lines = 9, label = "r18", exercise = TRUE, exercise.setup = "r15", 
+    error_check = NULL, check = NULL, solution = structure(c("gss2016 |> ", 
+    "  select(id, sex, age)|>", "  group_by(sex) |>  ", "  mutate(count = round(mean(age),2))"
+    ), chunk_opts = list(label = "r18-solution", echo = FALSE, 
+        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
+        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
+        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
+        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
+        cache = 0, cache.path = "04_data_manipulation_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "images/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
+        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
+        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.eval = FALSE, exercise.lines = 9, 
+        label = "r18", exercise = TRUE, exercise.setup = "r15", 
         code = c("#Mutate ungroups the data again", ""), out.width.px = 576, 
         out.height.px = 384, params.src = "r18, exercise=TRUE, exercise.lines = 9, exercise.setup = \"r15\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
@@ -1660,8 +1630,7 @@ learnr:::store_exercise_cache(structure(list(label = "r20", global_setup = struc
     chunks = list(list(label = "r20", code = "#Create a restricted analysis sample\n#between: x >= left & x <= right\n", 
         opts = list(label = "\"r20\"", exercise = "TRUE", exercise.lines = "9"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Create a restricted analysis sample", 
-    "#between: x >= left & x <= right", "gss2016 |>", "  transmute(age,", 
+    check = NULL, solution = structure(c("gss2016 |>", "  transmute(age,", 
     "            age_filter = between(age, 18, 65))"), chunk_opts = list(
         label = "r20-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -1708,28 +1677,27 @@ learnr:::store_exercise_cache(structure(list(label = "r21", global_setup = struc
     chunks = list(list(label = "r21", code = "#Filter and arrange the data\n", 
         opts = list(label = "\"r21\"", exercise = "TRUE", exercise.lines = "9"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Filter and arrange the data", 
-    "gss2016 |>", "  transmute(age,", "            age_filter = between(age, 18, 65))|>", 
-    "  filter(age_filter == \"TRUE\") |> ", "  arrange(desc(age)) |> ", 
-    "  head()"), chunk_opts = list(label = "r21-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "04_data_manipulation_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 9, 
-        label = "r21", exercise = TRUE, code = c("#Filter and arrange the data", 
+    check = NULL, solution = structure(c("gss2016 |>", "  transmute(age,", 
+    "            age_filter = between(age, 18, 65))|>", "  filter(age_filter == \"TRUE\") |> ", 
+    "  arrange(desc(age)) |> ", "  head()"), chunk_opts = list(
+        label = "r21-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "04_data_manipulation_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 9, label = "r21", exercise = TRUE, code = c("#Filter and arrange the data", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r21, exercise=TRUE, exercise.lines = 9", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1777,7 +1745,7 @@ href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/packa
 <h1 class="title toc-ignore" style="display:none;">Practice R Tutorial
 04</h1>
 <h4 class="author"><em>Edgar Treischl</em></h4>
-<h4 class="date"><em>Last update: 2023-05-07</em></h4>
+<h4 class="date"><em>Last update: 2023-05-10</em></h4>
 </div>
 <!-- end doc-metadata -->
 

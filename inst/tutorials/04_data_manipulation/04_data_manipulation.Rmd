@@ -80,7 +80,6 @@ Especially in case of large and cluttered data, we use `select()` to specify whi
 ```
 
 ```{r r2-solution, echo=FALSE, eval=FALSE}
-#Select a variable
 select(gss2016, degree)
 ```
 
@@ -92,7 +91,6 @@ select(gss2016, degree)
 ```
 
 ```{r r3-solution, echo=FALSE, eval=FALSE}
-#Select all variables from x to y
 select(gss2016, id:degree)|> head()
 ```
 
@@ -104,7 +102,6 @@ Maybe we need all columns except the variables shown in the last output. Ask for
 ```
 
 ```{r r4-solution, echo=FALSE, eval=FALSE}
-#Turn around the selection
 select(gss2016, -(id:degree)) |> head()
 ```
 
@@ -130,7 +127,6 @@ Suppose we measured a variables several times and all start with an identical na
 ```
 
 ```{r r5-solution, echo=FALSE, eval=FALSE}
-#Select variables that start with a string
 select(df, starts_with("measurement"))
 ```
 
@@ -142,7 +138,6 @@ Or pick variables with the running number. The `num_range` functions needs the n
 ```
 
 ```{r r6-solution, echo=FALSE, eval=FALSE}
-#Select based on a running number
 select(df, num_range("x", 1:3))
 ```
 
@@ -154,7 +149,6 @@ The package offers more helpers to select variables than I can possibly outline.
 ```
 
 ```{r r7-solution, echo=FALSE, eval=FALSE}
-#Insert a function to select variables
 gss2016 |> select(where(is.numeric))
 ```
 
@@ -178,7 +172,6 @@ Use `filter()` to subset the data. The `dplyr` filters the data and returns a ne
 ```
 
 ```{r r9-solution, echo=FALSE, eval=FALSE}
-#Apply a filter
 gss2016 |> 
   filter(degree == "Bachelor")|> 
   head()
@@ -193,7 +186,6 @@ Can you adjust the code so that two conditions have to be fulfilled simultaneous
 ```
 
 ```{r r10-solution, echo=FALSE, eval=FALSE}
-#Combine several conditions
 gss2016 |> 
   filter(degree == "Bachelor" & age > 17)|> 
   head()
@@ -208,7 +200,6 @@ As outlined, keep your `base` R skills in mind when selecting or filtering data.
 ```
 
 ```{r r11-solution, echo=FALSE, eval=FALSE}
-#All degrees, but not! Bachelors
 gss2016 |> 
   filter(degree != "Bachelor")|> 
   head()
@@ -249,7 +240,6 @@ In Chapter 4 I outline several ways to generate new variables based on observed 
 ```
 
 ```{r r12-solution, echo=FALSE, eval=FALSE}
-#Create birth_year and a recent (year: 2023) age variable
 gss2016 |> 
   select(id, year, age)|> 
   mutate(birth_year = year - age,
@@ -266,7 +256,6 @@ Keep in mind that you can use relational and logical operators, as well other fu
 ```
 
 ```{r r13-solution, echo=FALSE, eval=FALSE}
-#In theory: if_else(condition, true, false, missing = NULL)
 gss2016 |> 
   select(id, year, age)|> 
   mutate(adult = if_else(age > 17, TRUE, FALSE))|> 
@@ -286,7 +275,6 @@ df <- data.frame(kids = c(0, 1, 3, 0, NA),
 ```
 
 ```{r r14-solution, echo=FALSE, eval=FALSE}
-#In theory: case_when(condition ~ value)
 df |> 
   mutate(academic_parents = case_when(
     kids >= 1 & educ == "high"  ~ "TRUE",
@@ -311,7 +299,6 @@ gss2016 <- gss2016 |>
 ```
 
 ```{r r15-solution, echo=FALSE, eval=FALSE}
-#Summarize age
 gss2016 |> summarize(mean_age = mean(age))
 ```
 
@@ -324,7 +311,6 @@ The `dplyr` package comes with several help functions to summarize data. For exa
 ```
 
 ```{r r16-solution, echo=FALSE, eval=FALSE}
-#County by (sex)
 gss2016 |> 
   group_by(sex) %>% 
   summarize(count = n())
@@ -339,7 +325,6 @@ Moreover, compare the groups by calculating the `median` age instead of the mean
 ```
 
 ```{r r17-solution, echo=FALSE, eval=FALSE}
-#Dplyr has more summary functions
 gss2016 |> 
   group_by(sex) |> 
   summarise(median_age = median(age),
@@ -356,7 +341,6 @@ In the last examples we grouped the data and then collapsed it. The counterpart 
 ```
 
 ```{r r18-solution, echo=FALSE, eval=FALSE}
-#Mutate ungroups the data again
 gss2016 |> 
   select(id, sex, age)|>
   group_by(sex) |>  
@@ -376,8 +360,6 @@ Consider the steps to build a restricted age sample to examine adults only. Use 
 ```
 
 ```{r r20-solution, echo=FALSE, eval=FALSE}
-#Create a restricted analysis sample
-#between: x >= left & x <= right
 gss2016 |>
   transmute(age,
             age_filter = between(age, 18, 65))
@@ -391,7 +373,6 @@ Next, we need a `filter()` to restrict the sample, but how can we know that code
 ```
 
 ```{r r21-solution, echo=FALSE, eval=FALSE}
-#Filter and arrange the data
 gss2016 |>
   transmute(age,
             age_filter = between(age, 18, 65))|>
@@ -433,7 +414,6 @@ Keep the main `dplyr` functions in mind, among them:
 - Apply a function (or functions) across multiple columns (`across`)
 - Select all variables or the last variable (e.g., `everything`)
 
-
 And the following `base` functions:
 
 - The names of an object (`names`)
@@ -441,9 +421,7 @@ And the following `base` functions:
 - Apply a function over a list or vector (`lapply, sapply`)
 - Read R code from a file, a connection or expressions (`source`)
 
-
-
-Finally, a link to download this tutorial as PDF file.
+The link to download this tutorial as PDF file.
 
 ```{r, echo=FALSE, eval=T}
 actionButton("download", "PR Tutorial 04", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial04.pdf')", icon = icon("file-pdf"))
