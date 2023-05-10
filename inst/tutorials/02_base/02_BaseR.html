@@ -275,8 +275,7 @@ a + b</code></pre>
 <div class="tutorial-exercise-support" data-label="r4-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Assigning the values the wrong way
-a &lt;- 5
+<pre class="text"><code>a &lt;- 5
 b &lt;- 3
 
 a + b</code></pre>
@@ -311,8 +310,7 @@ round(mean(c(1, 4, 6))), digits = 2)</code></pre>
 <div class="tutorial-exercise-support" data-label="r6-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Check parenthesis
-round(mean(c(1, 4, 6)), digits = 2)</code></pre>
+<pre class="text"><code>round(mean(c(1, 4, 6)), digits = 2)</code></pre>
 </div>
 <p>This error is hard to spot, but it illustrates that we need to be
 careful not to introduce mistakes. Moreover, RStudio gives parentheses
@@ -339,9 +337,7 @@ maen_a</code></pre>
 <div class="tutorial-exercise-support" data-label="r7-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># R cannot find an object due to typos
-mean_a &lt;- mean(1, 2, 3)
-mean_a</code></pre>
+<pre class="text"><code>mean_a</code></pre>
 </div>
 <p>R tells us that a function (an object) cannot be found if different
 notations are used. Keep in mind that R is case-sensitive
@@ -435,8 +431,7 @@ filter(penguins, species = &quot;Adelie&quot;)</code></pre>
 <div class="tutorial-exercise-support" data-label="r13-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Mistakes happen all the time ...
-library(dplyr)
+<pre class="text"><code>## ==
 filter(penguins, species == &quot;Adelie&quot;)</code></pre>
 </div>
 <p>Typos, missing functions (objects), and confusion about operators are
@@ -490,8 +485,7 @@ sum(c(3, 2 1))</code></pre>
 <div class="tutorial-exercise-support" data-label="r15-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Cryptic error: Unexpected numeric constant
-sum(c(3, 2, 1))</code></pre>
+<pre class="text"><code>sum(c(3, 2, 1))</code></pre>
 </div>
 <p>R finds an unexpected numeric constant (here <code>1</code>) because
 I forgot the last comma inside the <code>c()</code> function. The same
@@ -507,8 +501,7 @@ names</code></pre>
 <div class="tutorial-exercise-support" data-label="r15a-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Cryptic error: Unexpected string constant
-names &lt;- c(&quot;Tom&quot;, &quot;Diana&quot;, &quot;Pete&quot;)
+<pre class="text"><code>names &lt;- c(&quot;Tom&quot;, &quot;Diana&quot;, &quot;Pete&quot;)
 names</code></pre>
 </div>
 <p>Or consider <em>unexpected symbols</em>. Can you find the problem of
@@ -524,9 +517,7 @@ round(x digits = 2)</code></pre>
 <div class="tutorial-exercise-support" data-label="r16-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Cryptic error: Unexpected symbol
-x &lt;- mean(c(1:3))
-round(x, digits = 2)</code></pre>
+<pre class="text"><code>round(x, digits = 2)</code></pre>
 </div>
 <p>Thus, we introduce a mistake with a function argument because the
 comma is missing. A similar mistake happens if we forget to provide a
@@ -543,9 +534,7 @@ round(x, numbers = 2)</code></pre>
 <div class="tutorial-exercise-support" data-label="r17-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Cryptic error: Unused argument
-x &lt;- mean(c(1:3))
-round(x, digits = 2)</code></pre>
+<pre class="text"><code>round(x, digits = 2)</code></pre>
 </div>
 <p>Try to be patient and be kind to yourself should you run into such an
 error. You will become better to solve errors, but they will happen all
@@ -569,8 +558,7 @@ data-lines="5">
 <div class="tutorial-exercise-support" data-label="r18-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Cryptic error: Object of type &#39;closure&#39; is not subsettable
-mean(1:5)</code></pre>
+<pre class="text"><code>mean(1:5)</code></pre>
 </div>
 </div>
 <div id="section-further-sources-of-errors" class="section level2">
@@ -602,8 +590,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r20-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Slice the first column (variable)
-df[1]</code></pre>
+<pre class="text"><code>df[1]</code></pre>
 </div>
 <div class="tutorial-exercise" data-label="r21" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="5">
@@ -613,8 +600,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r21-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># First row
-df[1, ]</code></pre>
+<pre class="text"><code>df[1, ]</code></pre>
 </div>
 <p>Suppose that you have not worked with R for a few weeks, would you
 still be able to remember how slicing works? We all face the same
@@ -636,8 +622,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r22-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Slice or use the $ operator
-names &lt;- df$names
+<pre class="text"><code>names &lt;- df$names
 names &lt;- df[1]
 names</code></pre>
 </div>
@@ -896,8 +881,8 @@ learnr:::store_exercise_cache(structure(list(label = "r4", global_setup = struct
     list(label = "r4", code = "#Assigning the values the wrong way\na -< 5\nb -< 3\n\na + b", 
         opts = list(label = "\"r4\"", error = "TRUE", exercise = "TRUE", 
             exercise.blanks = "\"-<\""), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Assigning the values the wrong way", 
-    "a <- 5", "b <- 3", "", "a + b"), chunk_opts = list(label = "r4-solution", 
+    error_check = NULL, check = NULL, solution = structure(c("a <- 5", 
+    "b <- 3", "", "a + b"), chunk_opts = list(label = "r4-solution", 
         echo = FALSE, eval = FALSE)), tests = NULL, options = list(
         eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
         tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
@@ -946,8 +931,7 @@ learnr:::store_exercise_cache(structure(list(label = "r6", global_setup = struct
     list(label = "r6", code = "#Check parenthesis\nround(mean(c(1, 4, 6))), digits = 2)", 
         opts = list(label = "\"r6\"", error = "TRUE", exercise = "TRUE", 
             exercise.blanks = "\")))\""), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Check parenthesis", 
-    "round(mean(c(1, 4, 6)), digits = 2)"), chunk_opts = list(
+    error_check = NULL, check = NULL, solution = structure("round(mean(c(1, 4, 6)), digits = 2)", chunk_opts = list(
         label = "r6-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -995,26 +979,25 @@ learnr:::store_exercise_cache(structure(list(label = "r7", global_setup = struct
     list(label = "r7", code = "#R cannot find an object due to typos\nmean_a <- mean(1,2,3)\nmaen_a", 
         opts = list(label = "\"r7\"", error = "TRUE", exercise = "TRUE"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#R cannot find an object due to typos", 
-    "mean_a <- mean(1,2,3)", "mean_a"), chunk_opts = list(label = "r7-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "02_BaseR_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r7", exercise = TRUE, code = c("#R cannot find an object due to typos", 
+    check = NULL, solution = structure("mean_a", chunk_opts = list(
+        label = "r7-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r7", exercise = TRUE, code = c("#R cannot find an object due to typos", 
         "mean_a <- mean(1,2,3)", "maen_a"), out.width.px = 576, 
         out.height.px = 384, params.src = "r7, error=TRUE, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
@@ -1187,8 +1170,7 @@ learnr:::store_exercise_cache(structure(list(label = "r13", global_setup = struc
     list(label = "r13", code = "#Mistakes happen all the time ...\nlibrary(dplyr)\nfilter(penguins, species = \"Adelie\")", 
         opts = list(label = "\"r13\"", error = "TRUE", exercise = "TRUE"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Mistakes happen all the time ...", 
-    "library(dplyr)", "filter(penguins, species == \"Adelie\")"
+    check = NULL, solution = structure(c("## ==", "filter(penguins, species == \"Adelie\")"
     ), chunk_opts = list(label = "r13-solution", echo = FALSE, 
         eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
@@ -1283,26 +1265,25 @@ learnr:::store_exercise_cache(structure(list(label = "r15", global_setup = struc
     list(label = "r15", code = "#Cryptic error: Unexpected numeric constant\nsum(c(3, 2 1))", 
         opts = list(label = "\"r15\"", error = "TRUE", exercise = "TRUE"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Cryptic error: Unexpected numeric constant", 
-    "sum(c(3, 2, 1))"), chunk_opts = list(label = "r15-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "02_BaseR_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r15", exercise = TRUE, code = c("#Cryptic error: Unexpected numeric constant", 
+    check = NULL, solution = structure("sum(c(3, 2, 1))", chunk_opts = list(
+        label = "r15-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r15", exercise = TRUE, code = c("#Cryptic error: Unexpected numeric constant", 
         "sum(c(3, 2 1))"), out.width.px = 576, out.height.px = 384, 
         params.src = "r15, error=TRUE, exercise=TRUE", fig.num = 0, 
         exercise.df_print = "paged", exercise.checker = "NULL"), 
@@ -1332,14 +1313,13 @@ learnr:::store_exercise_cache(structure(list(label = "r15a", global_setup = stru
     list(label = "r15a", code = "#Cryptic error: Unexpected string constant\nnames <- c(\"Tom\", \"Diana\"___\"Pete\")\nnames", 
         opts = list(label = "\"r15a\"", error = "TRUE", exercise = "TRUE", 
             exercise.blanks = "\"___\""), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Cryptic error: Unexpected string constant", 
-    "names <- c(\"Tom\", \"Diana\", \"Pete\")", "names"), chunk_opts = list(
-        label = "r15a-solution", echo = FALSE, eval = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
+    error_check = NULL, check = NULL, solution = structure(c("names <- c(\"Tom\", \"Diana\", \"Pete\")", 
+    "names"), chunk_opts = list(label = "r15a-solution", echo = FALSE, 
+        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
+        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
+        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
+        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
+        cache = 0, cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1382,8 +1362,7 @@ learnr:::store_exercise_cache(structure(list(label = "r16", global_setup = struc
     list(label = "r16", code = "#Cryptic error: Unexpected symbol\nx <- mean(c(1:3))\nround(x digits = 2)", 
         opts = list(label = "\"r16\"", error = "TRUE", exercise = "TRUE"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Cryptic error: Unexpected symbol", 
-    "x <- mean(c(1:3))", "round(x, digits = 2)"), chunk_opts = list(
+    check = NULL, solution = structure("round(x, digits = 2)", chunk_opts = list(
         label = "r16-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1431,8 +1410,7 @@ learnr:::store_exercise_cache(structure(list(label = "r17", global_setup = struc
     list(label = "r17", code = "#Cryptic error: Unused argument\nx <- mean(c(1:3))\nround(x, numbers = 2)", 
         opts = list(label = "\"r17\"", error = "TRUE", exercise = "TRUE"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Cryptic error: Unused argument", 
-    "x <- mean(c(1:3))", "round(x, digits = 2)"), chunk_opts = list(
+    check = NULL, solution = structure("round(x, digits = 2)", chunk_opts = list(
         label = "r17-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1480,13 +1458,13 @@ learnr:::store_exercise_cache(structure(list(label = "r18", global_setup = struc
     list(label = "r18", code = "#Cryptic error: Object of type 'closure' is not subsettable\nmean[1:5]", 
         opts = list(label = "\"r18\"", warning = "TRUE", error = "TRUE", 
             exercise = "TRUE"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Cryptic error: Object of type 'closure' is not subsettable", 
-    "mean(1:5)"), chunk_opts = list(label = "r18-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
+    error_check = NULL, check = NULL, solution = structure("mean(1:5)", chunk_opts = list(
+        label = "r18-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1580,13 +1558,13 @@ learnr:::store_exercise_cache(structure(list(label = "r20", global_setup = struc
         code = "#Slice the first column (variable)\n", opts = list(
             label = "\"r20\"", exercise = "TRUE", exercise.setup = "\"r19\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Slice the first column (variable)", 
-    "df[1]"), chunk_opts = list(label = "r20-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
+    check = NULL, solution = structure("df[1]", chunk_opts = list(
+        label = "r20-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1630,13 +1608,13 @@ learnr:::store_exercise_cache(structure(list(label = "r21", global_setup = struc
             exercise.lines = "9"), engine = "r"), list(label = "r21", 
         code = "#First row\n", opts = list(label = "\"r21\"", 
             exercise = "TRUE", exercise.setup = "\"r19\""), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#First row", 
-    "df[1, ]"), chunk_opts = list(label = "r21-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("df[1, ]", chunk_opts = list(
+        label = "r21-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1681,26 +1659,26 @@ learnr:::store_exercise_cache(structure(list(label = "r22", global_setup = struc
         code = "#Slice or use the $ operator\n\n", opts = list(
             label = "\"r22\"", exercise = "TRUE", exercise.setup = "\"r19\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Slice or use the $ operator", 
-    "names <- df$names", "names <- df[1]", "names"), chunk_opts = list(
-        label = "r22-solution", echo = FALSE, eval = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "02_BaseR_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "images/", dev = "png", 
-        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
-        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
-        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
-        out.height = NULL, out.extra = NULL, fig.retina = 2, 
-        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
-        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
-        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
-        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
-        exercise.lines = 5, label = "r22", exercise = TRUE, exercise.setup = "r19", 
+    check = NULL, solution = structure(c("names <- df$names", 
+    "names <- df[1]", "names"), chunk_opts = list(label = "r22-solution", 
+        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "02_BaseR_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "images/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
+        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
+        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
+        label = "r22", exercise = TRUE, exercise.setup = "r19", 
         code = c("#Slice or use the $ operator", "", ""), out.width.px = 576, 
         out.height.px = 384, params.src = "r22, exercise=TRUE, exercise.setup = \"r19\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
@@ -1847,7 +1825,7 @@ href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/packa
 <h1 class="title toc-ignore" style="display:none;">Practice R Tutorial
 02</h1>
 <h4 class="author"><em>Edgar Treischl</em></h4>
-<h4 class="date"><em>Last update: 2023-05-07</em></h4>
+<h4 class="date"><em>Last update: 2023-05-10</em></h4>
 </div>
 <!-- end doc-metadata -->
 
