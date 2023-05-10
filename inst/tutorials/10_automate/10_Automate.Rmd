@@ -108,7 +108,6 @@ Suppose you need to visualize all numerical variables from the `penguins` data w
 ```
 
 ```{r r01-solution, echo=FALSE, eval=FALSE}
-#Pick a variable and give a title
 ggplot(penguins) +
   geom_histogram(aes(x = bill_length_mm))+
   ggtitle("Bill length")
@@ -150,7 +149,6 @@ First we need to identify which variables of a data frame are numerical. The `se
 ```
 
 ```{r r03-solution, echo=FALSE, eval=FALSE}
-#dplyr::select_if
 dplyr::select_if(penguins, is.double) |> 
   head()
 ```
@@ -163,7 +161,6 @@ However, we need a vector with the corresponding variable names to create the pl
 ```
 
 ```{r r04-solution, echo=FALSE, eval=FALSE}
-#Only numerical input
 names(dplyr::select_if(penguins, is.double))
 ```
 
@@ -176,7 +173,6 @@ Now that we have a vector with variable names and a function to create histogram
 ```
 
 ```{r r05-solution, echo=FALSE, eval=FALSE}
-#Iterate with purrr
 numerical_variables <- names(dplyr::select_if(penguins, is.double))
 plots_list <- purrr::map(numerical_variables, ~ hist_fun(penguins, x = .x))
 plots_list
@@ -197,7 +193,6 @@ plots_list
 ```
 
 ```{r r08-solution, echo=FALSE, eval=FALSE}
-#Insert your plotlist
 cowplot::plot_grid(plotlist = plots_list)
 ```
 
@@ -243,11 +238,11 @@ all_hist <- function(data) {
 
 ```{r r10, exercise=TRUE, error=TRUE, exercise.setup = "r10setup"}
 #What happens if there is an error?
-all_hist(penguins[1:2])
+
+
 ```
 
 ```{r r10-solution, echo=FALSE, eval=FALSE}
-#What happens if there is an error?
 all_hist(penguins[1:2])
 ```
 
@@ -259,7 +254,6 @@ The error message is pretty obscure, but we can improve it: It should warn us in
 ```
 
 ```{r r11-solution, echo=FALSE, eval=FALSE}
-#names_num is zero if the data has no numerical input
 numerical_variables <- names(dplyr::select_if(penguins[1:2], is.double))
 numerical_variables
 ```

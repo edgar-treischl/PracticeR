@@ -254,8 +254,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r01-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Pick a variable and give a title
-ggplot(penguins) +
+<pre class="text"><code>ggplot(penguins) +
   geom_histogram(aes(x = bill_length_mm)) +
   ggtitle(&quot;Bill length&quot;)</code></pre>
 </div>
@@ -312,8 +311,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r03-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># dplyr::select_if
-dplyr::select_if(penguins, is.double) |&gt;
+<pre class="text"><code>dplyr::select_if(penguins, is.double) |&gt;
   head()</code></pre>
 </div>
 <p>However, we need a vector with the corresponding variable names to
@@ -327,8 +325,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r04-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Only numerical input
-names(dplyr::select_if(penguins, is.double))</code></pre>
+<pre class="text"><code>names(dplyr::select_if(penguins, is.double))</code></pre>
 </div>
 <p>Now that we have a vector with variable names and a function to
 create histograms, enables us to use <code>purrr</code> <span
@@ -346,8 +343,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r05-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Iterate with purrr
-numerical_variables &lt;- names(dplyr::select_if(penguins, is.double))
+<pre class="text"><code>numerical_variables &lt;- names(dplyr::select_if(penguins, is.double))
 plots_list &lt;- purrr::map(numerical_variables, ~ hist_fun(penguins, x = .x))
 plots_list</code></pre>
 </div>
@@ -364,8 +360,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r08-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Insert your plotlist
-cowplot::plot_grid(plotlist = plots_list)</code></pre>
+<pre class="text"><code>cowplot::plot_grid(plotlist = plots_list)</code></pre>
 </div>
 <p>Now it’s up to you to combine these steps. Create a function
 (<code>all_hist</code>) that takes all numerical variables from a data
@@ -405,15 +400,13 @@ us the opportunity to inspect which error our function returns if there
 is no numerical input.</p>
 <div class="tutorial-exercise" data-label="r10" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="5">
-<pre class="text"><code># What happens if there is an error?
-all_hist(penguins[1:2])</code></pre>
+<pre class="text"><code># What happens if there is an error?</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="r10-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># What happens if there is an error?
-all_hist(penguins[1:2])</code></pre>
+<pre class="text"><code>all_hist(penguins[1:2])</code></pre>
 </div>
 <p>The error message is pretty obscure, but we can improve it: It should
 warn us in a reasonable manner and abort the function. Consider the
@@ -428,8 +421,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r11-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># names_num is zero if the data has no numerical input
-numerical_variables &lt;- names(dplyr::select_if(penguins[1:2], is.double))
+<pre class="text"><code>numerical_variables &lt;- names(dplyr::select_if(penguins[1:2], is.double))
 numerical_variables</code></pre>
 </div>
 <p>The <code>cli</code> package provides helpers for developing
@@ -678,8 +670,8 @@ by Mike Bostock.</p>
 class="sourceCode r"><code class="sourceCode r"><span id="section-cb32-1"><a href="#section-cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r2d3)</span>
 <span id="section-cb32-2"><a href="#section-cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># voronoi.js is based on: https://bl.ocks.org/mbostock/4060366</span></span>
 <span id="section-cb32-3"><a href="#section-cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">r2d3</span>(<span class="at">d3_version =</span> <span class="dv">4</span>, <span class="at">script =</span> <span class="st">&quot;d3/voronoi.js&quot;</span>)</span></code></pre></div>
-<div class="r2d3 html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ee84f5c14f296d1a4ef6" style="width:576px;height:384px;"></div>
-<script type="application/json" data-for="htmlwidget-ee84f5c14f296d1a4ef6">{"x":{"data":null,"type":"NULL","container":"svg","options":null,"script":"var d3Script = function(d3, r2d3, data, svg, width, height, options, theme, console) {\nthis.d3 = d3;\n\nsvg = d3.select(svg.node());\n/* R2D3 Source File:  d3/voronoi.js */\n// !preview r2d3 d3_version = 4\n\n// Based on: https://bl.ocks.org/mbostock/4060366\n\nsvg.on(\"touchmove mousemove\", moved);\n\nvar sites = d3.range(100)\n    .map(function(d) { return [Math.random() * width, Math.random() * height]; });\n\nvar voronoi = d3.voronoi()\n    .extent([[-8, -8], [width + 8, height + 8]]);\n\nvar polygon = svg.append(\"g\")\n    .attr(\"class\", \"polygons\")\n  .selectAll(\"path\")\n  .data(voronoi.polygons(sites))\n  .enter().append(\"path\")\n    .call(redrawPolygon);\n\nvar link = svg.append(\"g\")\n    .attr(\"class\", \"links\")\n  .selectAll(\"line\")\n  .data(voronoi.links(sites))\n  .enter().append(\"line\")\n    .call(redrawLink);\n\nvar site = svg.append(\"g\")\n    .attr(\"class\", \"sites\")\n  .selectAll(\"circle\")\n  .data(sites)\n  .enter().append(\"circle\")\n    .attr(\"r\", 2.5)\n    .call(redrawSite);\n\nfunction moved() {\n  sites[0] = d3.mouse(this);\n  redraw();\n}\n\nfunction redraw() {\n  var diagram = voronoi(sites);\n  polygon = polygon.data(diagram.polygons()).call(redrawPolygon);\n  link = link.data(diagram.links()), link.exit().remove();\n  link = link.enter().append(\"line\").merge(link).call(redrawLink);\n  site = site.data(sites).call(redrawSite);\n}\n\nfunction redrawPolygon(polygon) {\n  polygon\n      .attr(\"d\", function(d) { return d ? \"M\" + d.join(\"L\") + \"Z\" : null; });\n}\n\nfunction redrawLink(link) {\n  link\n      .attr(\"x1\", function(d) { return d.source[0]; })\n      .attr(\"y1\", function(d) { return d.source[1]; })\n      .attr(\"x2\", function(d) { return d.target[0]; })\n      .attr(\"y2\", function(d) { return d.target[1]; });\n}\n\nfunction redrawSite(site) {\n  site\n      .attr(\"cx\", function(d) { return d[0]; })\n      .attr(\"cy\", function(d) { return d[1]; });\n}\n};","style":"/* R2D3 Source File:  d3/voronoi.css */\n.links {\n  stroke: #000;\n  stroke-opacity: 0.2;\n}\n\n.polygons {\n  fill: none;\n  stroke: #000;\n}\n\n.polygons :first-child {\n  fill: #f00;\n}\n\n.sites {\n  fill: #000;\n  stroke: #fff;\n}\n\n.sites :first-child {\n  fill: #fff;\n}","version":4,"theme":{"default":{"background":"#FFFFFF","foreground":"#000000"},"runtime":null},"useShadow":true},"evals":[],"jsHooks":[]}</script>
+<div class="r2d3 html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a90d5289013d049c17fb" style="width:576px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-a90d5289013d049c17fb">{"x":{"data":null,"type":"NULL","container":"svg","options":null,"script":"var d3Script = function(d3, r2d3, data, svg, width, height, options, theme, console) {\nthis.d3 = d3;\n\nsvg = d3.select(svg.node());\n/* R2D3 Source File:  d3/voronoi.js */\n// !preview r2d3 d3_version = 4\n\n// Based on: https://bl.ocks.org/mbostock/4060366\n\nsvg.on(\"touchmove mousemove\", moved);\n\nvar sites = d3.range(100)\n    .map(function(d) { return [Math.random() * width, Math.random() * height]; });\n\nvar voronoi = d3.voronoi()\n    .extent([[-8, -8], [width + 8, height + 8]]);\n\nvar polygon = svg.append(\"g\")\n    .attr(\"class\", \"polygons\")\n  .selectAll(\"path\")\n  .data(voronoi.polygons(sites))\n  .enter().append(\"path\")\n    .call(redrawPolygon);\n\nvar link = svg.append(\"g\")\n    .attr(\"class\", \"links\")\n  .selectAll(\"line\")\n  .data(voronoi.links(sites))\n  .enter().append(\"line\")\n    .call(redrawLink);\n\nvar site = svg.append(\"g\")\n    .attr(\"class\", \"sites\")\n  .selectAll(\"circle\")\n  .data(sites)\n  .enter().append(\"circle\")\n    .attr(\"r\", 2.5)\n    .call(redrawSite);\n\nfunction moved() {\n  sites[0] = d3.mouse(this);\n  redraw();\n}\n\nfunction redraw() {\n  var diagram = voronoi(sites);\n  polygon = polygon.data(diagram.polygons()).call(redrawPolygon);\n  link = link.data(diagram.links()), link.exit().remove();\n  link = link.enter().append(\"line\").merge(link).call(redrawLink);\n  site = site.data(sites).call(redrawSite);\n}\n\nfunction redrawPolygon(polygon) {\n  polygon\n      .attr(\"d\", function(d) { return d ? \"M\" + d.join(\"L\") + \"Z\" : null; });\n}\n\nfunction redrawLink(link) {\n  link\n      .attr(\"x1\", function(d) { return d.source[0]; })\n      .attr(\"y1\", function(d) { return d.source[1]; })\n      .attr(\"x2\", function(d) { return d.target[0]; })\n      .attr(\"y2\", function(d) { return d.target[1]; });\n}\n\nfunction redrawSite(site) {\n  site\n      .attr(\"cx\", function(d) { return d[0]; })\n      .attr(\"cy\", function(d) { return d[1]; });\n}\n};","style":"/* R2D3 Source File:  d3/voronoi.css */\n.links {\n  stroke: #000;\n  stroke-opacity: 0.2;\n}\n\n.polygons {\n  fill: none;\n  stroke: #000;\n}\n\n.polygons :first-child {\n  fill: #f00;\n}\n\n.sites {\n  fill: #000;\n  stroke: #fff;\n}\n\n.sites :first-child {\n  fill: #fff;\n}","version":4,"theme":{"default":{"background":"#FFFFFF","foreground":"#000000"},"runtime":null},"useShadow":true},"evals":[],"jsHooks":[]}</script>
 <p>If you are not in the right mood to learn something new, how about
 playing an old school video game? The <code>Rcade</code> package lives
 on GitHub only, but thanks to Romain Lesur you can play Tetris, Mario,
@@ -825,27 +817,26 @@ learnr:::store_exercise_cache(structure(list(label = "r01", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r01", code = "#Pick a variable and give a title\n", 
         opts = list(label = "\"r01\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Pick a variable and give a title", 
-    "ggplot(penguins) +", "  geom_histogram(aes(x = bill_length_mm))+", 
-    "  ggtitle(\"Bill length\")"), chunk_opts = list(label = "r01-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "10_Automate_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r01", exercise = TRUE, code = c("#Pick a variable and give a title", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("ggplot(penguins) +", 
+    "  geom_histogram(aes(x = bill_length_mm))+", "  ggtitle(\"Bill length\")"
+    ), chunk_opts = list(label = "r01-solution", echo = FALSE, 
+        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
+        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
+        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
+        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
+        cache = 0, cache.path = "10_Automate_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r01", exercise = TRUE, code = c("#Pick a variable and give a title", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r01, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -931,14 +922,13 @@ learnr:::store_exercise_cache(structure(list(label = "r03", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r03", code = "#dplyr::select_if\n\n", opts = list(
         label = "\"r03\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#dplyr::select_if", 
-    "dplyr::select_if(penguins, is.double) |> ", "  head()"), chunk_opts = list(
-        label = "r03-solution", echo = FALSE, eval = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "10_Automate_cache/html/", cache.vars = NULL, 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("dplyr::select_if(penguins, is.double) |> ", 
+    "  head()"), chunk_opts = list(label = "r03-solution", echo = FALSE, 
+        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
+        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
+        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
+        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
+        cache = 0, cache.path = "10_Automate_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -981,8 +971,7 @@ learnr:::store_exercise_cache(structure(list(label = "r04", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r04", code = "#Only numerical input\n", opts = list(
         label = "\"r04\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Only numerical input", 
-    "names(dplyr::select_if(penguins, is.double))"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("names(dplyr::select_if(penguins, is.double))", chunk_opts = list(
         label = "r04-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1034,8 +1023,7 @@ learnr:::store_exercise_cache(structure(list(label = "r05", global_setup = struc
         engine = "r"), list(label = "r05", code = "#Iterate with purrr\n\n", 
         opts = list(label = "\"r05\"", exercise = "TRUE", exercise.setup = "\"r02\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Iterate with purrr", 
-    "numerical_variables <- names(dplyr::select_if(penguins, is.double))", 
+    check = NULL, solution = structure(c("numerical_variables <- names(dplyr::select_if(penguins, is.double))", 
     "plots_list <- purrr::map(numerical_variables, ~ hist_fun(penguins, x = .x))", 
     "plots_list"), chunk_opts = list(label = "r05-solution", 
         echo = FALSE, eval = FALSE)), tests = NULL, options = list(
@@ -1090,8 +1078,7 @@ learnr:::store_exercise_cache(structure(list(label = "r08", global_setup = struc
         engine = "r"), list(label = "r08", code = "#Insert your plotlist\n", 
         opts = list(label = "\"r08\"", exercise = "TRUE", exercise.setup = "\"r08setup\""), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Insert your plotlist", 
-    "cowplot::plot_grid(plotlist = plots_list)"), chunk_opts = list(
+    check = NULL, solution = structure("cowplot::plot_grid(plotlist = plots_list)", chunk_opts = list(
         label = "r08-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1201,30 +1188,29 @@ learnr:::store_exercise_cache(structure(list(label = "r10", global_setup = struc
     label = "setup", include = FALSE)), setup = "all_hist <- function(data) {\n  numerical_variables <- names(dplyr::select_if(data, is.double))\n  plots_list <- purrr::map(numerical_variables, ~ hist_fun(data, x = .x))\n  plot <- cowplot::plot_grid(plotlist = plots_list)\n  return(plot)\n}\n", 
     chunks = list(list(label = "r10setup", code = "all_hist <- function(data) {\n  numerical_variables <- names(dplyr::select_if(data, is.double))\n  plots_list <- purrr::map(numerical_variables, ~ hist_fun(data, x = .x))\n  plot <- cowplot::plot_grid(plotlist = plots_list)\n  return(plot)\n}\n", 
         opts = list(label = "\"r10setup\"", echo = "FALSE"), 
-        engine = "r"), list(label = "r10", code = "#What happens if there is an error?\nall_hist(penguins[1:2])", 
+        engine = "r"), list(label = "r10", code = "#What happens if there is an error?\n\n", 
         opts = list(label = "\"r10\"", exercise = "TRUE", error = "TRUE", 
             exercise.setup = "\"r10setup\""), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#What happens if there is an error?", 
-    "all_hist(penguins[1:2])"), chunk_opts = list(label = "r10-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "10_Automate_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r10", exercise = TRUE, exercise.setup = "r10setup", 
-        code = c("#What happens if there is an error?", "all_hist(penguins[1:2])"
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("all_hist(penguins[1:2])", chunk_opts = list(
+        label = "r10-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "10_Automate_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r10", exercise = TRUE, exercise.setup = "r10setup", 
+        code = c("#What happens if there is an error?", "", ""
         ), out.width.px = 576, out.height.px = 384, params.src = "r10, exercise=TRUE, error=TRUE, exercise.setup = \"r10setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1255,8 +1241,7 @@ learnr:::store_exercise_cache(structure(list(label = "r11", global_setup = struc
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "r11", code = "#names_num is zero if the data has no numerical input\n", 
         opts = list(label = "\"r11\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#names_num is zero if the data has no numerical input", 
-    "numerical_variables <- names(dplyr::select_if(penguins[1:2], is.double))", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("numerical_variables <- names(dplyr::select_if(penguins[1:2], is.double))", 
     "numerical_variables"), chunk_opts = list(label = "r11-solution", 
         echo = FALSE, eval = FALSE)), tests = NULL, options = list(
         eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
@@ -1587,7 +1572,7 @@ href="https://CRAN.R-project.org/package=cowplot">https://CRAN.R-project.org/pac
 <h1 class="title toc-ignore" style="display:none;">Practice R Tutorial
 10</h1>
 <h4 class="author"><em>Edgar Treischl</em></h4>
-<h4 class="date"><em>Last update: 2023-05-07</em></h4>
+<h4 class="date"><em>Last update: 2023-05-10</em></h4>
 </div>
 <!-- end doc-metadata -->
 
