@@ -87,8 +87,6 @@ df <- penguins
 ```
 
 ```{r r1-solution, echo=FALSE, eval=FALSE}
-#Use glimpse, head, or the str function for a first look
-df <- penguins
 glimpse(df)
 ```
 
@@ -104,7 +102,6 @@ We started to explore categorical variables in Chapter 3 and I outlined a few ba
 ```
 
 ```{r r3-solution, echo=FALSE, eval=FALSE}
-#Inspect the levels() of the penguin's home island
 levels(df$island)
 ```
 
@@ -123,13 +120,9 @@ sex <- c("m", "f", "f")
 ```
 
 ```{r r4-solution, echo=FALSE, eval=FALSE}
-#Example of a messy factor variable
-sex <- c("m", "f", "f")
-
-#Give clearer labels
 sex <- factor(sex,
               levels = c("f", "m"),
-              labels = c("female", "male"),
+              labels = c("female", "male")
              
 )
 head(sex)
@@ -143,7 +136,6 @@ Tables help us to explore data and we used the `summarytools` package to make fr
 ```
 
 ```{r r5-solution, echo=FALSE, eval=FALSE}
-#Create a frequency table
 freq(df$island)
 ```
 
@@ -157,21 +149,24 @@ As outlined in the book, we can use the `table()` function to count categorical 
 ```
 
 ```{r r6-solution, echo=FALSE, eval=FALSE}
-#Count islands with dplyr
 count_island <- dplyr::count(df, island)
 count_island
 ```
 
 Next, use the assigned results (`count_island`) and insert the variables into the `barplot()` function (with the formula `y ~ x`).
 
-```{r r7, exercise=TRUE, exercise.setup = "r6"}
+```{r r6setup, echo=FALSE}
+count_island <- dplyr::count(df, island)
+```
+
+```{r r7, exercise=TRUE, exercise.setup = "r6setup"}
 #Create a barplot
 
 
 ```
 
+
 ```{r r7-solution, echo=FALSE, eval=FALSE}
-#Create a barplot
 barplot(n ~ island, data = count_island)
 ```
 
@@ -186,7 +181,6 @@ In a similar vein, I introduced functions from the `DataExplorer` package that h
 ```
 
 ```{r r14-solution, echo=FALSE, eval=FALSE}
-#Inspect all or several plots at once
 DataExplorer::plot_bar(df[1:2])
 ```
 
@@ -202,7 +196,6 @@ To explore continuous variables, estimate the summary statistics with the `summa
 ```
 
 ```{r r2-solution, echo=FALSE, eval=FALSE}
-#Get a summary 
 summary(df[1:4])
 ```
 
@@ -214,7 +207,6 @@ The classic approach to visualize the distribution of a continuous variable is a
 ```
 
 ```{r r8-solution, echo=FALSE, eval=FALSE}
-#Create a histogram
 hist(df$body_mass_g)
 ```
 
@@ -226,7 +218,6 @@ Keep in mind that we only explored the data for the first time. We did not clean
 ```
 
 ```{r r9-solution, echo=FALSE, eval=FALSE}
-#Calculate the mean, but what about missing values (na.rm)?
 mean(df$body_mass_g, na.rm = TRUE)
 ```
 
@@ -274,7 +265,6 @@ summarytools::ctable(
 ```
 
 ```{r r11-solution, echo=FALSE, eval=FALSE}
-#Create a cross table with summarytools
 summarytools::ctable(
   x = tobacco$smoker,
   y = tobacco$diseased,
@@ -303,7 +293,6 @@ To calculate a group-mean looks quite complicated and I did not introduce the la
 ```
 
 ```{r r10-solution, echo=FALSE, eval=FALSE}
-#Inspect group differences with a box plot
 boxplot(body_mass_g ~ species, data=df)
 ```
 
@@ -328,7 +317,7 @@ abline(lm(body_mass_g ~ flipper_length_mm, data = df),
 ```
 
 
-Furthermore, we learned how to calculate the correlation coefficient. The code of the next console does not work if I apply the `cor()` with the penguins data. Do you have any idea how to fix the problem?
+Furthermore, we learned how to calculate the correlation coefficient. The code of the next console does not work if I apply the `cor()` function with the penguins data. Do you have any idea how to fix the problem?
 
 ```{r r12a, exercise=TRUE}
 #Calculate the correlation between x and y
@@ -337,7 +326,6 @@ cor_penguins
 ```
 
 ```{r r12a-solution, echo=FALSE, eval=FALSE}
-#Calculate the correlation between x and y
 cor_penguins <- cor(df$body_mass_g, df$flipper_length_mm, 
                  use = "complete")
 cor_penguins
@@ -357,13 +345,20 @@ cor(x, y = NULL, use = "complete",
 
 Finally, the `effectsize` package helped us with the interpretation of Pearson's r (and other stats, see Chapter 6). I copied the code from the book; can you adjust it to interpret the effect of the examined variables with the `effectsize` package [@effectsize]?<br><br><br>
 
-```{r r13, exercise=TRUE, exercise.setup = "r12a"}
+
+```{r r13setup, echo=FALSE}
+cor_penguins <- cor(df$body_mass_g, df$flipper_length_mm, 
+                 use = "complete")
+cor_penguins
+```
+
+
+```{r r13, exercise=TRUE, exercise.setup = "r13setup"}
 #Use effectsize to interpret R
 effectsize::interpret_r(correlation, rules = "cohen1988")
 ```
 
 ```{r r13-solution, echo=FALSE, eval=FALSE}
-#Use effectsize to interpret R
 effectsize::interpret_r(cor_penguins, rules = "cohen1988")
 ```
 
@@ -381,8 +376,6 @@ There are more R packages to explore data than I could possibly outline. For exa
 ```
 
 ```{r r15-solution, echo=FALSE, eval=FALSE}
-#Inspect skimr package (and vignette)
-#vignette("skimr")
 skimr::skim(df)
 ```
 
@@ -437,7 +430,6 @@ Or examine the `ggpairs()` function from the `GGally` package [@GGally]. It prov
 ```
 
 ```{r r16-solution, echo=FALSE, eval=FALSE}
-#GGally: https://ggobi.github.io/ggally/
 GGally::ggpairs(df[2:5])
 ```
 
@@ -445,25 +437,19 @@ GGally::ggpairs(df[2:5])
 
 Data exploration can be exciting since we explore something new. Unfortunately, it can be painful if the data is complex or messy. For this reason we used a simple and clean data, but we will start to manipulate complex(er) data and prepare messy data soon. Keep the following functions from Chapter 3 in mind:
 
--   Get a glimpse of your data (`dplyr::glimpse`); display the structure of an object (`str`); and inspect the first or last parts of an object (`head/tail`)
+- Get a glimpse of your data (`dplyr::glimpse`); display the structure of an object (`str`); and inspect the first or last parts of an object (`head/tail`)
+- Create a factor variable (`factor`); levels attributes (`levels`); object labels (`labels`)
+- Simple cross table (`table`)
+- Get a summary (`summary`)
+- Summary statistics (`min, mean, max, sd`)
+- Correlation, variance and covariance (matrices) via (`cor`); or with the `correlation` package [@correlation]
 
--   Create a factor variable (`factor`); levels attributes (`levels`); object labels (`labels`)
+- Graphs: Bar plots (`barplot`); histograms (`hist`), spine plot (`spineplot`), box plot (`boxplot`), scatter plot (`plot`), correlation matrix (`corrplot::corrplot`)
 
--   Simple cross table (`table`)
-
--   Get a summary (`summary`)
-
--   Summary statistics (`min, mean, max, sd`)
-
--   Correlation, variance and covariance (matrices) via (`cor`); or with the `correlation` package [@correlation]
-
--   Graphs: Bar plots (`barplot`); histograms (`hist`), spine plot (`spineplot`), box plot (`boxplot`), scatter plot (`plot`), correlation matrix (`corrplot::corrplot`)
-
--   Packages:
-
-    -   The `summarytools` package provides many tables: (e.g., `freq, ctable`)
-    -   The `DataExplorer` to visualize several variable at once: (e.g., `plot_bar`)
-    -   The `effectsize` package to interpret results: (e.g., `interpret_r`)
+- Packages:
+    - The `summarytools` package provides many tables: (e.g., `freq, ctable`)
+    - The `DataExplorer` to visualize several variable at once: (e.g., `plot_bar`)
+    - The `effectsize` package to interpret results: (e.g., `interpret_r`)
 
 
 

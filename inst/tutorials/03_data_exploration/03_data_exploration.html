@@ -237,9 +237,7 @@ df &lt;- penguins</code></pre>
 <div class="tutorial-exercise-support" data-label="r1-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Use glimpse, head, or the str function for a first look
-df &lt;- penguins
-glimpse(df)</code></pre>
+<pre class="text"><code>glimpse(df)</code></pre>
 </div>
 <p>Thus, there are several factor variables such as penguin’s
 <code>species</code> or <code>island</code>; numerical variables such as
@@ -264,8 +262,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r3-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Inspect the levels() of the penguin&#39;s home island
-levels(df$island)</code></pre>
+<pre class="text"><code>levels(df$island)</code></pre>
 </div>
 <p>We will deepen our knowledge about factor variables in Chapter 5, but
 keep in mind that we can (re-) create and adjust <code>factor()</code>
@@ -285,13 +282,9 @@ sex &lt;- c(&quot;m&quot;, &quot;f&quot;, &quot;f&quot;)
 <div class="tutorial-exercise-support" data-label="r4-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Example of a messy factor variable
-sex &lt;- c(&quot;m&quot;, &quot;f&quot;, &quot;f&quot;)
-
-# Give clearer labels
-sex &lt;- factor(sex,
+<pre class="text"><code>sex &lt;- factor(sex,
   levels = c(&quot;f&quot;, &quot;m&quot;),
-  labels = c(&quot;female&quot;, &quot;male&quot;),
+  labels = c(&quot;female&quot;, &quot;male&quot;)
 )
 head(sex)</code></pre>
 </div>
@@ -311,8 +304,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r5-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Create a frequency table
-freq(df$island)</code></pre>
+<pre class="text"><code>freq(df$island)</code></pre>
 </div>
 <p>As outlined in the book, we can use the <code>table()</code> function
 to count categorical variables and plot the result as a bar graph. I
@@ -330,8 +322,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r6-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Count islands with dplyr
-count_island &lt;- dplyr::count(df, island)
+<pre class="text"><code>count_island &lt;- dplyr::count(df, island)
 count_island</code></pre>
 </div>
 <p>Next, use the assigned results (<code>count_island</code>) and insert
@@ -345,8 +336,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r7-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Create a barplot
-barplot(n ~ island, data = count_island)</code></pre>
+<pre class="text"><code>barplot(n ~ island, data = count_island)</code></pre>
 </div>
 <p><br><a href="https://boxuancui.github.io/DataExplorer/" target="_blank"><img src="https://github.com/boxuancui/DataExplorer/raw/master/man/figures/logo.png" alt="The DataExplorer package" align="right" width="100" style="padding:10px"/></a></p>
 <p>In a similar vein, I introduced functions from the
@@ -362,8 +352,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r14-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Inspect all or several plots at once
-DataExplorer::plot_bar(df[1:2])</code></pre>
+<pre class="text"><code>DataExplorer::plot_bar(df[1:2])</code></pre>
 </div>
 </div>
 <div id="section-continuous-variables" class="section level2">
@@ -380,8 +369,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r2-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Get a summary
-summary(df[1:4])</code></pre>
+<pre class="text"><code>summary(df[1:4])</code></pre>
 </div>
 <p>The classic approach to visualize the distribution of a continuous
 variable is a histogram. Use the <code>hist()</code> function to display
@@ -394,8 +382,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r8-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Create a histogram
-hist(df$body_mass_g)</code></pre>
+<pre class="text"><code>hist(df$body_mass_g)</code></pre>
 </div>
 <p>Keep in mind that we only explored the data for the first time. We
 did not clean the data nor did we prepare the variables. We have to be
@@ -411,8 +398,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r9-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Calculate the mean, but what about missing values (na.rm)?
-mean(df$body_mass_g, na.rm = TRUE)</code></pre>
+<pre class="text"><code>mean(df$body_mass_g, na.rm = TRUE)</code></pre>
 </div>
 <p>I picked data that was more or less prepared to be explored, because
 data preparation needs more time and effort especially in the beginning.
@@ -471,8 +457,7 @@ summarytools::ctable(
 <div class="tutorial-exercise-support" data-label="r11-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Create a cross table with summarytools
-summarytools::ctable(
+<pre class="text"><code>summarytools::ctable(
   x = tobacco$smoker,
   y = tobacco$diseased,
   prop = &quot;r&quot;,
@@ -521,8 +506,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r10-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Inspect group differences with a box plot
-boxplot(body_mass_g ~ species, data = df)</code></pre>
+<pre class="text"><code>boxplot(body_mass_g ~ species, data = df)</code></pre>
 </div>
 <p>If we examine an <em>effect between two continuous outcomes</em>, we
 have to keep in mind that the <code>plot</code> function returns a
@@ -552,8 +536,8 @@ abline(lm(body_mass_g ~ flipper_length_mm, data = df),
 </div>
 <p>Furthermore, we learned how to calculate the correlation coefficient.
 The code of the next console does not work if I apply the
-<code>cor()</code> with the penguins data. Do you have any idea how to
-fix the problem?</p>
+<code>cor()</code> function with the penguins data. Do you have any idea
+how to fix the problem?</p>
 <div class="tutorial-exercise" data-label="r12a" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="5">
 <pre class="text"><code># Calculate the correlation between x and y
@@ -564,8 +548,7 @@ cor_penguins</code></pre>
 <div class="tutorial-exercise-support" data-label="r12a-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Calculate the correlation between x and y
-cor_penguins &lt;- cor(df$body_mass_g, df$flipper_length_mm,
+<pre class="text"><code>cor_penguins &lt;- cor(df$body_mass_g, df$flipper_length_mm,
   use = &quot;complete&quot;
 )
 cor_penguins</code></pre>
@@ -593,8 +576,7 @@ effectsize::interpret_r(correlation, rules = &quot;cohen1988&quot;)</code></pre>
 <div class="tutorial-exercise-support" data-label="r13-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Use effectsize to interpret R
-effectsize::interpret_r(cor_penguins, rules = &quot;cohen1988&quot;)</code></pre>
+<pre class="text"><code>effectsize::interpret_r(cor_penguins, rules = &quot;cohen1988&quot;)</code></pre>
 </div>
 <p><a href="https://docs.ropensci.org/skimr/" target="_blank"><img src="https://docs.ropensci.org/skimr/reference/figures/logo.png" alt="The skimr package" align="right" width="15%" style="padding:10px"/></a></p>
 <p>There are more R packages to explore data than I could possibly
@@ -612,9 +594,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r15-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Inspect skimr package (and vignette)
-# vignette(&quot;skimr&quot;)
-skimr::skim(df)</code></pre>
+<pre class="text"><code>skimr::skim(df)</code></pre>
 </div>
 <p>Or examine the <code>ggpairs()</code> function from the
 <code>GGally</code> package <span class="citation">(Schloerke et al.
@@ -632,8 +612,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r16-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># GGally: https://ggobi.github.io/ggally/
-GGally::ggpairs(df[2:5])</code></pre>
+<pre class="text"><code>GGally::ggpairs(df[2:5])</code></pre>
 </div>
 </div>
 <div id="section-summary" class="section level2">
@@ -747,26 +726,25 @@ learnr:::store_exercise_cache(structure(list(label = "r1", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r1", code = "#Use glimpse, head, or the str function for a first look\ndf <- penguins\n", 
         opts = list(label = "\"r1\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Use glimpse, head, or the str function for a first look", 
-    "df <- penguins", "glimpse(df)"), chunk_opts = list(label = "r1-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "03_data_exploration_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r1", exercise = TRUE, code = c("#Use glimpse, head, or the str function for a first look", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("glimpse(df)", chunk_opts = list(
+        label = "r1-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "03_data_exploration_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r1", exercise = TRUE, code = c("#Use glimpse, head, or the str function for a first look", 
         "df <- penguins", ""), out.width.px = 576, out.height.px = 384, 
         params.src = "r1, exercise=TRUE", fig.num = 0, exercise.df_print = "paged", 
         exercise.checker = "NULL"), engine = "r", version = "4"), class = c("r", 
@@ -793,26 +771,25 @@ learnr:::store_exercise_cache(structure(list(label = "r3", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r3", code = "#Inspect the levels() of the penguin's home island\n", 
         opts = list(label = "\"r3\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Inspect the levels() of the penguin's home island", 
-    "levels(df$island)"), chunk_opts = list(label = "r3-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "03_data_exploration_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r3", exercise = TRUE, code = c("#Inspect the levels() of the penguin's home island", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("levels(df$island)", chunk_opts = list(
+        label = "r3-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "03_data_exploration_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r3", exercise = TRUE, code = c("#Inspect the levels() of the penguin's home island", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r3, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -840,11 +817,9 @@ learnr:::store_exercise_cache(structure(list(label = "r4", global_setup = struct
     chunks = list(list(label = "r4", code = "#Example of a messy factor variable\nsex <- c(\"m\", \"f\", \"f\")\n\n#Give clearer labels\n\n\n\n", 
         opts = list(label = "\"r4\"", exercise = "TRUE", exercise.lines = "10"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Example of a messy factor variable", 
-    "sex <- c(\"m\", \"f\", \"f\")", "", "#Give clearer labels", 
-    "sex <- factor(sex,", "              levels = c(\"f\", \"m\"),", 
-    "              labels = c(\"female\", \"male\"),", "             ", 
-    ")", "head(sex)"), chunk_opts = list(label = "r4-solution", 
+    check = NULL, solution = structure(c("sex <- factor(sex,", 
+    "              levels = c(\"f\", \"m\"),", "              labels = c(\"female\", \"male\")", 
+    "             ", ")", "head(sex)"), chunk_opts = list(label = "r4-solution", 
         echo = FALSE, eval = FALSE)), tests = NULL, options = list(
         eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
         tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
@@ -891,26 +866,25 @@ learnr:::store_exercise_cache(structure(list(label = "r5", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r5", code = "#Create a frequency table\n", 
         opts = list(label = "\"r5\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Create a frequency table", 
-    "freq(df$island)"), chunk_opts = list(label = "r5-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "03_data_exploration_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r5", exercise = TRUE, code = c("#Create a frequency table", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("freq(df$island)", chunk_opts = list(
+        label = "r5-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "03_data_exploration_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r5", exercise = TRUE, code = c("#Create a frequency table", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r5, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -937,14 +911,13 @@ learnr:::store_exercise_cache(structure(list(label = "r6", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r6", code = "#Count islands with dplyr\n\n", 
         opts = list(label = "\"r6\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Count islands with dplyr", 
-    "count_island <- dplyr::count(df, island)", "count_island"
-    ), chunk_opts = list(label = "r6-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "03_data_exploration_cache/html/", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("count_island <- dplyr::count(df, island)", 
+    "count_island"), chunk_opts = list(label = "r6-solution", 
+        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "03_data_exploration_cache/html/", 
         cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
         autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
         fig.show = "asis", fig.align = "default", fig.path = "images/", 
@@ -981,14 +954,13 @@ learnr:::store_exercise_cache(structure(list(label = "r7", global_setup = struct
 "  eval = TRUE,", "  comment = \"#>\",", "  error = TRUE", ")", 
 "", "tutorial_options(exercise.lines = 5, ", "                 exercise.eval=FALSE)", 
 "", "#english environment", "Sys.setenv(LANG = \"en\")", "knitr::opts_chunk$set(tidy = \"styler\")", 
-""), chunk_opts = list(label = "setup", include = FALSE)), setup = "#Count islands with dplyr\n\n", 
-    chunks = list(list(label = "r6", code = "#Count islands with dplyr\n\n", 
-        opts = list(label = "\"r6\"", exercise = "TRUE"), engine = "r"), 
+""), chunk_opts = list(label = "setup", include = FALSE)), setup = "count_island <- dplyr::count(df, island)", 
+    chunks = list(list(label = "r6setup", code = "count_island <- dplyr::count(df, island)", 
+        opts = list(label = "\"r6setup\"", echo = "FALSE"), engine = "r"), 
         list(label = "r7", code = "#Create a barplot\n\n", opts = list(
-            label = "\"r7\"", exercise = "TRUE", exercise.setup = "\"r6\""), 
+            label = "\"r7\"", exercise = "TRUE", exercise.setup = "\"r6setup\""), 
             engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Create a barplot", 
-    "barplot(n ~ island, data = count_island)"), chunk_opts = list(
+    check = NULL, solution = structure("barplot(n ~ island, data = count_island)", chunk_opts = list(
         label = "r7-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1006,9 +978,9 @@ learnr:::store_exercise_cache(structure(list(label = "r7", global_setup = struct
         warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
         ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
         include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
-        exercise.lines = 5, label = "r7", exercise = TRUE, exercise.setup = "r6", 
+        exercise.lines = 5, label = "r7", exercise = TRUE, exercise.setup = "r6setup", 
         code = c("#Create a barplot", "", ""), out.width.px = 576, 
-        out.height.px = 384, params.src = "r7, exercise=TRUE, exercise.setup = \"r6\"", 
+        out.height.px = 384, params.src = "r7, exercise=TRUE, exercise.setup = \"r6setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1034,26 +1006,25 @@ learnr:::store_exercise_cache(structure(list(label = "r14", global_setup = struc
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r14", code = "#Inspect all or several plots at once\n", 
         opts = list(label = "\"r14\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Inspect all or several plots at once", 
-    "DataExplorer::plot_bar(df[1:2])"), chunk_opts = list(label = "r14-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "03_data_exploration_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r14", exercise = TRUE, code = c("#Inspect all or several plots at once", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("DataExplorer::plot_bar(df[1:2])", chunk_opts = list(
+        label = "r14-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "03_data_exploration_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r14", exercise = TRUE, code = c("#Inspect all or several plots at once", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r14, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1080,26 +1051,25 @@ learnr:::store_exercise_cache(structure(list(label = "r2", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r2", code = "#Get a summary \n\n", 
         opts = list(label = "\"r2\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Get a summary ", 
-    "summary(df[1:4])"), chunk_opts = list(label = "r2-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "03_data_exploration_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r2", exercise = TRUE, code = c("#Get a summary ", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("summary(df[1:4])", chunk_opts = list(
+        label = "r2-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "03_data_exploration_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r2", exercise = TRUE, code = c("#Get a summary ", 
         "", ""), out.width.px = 576, out.height.px = 384, params.src = "r2, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1126,26 +1096,25 @@ learnr:::store_exercise_cache(structure(list(label = "r8", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r8", code = "#Create a histogram\n", 
         opts = list(label = "\"r8\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Create a histogram", 
-    "hist(df$body_mass_g)"), chunk_opts = list(label = "r8-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "03_data_exploration_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r8", exercise = TRUE, code = c("#Create a histogram", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("hist(df$body_mass_g)", chunk_opts = list(
+        label = "r8-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "03_data_exploration_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r8", exercise = TRUE, code = c("#Create a histogram", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r8, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1172,8 +1141,7 @@ learnr:::store_exercise_cache(structure(list(label = "r9", global_setup = struct
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r9", code = "#Calculate the mean, but what about missing values (na.rm)?\n", 
         opts = list(label = "\"r9\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Calculate the mean, but what about missing values (na.rm)?", 
-    "mean(df$body_mass_g, na.rm = TRUE)"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("mean(df$body_mass_g, na.rm = TRUE)", chunk_opts = list(
         label = "r9-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1219,9 +1187,9 @@ learnr:::store_exercise_cache(structure(list(label = "r11", global_setup = struc
     chunks = list(list(label = "r11", code = "#Create a cross table with summarytools\nsummarytools::ctable(\n  x = ___,\n  y = ___\n  )", 
         opts = list(label = "\"r11\"", exercise = "TRUE", exercise.lines = "9", 
             exercise.blanks = "\"___\""), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Create a cross table with summarytools", 
-    "summarytools::ctable(", "  x = tobacco$smoker,", "  y = tobacco$diseased,", 
-    "  prop = \"r\",", "  chisq = TRUE,", "  OR = TRUE", ")"), chunk_opts = list(
+    error_check = NULL, check = NULL, solution = structure(c("summarytools::ctable(", 
+    "  x = tobacco$smoker,", "  y = tobacco$diseased,", "  prop = \"r\",", 
+    "  chisq = TRUE,", "  OR = TRUE", ")"), chunk_opts = list(
         label = "r11-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1268,8 +1236,7 @@ learnr:::store_exercise_cache(structure(list(label = "r10", global_setup = struc
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r10", code = "#Inspect group differences with a box plot\n", 
         opts = list(label = "\"r10\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Inspect group differences with a box plot", 
-    "boxplot(body_mass_g ~ species, data=df)"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("boxplot(body_mass_g ~ species, data=df)", chunk_opts = list(
         label = "r10-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1364,8 +1331,7 @@ learnr:::store_exercise_cache(structure(list(label = "r12a", global_setup = stru
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r12a", code = "#Calculate the correlation between x and y\ncor_penguins <- cor(df$body_mass_g, df$flipper_length_mm)\ncor_penguins", 
         opts = list(label = "\"r12a\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Calculate the correlation between x and y", 
-    "cor_penguins <- cor(df$body_mass_g, df$flipper_length_mm, ", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("cor_penguins <- cor(df$body_mass_g, df$flipper_length_mm, ", 
     "                 use = \"complete\")", "cor_penguins"), chunk_opts = list(
         label = "r12a-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -1410,35 +1376,33 @@ learnr:::store_exercise_cache(structure(list(label = "r13", global_setup = struc
 "  eval = TRUE,", "  comment = \"#>\",", "  error = TRUE", ")", 
 "", "tutorial_options(exercise.lines = 5, ", "                 exercise.eval=FALSE)", 
 "", "#english environment", "Sys.setenv(LANG = \"en\")", "knitr::opts_chunk$set(tidy = \"styler\")", 
-""), chunk_opts = list(label = "setup", include = FALSE)), setup = "#Calculate the correlation between x and y\ncor_penguins <- cor(df$body_mass_g, df$flipper_length_mm)\ncor_penguins", 
-    chunks = list(list(label = "r12a", code = "#Calculate the correlation between x and y\ncor_penguins <- cor(df$body_mass_g, df$flipper_length_mm)\ncor_penguins", 
-        opts = list(label = "\"r12a\"", exercise = "TRUE"), engine = "r"), 
-        list(label = "r13", code = "#Use effectsize to interpret R\neffectsize::interpret_r(correlation, rules = \"cohen1988\")", 
-            opts = list(label = "\"r13\"", exercise = "TRUE", 
-                exercise.setup = "\"r12a\""), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Use effectsize to interpret R", 
-    "effectsize::interpret_r(cor_penguins, rules = \"cohen1988\")"
-    ), chunk_opts = list(label = "r13-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "03_data_exploration_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r13", exercise = TRUE, exercise.setup = "r12a", 
+""), chunk_opts = list(label = "setup", include = FALSE)), setup = "cor_penguins <- cor(df$body_mass_g, df$flipper_length_mm, \n                 use = \"complete\")\ncor_penguins", 
+    chunks = list(list(label = "r13setup", code = "cor_penguins <- cor(df$body_mass_g, df$flipper_length_mm, \n                 use = \"complete\")\ncor_penguins", 
+        opts = list(label = "\"r13setup\"", echo = "FALSE"), 
+        engine = "r"), list(label = "r13", code = "#Use effectsize to interpret R\neffectsize::interpret_r(correlation, rules = \"cohen1988\")", 
+        opts = list(label = "\"r13\"", exercise = "TRUE", exercise.setup = "\"r13setup\""), 
+        engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = structure("effectsize::interpret_r(cor_penguins, rules = \"cohen1988\")", chunk_opts = list(
+        label = "r13-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "03_data_exploration_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r13", exercise = TRUE, exercise.setup = "r13setup", 
         code = c("#Use effectsize to interpret R", "effectsize::interpret_r(correlation, rules = \"cohen1988\")"
-        ), out.width.px = 576, out.height.px = 384, params.src = "r13, exercise=TRUE, exercise.setup = \"r12a\"", 
+        ), out.width.px = 576, out.height.px = 384, params.src = "r13, exercise=TRUE, exercise.setup = \"r13setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1465,8 +1429,7 @@ learnr:::store_exercise_cache(structure(list(label = "r15", global_setup = struc
     chunks = list(list(label = "r15", code = "#Inspect skimr package (and vignette)\n#vignette(\"skimr\")\n\n", 
         opts = list(label = "\"r15\"", eval = "F", exercise = "TRUE"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Inspect skimr package (and vignette)", 
-    "#vignette(\"skimr\")", "skimr::skim(df)"), chunk_opts = list(
+    check = NULL, solution = structure("skimr::skim(df)", chunk_opts = list(
         label = "r15-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1512,26 +1475,25 @@ learnr:::store_exercise_cache(structure(list(label = "r16", global_setup = struc
 ""), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "r16", code = "#GGally: https://ggobi.github.io/ggally/\n", 
         opts = list(label = "\"r16\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#GGally: https://ggobi.github.io/ggally/", 
-    "GGally::ggpairs(df[2:5])"), chunk_opts = list(label = "r16-solution", 
-        echo = FALSE, eval = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "03_data_exploration_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r16", exercise = TRUE, code = c("#GGally: https://ggobi.github.io/ggally/", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("GGally::ggpairs(df[2:5])", chunk_opts = list(
+        label = "r16-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "03_data_exploration_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r16", exercise = TRUE, code = c("#GGally: https://ggobi.github.io/ggally/", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r16, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1625,7 +1587,7 @@ href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/packa
 <h1 class="title toc-ignore" style="display:none;">Practice R Tutorial
 03</h1>
 <h4 class="author"><em>Edgar Treischl</em></h4>
-<h4 class="date"><em>Last update: 2023-05-07</em></h4>
+<h4 class="date"><em>Last update: 2023-05-10</em></h4>
 </div>
 <!-- end doc-metadata -->
 
