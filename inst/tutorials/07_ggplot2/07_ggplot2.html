@@ -204,12 +204,13 @@ at least two options for a <code>ggplot2</code> tutorial: I could ask
 you to apply steps to create a similar plot. It is my personal believe
 that it needs a lot of time and experience to get fluent in
 <code>ggplot2</code>, which is why we do not pursue such a heroic aim.
-Some people document the long process to generated a graph as the
-artwork by Cédric Scherer underlines. Thus, it needs a lot of time and
-effort to develop a customized plot.</p>
+Some people document the long process to generate a graph as the artwork
+by Cédric Scherer underlines. It is an animation that shows the steps to
+create a graph. Thus, it needs a lot of time and effort to develop a
+customized plot.</p>
 <p><a href="https://thebioengineer.github.io/camcorder/"><img
 src="https://thebioengineer.github.io/camcorder/reference/figures/cscherer_coffee_ratings.gif"
-style="width:50.0%" alt="Artwork by Cédric Scherer" /></a></p>
+style="width:80.0%" alt="Artwork by Cédric Scherer" /></a></p>
 <p>Besides the technical skills, the <em>guiding principles of
 visualization</em> will help you to create insightful visualizations.
 <span class="citation">Cairo (2016)</span> summarizes five qualities of
@@ -263,7 +264,9 @@ As the next console illustrates, the displayed information is difficult
 to perceive because the bars are all mixed up. Adjust the levels of a
 factor variable manually or use the <code>fct_infreq()</code> function
 from the <code>forcats</code> package to order the data by frequency
-<span class="citation">(Wickham 2022)</span>.</p>
+<span class="citation">(Wickham 2022)</span>. To see how we improved the
+graph, the console show two graphs and I ask you to improve the second
+one, before we combine them.</p>
 <div class="tutorial-exercise" data-label="r1" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="12">
 <pre class="text"><code>#Simple bar graph
@@ -383,7 +386,7 @@ class="sourceCode r"><code class="sourceCode r"><span id="section-cb8-1"><a href
 <pre><code>#&gt; Rows: 615
 #&gt; Columns: 2
 #&gt; $ group   &lt;chr&gt; &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A…
-#&gt; $ outcome &lt;dbl&gt; 13.205607, 10.974431, 12.925546, 12.483487, 12.204145, 11.9038…</code></pre>
+#&gt; $ outcome &lt;dbl&gt; 12.10956, 12.41110, 11.24302, 13.54267, 11.69332, 12.57530, 12…</code></pre>
 <p>Say you estimated a box plot to examine the differences between the
 groups. At first glance there seems to be a large differences between
 groups as the first box plot reveals, but are we comparing on fair
@@ -400,8 +403,6 @@ p1 &lt;- ggplot(data, aes(x = group, y = outcome)) +
 #Add a geom_jitter(color, size, alpha)
 p2 &lt;- ggplot(data, aes(x = group, y = outcome)) +
   geom_boxplot()
-
-
 
 p1 + p2</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
@@ -440,19 +441,13 @@ need to group the data first <span class="citation">(Wickham, François,
 et al. 2022)</span>.</p>
 <div class="tutorial-exercise" data-label="r5" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="7">
-<pre class="text"><code># Estimate sample_size (n) per group
-sample_size &lt;- data |&gt;
-  dplyr::group_by(group) |&gt;
-  dplyr::summarize(num = dplyr::n())
-
-sample_size</code></pre>
+<pre class="text"><code># Estimate sample_size (n) per group</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="r5-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># Estimate sample_size (n) per group
-sample_size &lt;- data |&gt;
+<pre class="text"><code>sample_size &lt;- data |&gt;
   dplyr::group_by(group) |&gt;
   dplyr::summarize(num = dplyr::n())
 
@@ -471,8 +466,7 @@ data-diagnostics="1" data-startover="1" data-lines="3">
 <div class="tutorial-exercise-support" data-label="r6-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># Concatenate Strings with paste (and paste0)
-paste(sample_size$group, &quot;has N =&quot;, sample_size$num, &quot; observations.&quot;)</code></pre>
+<pre class="text"><code>paste(sample_size$group, &quot;has N =&quot;, sample_size$num, &quot; observations.&quot;)</code></pre>
 </div>
 <p>First, combine both data sets with a <code>left_join()</code>.
 Second, create a new variable to add the text label. Use the
@@ -487,8 +481,7 @@ data-diagnostics="1" data-startover="1" data-lines="7">
 <div class="tutorial-exercise-support" data-label="r7-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># Join data and mutate with text labels for group_N
-data &lt;- data |&gt;
+<pre class="text"><code>data &lt;- data |&gt;
   dplyr::left_join(sample_size) |&gt;
   dplyr::mutate(group_N = paste0(group, &quot;\n&quot;, &quot;N=&quot;, num))
 
@@ -572,7 +565,7 @@ class="sourceCode r"><code class="sourceCode r"><span id="section-cb20-1"><a hre
 <span id="section-cb20-13"><a href="#section-cb20-13" aria-hidden="true" tabindex="-1"></a><span class="fu">return_stats</span>(data<span class="sc">$</span>outcome)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["value"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["label"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"31.58605","2":"N = 615 \\n Mean = 12.98 \\n Median = 12.83 \\n"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["value"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["label"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"34.07528","2":"N = 615 \\n Mean = 13.06 \\n Median = 12.93 \\n"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Regardless of the approach, keep in mind that a box plot does not
@@ -598,9 +591,7 @@ ggplot(data, aes(x = group, y = outcome, fill = group))</code></pre>
 <div class="tutorial-exercise-support" data-label="r9-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># The see package adds a geom_violindot
-library(see)
-ggplot(data, aes(x = group, y = outcome, fill = group)) +
+<pre class="text"><code>ggplot(data, aes(x = group, y = outcome, fill = group)) +
   geom_violindot(fill_dots = &quot;black&quot;, size_dots = 5) +
   scale_fill_material_d(palette = &quot;contrast&quot;)</code></pre>
 </div>
@@ -618,9 +609,7 @@ library(ggstatsplot)</code></pre>
 <div class="tutorial-exercise-support" data-label="r10-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># The ggstatsplot package
-library(ggstatsplot)
-ggbetweenstats(data, group, outcome) +
+<pre class="text"><code>ggbetweenstats(data, group, outcome) +
   theme_minimal(base_size = 10)</code></pre>
 </div>
 </div>
@@ -651,8 +640,7 @@ data-diagnostics="1" data-startover="1" data-lines="6">
 <div class="tutorial-exercise-support" data-label="r11-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># Get male baby names for the Top 10 names
-babynames_df &lt;- babynames %&gt;%
+<pre class="text"><code>babynames_df &lt;- babynames %&gt;%
   filter(sex == &quot;M&quot; &amp; name %in% name_pop)</code></pre>
 </div>
 <p>Next, visualize the data with a line plot (<code>geom_line</code>).
@@ -666,8 +654,7 @@ data-diagnostics="1" data-startover="1" data-lines="7">
 <div class="tutorial-exercise-support" data-label="r12-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># Plot
-babynames_df %&gt;%
+<pre class="text"><code>babynames_df %&gt;%
   ggplot(aes(x = year, y = n, group = name, color = name)) +
   geom_line() +
   scale_color_viridis(discrete = TRUE) +
@@ -688,8 +675,7 @@ ggplot(babynames_df, aes(x = year, y = n, group = name)) +
 <div class="tutorial-exercise-support" data-label="r13-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># Split with facet_wrap
-ggplot(babynames_df, aes(x = year, y = n, group = name)) +
+<pre class="text"><code>ggplot(babynames_df, aes(x = year, y = n, group = name)) +
   geom_line() +
   facet_wrap(name ~ ., nrow = 2)</code></pre>
 </div>
@@ -892,8 +878,7 @@ ggplot(df_clutter, aes(x = outcome, y = count)) +
 <div class="tutorial-exercise-support" data-label="r17-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># De-color de bars
-ggplot(df_clutter, aes(x = outcome, y = count)) +
+<pre class="text"><code>ggplot(df_clutter, aes(x = outcome, y = count)) +
   geom_col(color = &quot;black&quot;, fill = &quot;white&quot;) +
   theme_minimal(base_size = 12) +
   labs(title = &quot;Members by Sex&quot;)</code></pre>
@@ -966,8 +951,7 @@ data-diagnostics="1" data-startover="1" data-lines="2">
 <div class="tutorial-exercise-support" data-label="r19-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># Paste a label
-paste0(df_clutter$outcome, &quot;\n&quot;, df_clutter$percent, &quot;%&quot;)</code></pre>
+<pre class="text"><code>paste0(df_clutter$outcome, &quot;\n&quot;, df_clutter$percent, &quot;%&quot;)</code></pre>
 </div>
 <p>Include the latter as a label and adjust the position via the
 <code>y</code> parameter Use the <code>count</code> and adjust it by
@@ -985,8 +969,7 @@ ggplot(df_clutter, aes(x=outcome, y=count)) +
 <div class="tutorial-exercise-support" data-label="r20-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="12">
-<pre class="text"><code># Include text labels inside the bars
-ggplot(df_clutter, aes(x = outcome, y = count)) +
+<pre class="text"><code>ggplot(df_clutter, aes(x = outcome, y = count)) +
   geom_col(color = &quot;black&quot;, fill = &quot;white&quot;) +
   geom_text(
     aes(
@@ -1043,10 +1026,10 @@ class="citation">(Pedersen 2022b)</span></li>
 2022a)</span></li>
 </ul></li>
 </ul>
-<p>Finally, a link to download this tutorial as PDF file.</p>
+<p>The link to download this tutorial as PDF file:</p>
 <button id="download" type="button" class="btn btn-default action-button" onclick="window.open(&#39;https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial07.pdf&#39;)">
 <i class="far fa-file-pdf" role="presentation" aria-label="file-pdf icon"></i>
-PR Tutorial 02
+PR Tutorial 07
 </button>
 </div>
 <div id="section-references" class="section level2">
@@ -1371,7 +1354,7 @@ learnr:::store_exercise_cache(structure(list(label = "r4", global_setup = struct
 "      \"Mean =\", round(mean(y), 2), \"\\n\",", "      \"Median =\", round(median(y), 2), \"\\n\"", 
 "    )", "  ))", "}", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "r4", 
-    code = "#A Basic geom_boxplot\np1 <- ggplot(data, aes(x = group, y = outcome)) +\n  geom_boxplot()\n\n#Add a geom_jitter(color, size, alpha)\np2 <- ggplot(data, aes(x = group, y = outcome)) +\n  geom_boxplot()\n\n\n\np1 + p2", 
+    code = "#A Basic geom_boxplot\np1 <- ggplot(data, aes(x = group, y = outcome)) +\n  geom_boxplot()\n\n#Add a geom_jitter(color, size, alpha)\np2 <- ggplot(data, aes(x = group, y = outcome)) +\n  geom_boxplot()\n\np1 + p2", 
     opts = list(label = "\"r4\"", tidy = "FALSE", exercise = "TRUE"), 
     engine = "r")), code_check = NULL, error_check = NULL, check = NULL, 
     solution = structure(c("#A Basic geom_boxplot", "p1 <- ggplot(data, aes(x = group, y = outcome)) +", 
@@ -1400,7 +1383,7 @@ learnr:::store_exercise_cache(structure(list(label = "r4", global_setup = struct
         "p1 <- ggplot(data, aes(x = group, y = outcome)) +", 
         "  geom_boxplot()", "", "#Add a geom_jitter(color, size, alpha)", 
         "p2 <- ggplot(data, aes(x = group, y = outcome)) +", 
-        "  geom_boxplot()", "", "", "", "p1 + p2"), out.width.px = 576, 
+        "  geom_boxplot()", "", "p1 + p2"), out.width.px = 576, 
         out.height.px = 384, params.src = "r4, tidy=FALSE, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1438,11 +1421,10 @@ learnr:::store_exercise_cache(structure(list(label = "r5", global_setup = struct
 "      \"Mean =\", round(mean(y), 2), \"\\n\",", "      \"Median =\", round(median(y), 2), \"\\n\"", 
 "    )", "  ))", "}", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "r5", 
-    code = "#Estimate sample_size (n) per group\nsample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())\n\nsample_size\n", 
-    opts = list(label = "\"r5\"", exercise = "TRUE", exercise.lines = "7"), 
+    code = "#Estimate sample_size (n) per group\n\n", opts = list(
+        label = "\"r5\"", exercise = "TRUE", exercise.lines = "7"), 
     engine = "r")), code_check = NULL, error_check = NULL, check = NULL, 
-    solution = structure(c("#Estimate sample_size (n) per group", 
-    "sample_size <- data |>", "  dplyr::group_by(group) |>", 
+    solution = structure(c("sample_size <- data |>", "  dplyr::group_by(group) |>", 
     "  dplyr::summarize(num=dplyr::n())", "", "sample_size"), chunk_opts = list(
         label = "r5-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -1462,9 +1444,7 @@ learnr:::store_exercise_cache(structure(list(label = "r5", global_setup = struct
         ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
         include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
         exercise.lines = 7, label = "r5", exercise = TRUE, code = c("#Estimate sample_size (n) per group", 
-        "sample_size <- data |>", "  dplyr::group_by(group) |>", 
-        "  dplyr::summarize(num=dplyr::n())", "", "sample_size", 
-        ""), out.width.px = 576, out.height.px = 384, params.src = "r5, exercise=TRUE, exercise.lines = 7", 
+        "", ""), out.width.px = 576, out.height.px = 384, params.src = "r5, exercise=TRUE, exercise.lines = 7", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1500,20 +1480,20 @@ learnr:::store_exercise_cache(structure(list(label = "r6", global_setup = struct
 "    y =  max(data$outcome) * 1.2,", "    label = paste(", "      \"N =\", length(y), \"\\n\",", 
 "      \"Mean =\", round(mean(y), 2), \"\\n\",", "      \"Median =\", round(median(y), 2), \"\\n\"", 
 "    )", "  ))", "}", ""), chunk_opts = list(label = "setup", 
-    include = FALSE)), setup = "#Estimate sample_size (n) per group\nsample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())\n\nsample_size\n", 
-    chunks = list(list(label = "r5", code = "#Estimate sample_size (n) per group\nsample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())\n\nsample_size\n", 
-        opts = list(label = "\"r5\"", exercise = "TRUE", exercise.lines = "7"), 
-        engine = "r"), list(label = "r6", code = "#Concatenate Strings with paste (and paste0)\n\n", 
-        opts = list(label = "\"r6\"", exercise = "TRUE", exercise.setup = "\"r5\"", 
-            exercise.lines = "3"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Concatenate Strings with paste (and paste0)", 
-    "paste(sample_size$group, \"has N =\", sample_size$num, \" observations.\")"
-    ), chunk_opts = list(label = "r6-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "07_ggplot2_cache/html/", cache.vars = NULL, 
+    include = FALSE)), setup = "sample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())", 
+    chunks = list(list(label = "setupr6", code = "sample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())", 
+        opts = list(label = "\"setupr6\"", echo = "FALSE"), engine = "r"), 
+        list(label = "r6", code = "#Concatenate Strings with paste (and paste0)\n\n", 
+            opts = list(label = "\"r6\"", exercise = "TRUE", 
+                exercise.setup = "\"setupr6\"", exercise.lines = "3"), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = structure("paste(sample_size$group, \"has N =\", sample_size$num, \" observations.\")", chunk_opts = list(
+        label = "r6-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "07_ggplot2_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1525,9 +1505,9 @@ learnr:::store_exercise_cache(structure(list(label = "r6", global_setup = struct
         warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
         ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
         include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
-        exercise.lines = 3, label = "r6", exercise = TRUE, exercise.setup = "r5", 
+        exercise.lines = 3, label = "r6", exercise = TRUE, exercise.setup = "setupr6", 
         code = c("#Concatenate Strings with paste (and paste0)", 
-        "", ""), out.width.px = 576, out.height.px = 384, params.src = "r6, exercise=TRUE, exercise.setup = \"r5\", exercise.lines = 3", 
+        "", ""), out.width.px = 576, out.height.px = 384, params.src = "r6, exercise=TRUE, exercise.setup = \"setupr6\", exercise.lines = 3", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1563,14 +1543,14 @@ learnr:::store_exercise_cache(structure(list(label = "r7", global_setup = struct
 "    y =  max(data$outcome) * 1.2,", "    label = paste(", "      \"N =\", length(y), \"\\n\",", 
 "      \"Mean =\", round(mean(y), 2), \"\\n\",", "      \"Median =\", round(median(y), 2), \"\\n\"", 
 "    )", "  ))", "}", ""), chunk_opts = list(label = "setup", 
-    include = FALSE)), setup = "#Estimate sample_size (n) per group\nsample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())\n\nsample_size\n", 
-    chunks = list(list(label = "r5", code = "#Estimate sample_size (n) per group\nsample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())\n\nsample_size\n", 
-        opts = list(label = "\"r5\"", exercise = "TRUE", exercise.lines = "7"), 
-        engine = "r"), list(label = "r7", code = "#Join data and mutate with text labels for group_N\n\n\n\n", 
-        opts = list(label = "\"r7\"", exercise = "TRUE", exercise.setup = "\"r5\"", 
-            exercise.lines = "7"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Join data and mutate with text labels for group_N", 
-    "data <- data |>", "  dplyr::left_join(sample_size) |>", 
+    include = FALSE)), setup = "sample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())", 
+    chunks = list(list(label = "setupr6", code = "sample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())", 
+        opts = list(label = "\"setupr6\"", echo = "FALSE"), engine = "r"), 
+        list(label = "r7", code = "#Join data and mutate with text labels for group_N\n\n\n\n", 
+            opts = list(label = "\"r7\"", exercise = "TRUE", 
+                exercise.setup = "\"setupr6\"", exercise.lines = "7"), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = structure(c("data <- data |>", "  dplyr::left_join(sample_size) |>", 
     "  dplyr::mutate(group_N = paste0(group, \"\\n\", \"N=\", num))", 
     "", "head(data)"), chunk_opts = list(label = "r7-solution", 
         echo = FALSE, eval = FALSE)), tests = NULL, options = list(
@@ -1590,10 +1570,10 @@ learnr:::store_exercise_cache(structure(list(label = "r7", global_setup = struct
         message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, exercise.eval = FALSE, exercise.lines = 7, 
-        label = "r7", exercise = TRUE, exercise.setup = "r5", 
+        label = "r7", exercise = TRUE, exercise.setup = "setupr6", 
         code = c("#Join data and mutate with text labels for group_N", 
         "", "", "", ""), out.width.px = 576, out.height.px = 384, 
-        params.src = "r7, exercise=TRUE, exercise.setup = \"r5\", exercise.lines = 7", 
+        params.src = "r7, exercise=TRUE, exercise.setup = \"setupr6\", exercise.lines = 7", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1629,16 +1609,13 @@ learnr:::store_exercise_cache(structure(list(label = "r8", global_setup = struct
 "    y =  max(data$outcome) * 1.2,", "    label = paste(", "      \"N =\", length(y), \"\\n\",", 
 "      \"Mean =\", round(mean(y), 2), \"\\n\",", "      \"Median =\", round(median(y), 2), \"\\n\"", 
 "    )", "  ))", "}", ""), chunk_opts = list(label = "setup", 
-    include = FALSE)), setup = "#Estimate sample_size (n) per group\nsample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())\n\nsample_size\n\n#Join data and mutate with text labels for group_N\n\n\n\n", 
-    chunks = list(list(label = "r5", code = "#Estimate sample_size (n) per group\nsample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())\n\nsample_size\n", 
-        opts = list(label = "\"r5\"", exercise = "TRUE", exercise.lines = "7"), 
-        engine = "r"), list(label = "r7", code = "#Join data and mutate with text labels for group_N\n\n\n\n", 
-        opts = list(label = "\"r7\"", exercise = "TRUE", exercise.setup = "\"r5\"", 
-            exercise.lines = "7"), engine = "r"), list(label = "r8", 
-        code = "#Use the new variable group_N as x\n\n\n\n\n#A violin plot and stat_summary\np2 <- ggplot(data, aes(x = group, y = outcome)) +\n  geom_violin(width=0.6, alpha=0.8)+\n  stat_summary(fun = \"median\", color = \"red\", \n               size = 1.5, geom = \"point\")+\n  stat_summary(fun.data = return_stats, \n               geom = \"text\", \n               size = 2, fontface = \"bold\",\n               hjust = 0.5, vjust = 0.9) \n\np1 + p2", 
-        opts = list(label = "\"r8\"", tidy = "FALSE", exercise = "TRUE", 
-            exercise.setup = "\"r7\"", exercise.lines = "19"), 
-        engine = "r")), code_check = NULL, error_check = NULL, 
+    include = FALSE)), setup = "sample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())\n\ndata <- data |>\n  dplyr::left_join(sample_size) |>\n  dplyr::mutate(group_N = paste0(group, \"\\n\", \"N=\", num))\n", 
+    chunks = list(list(label = "r8setup", code = "sample_size <- data |>\n  dplyr::group_by(group) |>\n  dplyr::summarize(num=dplyr::n())\n\ndata <- data |>\n  dplyr::left_join(sample_size) |>\n  dplyr::mutate(group_N = paste0(group, \"\\n\", \"N=\", num))\n", 
+        opts = list(label = "\"r8setup\"", echo = "FALSE"), engine = "r"), 
+        list(label = "r8", code = "#Use the new variable group_N as x\n\n\n\n\n#A violin plot and stat_summary\np2 <- ggplot(data, aes(x = group, y = outcome)) +\n  geom_violin(width=0.6, alpha=0.8)+\n  stat_summary(fun = \"median\", color = \"red\", \n               size = 1.5, geom = \"point\")+\n  stat_summary(fun.data = return_stats, \n               geom = \"text\", \n               size = 2, fontface = \"bold\",\n               hjust = 0.5, vjust = 0.9) \n\np1 + p2", 
+            opts = list(label = "\"r8\"", tidy = "FALSE", exercise = "TRUE", 
+                exercise.setup = "\"r8setup\"", exercise.lines = "19"), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
     check = NULL, solution = structure(c("#Use the new variable group_N as x", 
     "p1 <- ggplot(data, aes(x = group_N, y = outcome)) +", "  geom_boxplot()+", 
     "  geom_jitter(color = \"#d62828\", ", "              size = 0.5, ", 
@@ -1665,14 +1642,14 @@ learnr:::store_exercise_cache(structure(list(label = "r8", global_setup = struct
         message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, exercise.eval = FALSE, exercise.lines = 19, 
-        label = "r8", exercise = TRUE, exercise.setup = "r7", 
+        label = "r8", exercise = TRUE, exercise.setup = "r8setup", 
         code = c("#Use the new variable group_N as x", "", "", 
         "", "", "#A violin plot and stat_summary", "p2 <- ggplot(data, aes(x = group, y = outcome)) +", 
         "  geom_violin(width=0.6, alpha=0.8)+", "  stat_summary(fun = \"median\", color = \"red\", ", 
         "               size = 1.5, geom = \"point\")+", "  stat_summary(fun.data = return_stats, ", 
         "               geom = \"text\", ", "               size = 2, fontface = \"bold\",", 
         "               hjust = 0.5, vjust = 0.9) ", "", "p1 + p2"
-        ), out.width.px = 576, out.height.px = 384, params.src = "r8, tidy=FALSE, exercise=TRUE, exercise.setup = \"r7\", exercise.lines = 19", 
+        ), out.width.px = 576, out.height.px = 384, params.src = "r8, tidy=FALSE, exercise=TRUE, exercise.setup = \"r8setup\", exercise.lines = 19", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1712,8 +1689,7 @@ learnr:::store_exercise_cache(structure(list(label = "r9", global_setup = struct
     code = "#The see package adds a geom_violindot\nlibrary(see)\nggplot(data, aes(x = group, y = outcome, fill = group))\n", 
     opts = list(label = "\"r9\"", exercise = "TRUE", exercise.lines = "6"), 
     engine = "r")), code_check = NULL, error_check = NULL, check = NULL, 
-    solution = structure(c("#The see package adds a geom_violindot", 
-    "library(see)", "ggplot(data, aes(x = group, y = outcome, fill = group)) +", 
+    solution = structure(c("ggplot(data, aes(x = group, y = outcome, fill = group)) +", 
     "  geom_violindot(fill_dots = \"black\", size_dots = 5)+", 
     "  scale_fill_material_d(palette = \"contrast\")"), chunk_opts = list(
         label = "r9-solution", echo = FALSE, eval = FALSE)), 
@@ -1773,10 +1749,9 @@ learnr:::store_exercise_cache(structure(list(label = "r10", global_setup = struc
 "    )", "  ))", "}", ""), chunk_opts = list(label = "setup", 
     include = FALSE)), setup = NULL, chunks = list(list(label = "r10", 
     code = "#The ggstatsplot package\nlibrary(ggstatsplot)\n", 
-    opts = list(label = "\"r10\"", fig.height = "3.5", exercise = "TRUE", 
-        exercise.lines = "5"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#The ggstatsplot package", 
-    "library(ggstatsplot)", "ggbetweenstats(data, group, outcome)+", 
+    opts = list(label = "\"r10\"", fig.height = "5", fig.width = "7", 
+        exercise = "TRUE", exercise.lines = "5"), engine = "r")), 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("ggbetweenstats(data, group, outcome)+", 
     "  theme_minimal(base_size = 10)"), chunk_opts = list(label = "r10-solution", 
         echo = FALSE, eval = FALSE)), tests = NULL, options = list(
         eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
@@ -1787,17 +1762,17 @@ learnr:::store_exercise_cache(structure(list(label = "r10", global_setup = struc
         autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
         fig.show = "asis", fig.align = "default", fig.path = "images/", 
         dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 3.5, fig.env = "figure", 
-        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
+        fig.width = 7, fig.height = 5, fig.env = "figure", fig.cap = NULL, 
+        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 672, out.height = NULL, out.extra = NULL, 
         fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
         aniopts = "controls,loop", warning = FALSE, error = TRUE, 
         message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
         label = "r10", exercise = TRUE, code = c("#The ggstatsplot package", 
-        "library(ggstatsplot)", ""), out.width.px = 576, out.height.px = 336, 
-        params.src = "r10, fig.height = 3.5, exercise=TRUE, exercise.lines = 5", 
+        "library(ggstatsplot)", ""), out.width.px = 672, out.height.px = 480, 
+        params.src = "r10, fig.height = 5, fig.width=7, exercise=TRUE, exercise.lines = 5", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -1837,14 +1812,14 @@ learnr:::store_exercise_cache(structure(list(label = "r11", global_setup = struc
     code = "#Get male baby names for the Top 10 names\n\n", opts = list(
         label = "\"r11\"", exercise = "TRUE", eval = "FALSE", 
         exercise.lines = "6"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#Get male baby names for the Top 10 names", 
-    "babynames_df <- babynames %>% ", "  filter(sex ==\"M\" & name %in% name_pop)"
-    ), chunk_opts = list(label = "r11-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "07_ggplot2_cache/html/", cache.vars = NULL, 
+    error_check = NULL, check = NULL, solution = structure(c("babynames_df <- babynames %>% ", 
+    "  filter(sex ==\"M\" & name %in% name_pop)"), chunk_opts = list(
+        label = "r11-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "07_ggplot2_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1896,16 +1871,15 @@ learnr:::store_exercise_cache(structure(list(label = "r12", global_setup = struc
     include = FALSE)), setup = NULL, chunks = list(list(label = "r12", 
     code = "# Plot\n\n", opts = list(label = "\"r12\"", exercise = "TRUE", 
         exercise.lines = "7"), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("# Plot", 
-    "babynames_df %>%", "  ggplot(aes(x=year, y=n, group=name, color=name)) +", 
-    "  geom_line() +", "  scale_color_viridis(discrete = TRUE) +", 
-    "  ggtitle(\"A spaghetti chart example\") "), chunk_opts = list(
-        label = "r12-solution", echo = FALSE, eval = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "07_ggplot2_cache/html/", cache.vars = NULL, 
+    error_check = NULL, check = NULL, solution = structure(c("babynames_df %>%", 
+    "  ggplot(aes(x=year, y=n, group=name, color=name)) +", "  geom_line() +", 
+    "  scale_color_viridis(discrete = TRUE) +", "  ggtitle(\"A spaghetti chart example\") "
+    ), chunk_opts = list(label = "r12-solution", echo = FALSE, 
+        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
+        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
+        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
+        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
+        cache = 0, cache.path = "07_ggplot2_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -1958,7 +1932,7 @@ learnr:::store_exercise_cache(structure(list(label = "r13", global_setup = struc
     code = "#Split with facet_wrap\nggplot(babynames_df, aes(x=year, y=n, group=name)) +\n  geom_line()", 
     opts = list(label = "\"r13\"", exercise = "TRUE", exercise.lines = "5"), 
     engine = "r")), code_check = NULL, error_check = NULL, check = NULL, 
-    solution = structure(c("#Split with facet_wrap", "ggplot(babynames_df, aes(x=year, y=n, group=name)) +", 
+    solution = structure(c("ggplot(babynames_df, aes(x=year, y=n, group=name)) +", 
     "  geom_line() +", "  facet_wrap(name ~ ., nrow = 2)"), chunk_opts = list(
         label = "r13-solution", echo = FALSE, eval = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -2235,7 +2209,7 @@ learnr:::store_exercise_cache(structure(list(label = "r17", global_setup = struc
     code = "#De-color de bars\nggplot(df_clutter, aes(x=outcome, y=count)) +\n  geom_col()+\n  theme_minimal(base_size = 12)\n\n", 
     opts = list(label = "\"r17\"", exercise = "TRUE", exercise.lines = "6"), 
     engine = "r")), code_check = NULL, error_check = NULL, check = NULL, 
-    solution = structure(c("#De-color de bars", "ggplot(df_clutter, aes(x=outcome, y=count)) +", 
+    solution = structure(c("ggplot(df_clutter, aes(x=outcome, y=count)) +", 
     "  geom_col(color = \"black\", fill = \"white\")+", "  theme_minimal(base_size = 12)+", 
     "  labs(title= \"Members by Sex\") "), chunk_opts = list(
         label = "r17-solution", echo = FALSE, eval = FALSE)), 
@@ -2369,14 +2343,13 @@ learnr:::store_exercise_cache(structure(list(label = "r19", global_setup = struc
     include = FALSE)), setup = NULL, chunks = list(list(label = "r19", 
     code = "#Paste a label\n", opts = list(label = "\"r19\"", 
         exercise = "TRUE", exercise.lines = "2"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Paste a label", 
-    "paste0(df_clutter$outcome, \"\\n\", df_clutter$percent, \"%\")"
-    ), chunk_opts = list(label = "r19-solution", echo = FALSE, 
-        eval = FALSE)), tests = NULL, options = list(eval = FALSE, 
-        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
-        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-        cache = 0, cache.path = "07_ggplot2_cache/html/", cache.vars = NULL, 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("paste0(df_clutter$outcome, \"\\n\", df_clutter$percent, \"%\")", chunk_opts = list(
+        label = "r19-solution", echo = FALSE, eval = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "07_ggplot2_cache/html/", cache.vars = NULL, 
         cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
         cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
         fig.align = "default", fig.path = "images/", dev = "png", 
@@ -2429,9 +2402,8 @@ learnr:::store_exercise_cache(structure(list(label = "r20", global_setup = struc
     code = "#Include text labels inside the bars\nggplot(df_clutter, aes(x=outcome, y=count)) +\n  geom_col(color = \"black\", fill = \"white\")+\n  theme_minimal(base_size = 12)+\n  labs(title= \"Members by Sex\") ", 
     opts = list(label = "\"r20\"", tidy = "FALSE", exercise = "TRUE"), 
     engine = "r")), code_check = NULL, error_check = NULL, check = NULL, 
-    solution = structure(c("#Include text labels inside the bars", 
-    "ggplot(df_clutter, aes(x=outcome, y=count)) +", "  geom_col(color = \"black\", fill = \"white\")+", 
-    "  geom_text(aes(label = paste0(outcome, \"\\n\", percent, \"%\"), ", 
+    solution = structure(c("ggplot(df_clutter, aes(x=outcome, y=count)) +", 
+    "  geom_col(color = \"black\", fill = \"white\")+", "  geom_text(aes(label = paste0(outcome, \"\\n\", percent, \"%\"), ", 
     "                y = count - 100),", "            color=\"black\",", 
     "            size = 3.5)+", "  theme_minimal(base_size = 12)+", 
     "  labs(title= \"Members by Sex\") "), chunk_opts = list(
@@ -2579,7 +2551,7 @@ href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/packa
 <h1 class="title toc-ignore" style="display:none;">Practice R Tutorial
 07</h1>
 <h4 class="author"><em>Edgar Treischl</em></h4>
-<h4 class="date"><em>Last update: 2023-05-10</em></h4>
+<h4 class="date"><em>Last update: 2023-05-11</em></h4>
 </div>
 <!-- end doc-metadata -->
 

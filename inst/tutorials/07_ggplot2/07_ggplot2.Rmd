@@ -105,10 +105,10 @@ return_stats <- function(y) {
 Welcome to tutorial of the [Practice R](https://www.degruyter.com/document/isbn/9783110704969/html?lang=de "Go to the website") book [@treischl_practice_2023]. Practice R is a text book for the social sciences which provides several tutorials supporting students to learn R. Feel free to inspect the tutorials even if you are not familiar with the book, but keep in mind these tutorials are supposed to complement the Practice R book. 
 
 
-Chapter 7 introduced `ggplot2` which gives us plenty of opportunities to visualize data [@ggplot2]. We got in touch with the `ggplot()` function, we applied themes, add color, changed fonts, and we learned many more details about the package. Against this background there are at least two options for a `ggplot2` tutorial: I could ask you to apply steps to create a similar plot. It is my personal believe that it needs a lot of time and experience to get fluent in `ggplot2`, which is why we do not pursue such a heroic aim. Some people document the long process to generated a graph as the artwork by Cédric Scherer underlines. Thus, it needs a lot of time and effort to develop a customized plot. 
+Chapter 7 introduced `ggplot2` which gives us plenty of opportunities to visualize data [@ggplot2]. We got in touch with the `ggplot()` function, we applied themes, add color, changed fonts, and we learned many more details about the package. Against this background there are at least two options for a `ggplot2` tutorial: I could ask you to apply steps to create a similar plot. It is my personal believe that it needs a lot of time and experience to get fluent in `ggplot2`, which is why we do not pursue such a heroic aim. Some people document the long process to generate a graph as the artwork by Cédric Scherer underlines. It is an animation that shows the steps to create a graph. Thus, it needs a lot of time and effort to develop a customized plot. 
 
 `r if (knitr::is_html_output()) '
-[![Artwork by Cédric Scherer](https://thebioengineer.github.io/camcorder/reference/figures/cscherer_coffee_ratings.gif){width="50%"}](https://thebioengineer.github.io/camcorder/)
+[![Artwork by Cédric Scherer](https://thebioengineer.github.io/camcorder/reference/figures/cscherer_coffee_ratings.gif){width="80%"}](https://thebioengineer.github.io/camcorder/)
 '`
 
 
@@ -141,7 +141,7 @@ library(showtext)
 
 ## Order the data
 
-Suppose you created a bar graph to examine cars and their manufacturer (`mpg$manufacturer`). The data is not important, but we need to learn how to order the levels of a categorical variable. As the next console illustrates, the displayed information is difficult to perceive because the bars are all mixed up. Adjust the levels of a factor variable manually or use the `fct_infreq()` function from the `forcats` package to order the data by frequency [@forcats].
+Suppose you created a bar graph to examine cars and their manufacturer (`mpg$manufacturer`). The data is not important, but we need to learn how to order the levels of a categorical variable. As the next console illustrates, the displayed information is difficult to perceive because the bars are all mixed up. Adjust the levels of a factor variable manually or use the `fct_infreq()` function from the `forcats` package to order the data by frequency [@forcats]. To see how we improved the graph, the console show two graphs and I ask you to improve the second one, before we combine them.
 
 ```{r r1, tidy=FALSE, exercise=TRUE}
 #Simple bar graph
@@ -256,8 +256,6 @@ p1 <- ggplot(data, aes(x = group, y = outcome)) +
 p2 <- ggplot(data, aes(x = group, y = outcome)) +
   geom_boxplot()
 
-
-
 p1 + p2
 ```
 
@@ -284,16 +282,11 @@ The `geom_jitter` already improved the graph, what else can we do to fulfill the
 
 ```{r r5, exercise=TRUE, exercise.lines = 7}
 #Estimate sample_size (n) per group
-sample_size <- data |>
-  dplyr::group_by(group) |>
-  dplyr::summarize(num=dplyr::n())
 
-sample_size
 
 ```
 
 ```{r r5-solution, echo=FALSE, eval=FALSE}
-#Estimate sample_size (n) per group
 sample_size <- data |>
   dplyr::group_by(group) |>
   dplyr::summarize(num=dplyr::n())
@@ -303,14 +296,20 @@ sample_size
 
 To include the sample size in the graph, we need to combine the `group` label and the sample size. We can paste text strings together with the `paste` (and `paste0`) function, as the next console illustrates. It returns text strings which we can include in the graph.
 
-```{r r6, exercise=TRUE, exercise.setup = "r5", exercise.lines = 3}
+```{r setupr6, echo=FALSE}
+sample_size <- data |>
+  dplyr::group_by(group) |>
+  dplyr::summarize(num=dplyr::n())
+```
+
+
+```{r r6, exercise=TRUE, exercise.setup = "setupr6", exercise.lines = 3}
 #Concatenate Strings with paste (and paste0)
 
 
 ```
 
 ```{r r6-solution, echo=FALSE, eval=FALSE}
-#Concatenate Strings with paste (and paste0)
 paste(sample_size$group, "has N =", sample_size$num, " observations.")
 ```
 
@@ -318,7 +317,7 @@ paste(sample_size$group, "has N =", sample_size$num, " observations.")
 First, combine both data sets with a `left_join()`. Second, create a new variable to add the text label. Use the `paste` function to paste the text label, but also add a new line (`\n`) to separate the group name and the text to display the sample size (`num`). 
 
 
-```{r r7, exercise=TRUE, exercise.setup = "r5", exercise.lines = 7}
+```{r r7, exercise=TRUE, exercise.setup = "setupr6", exercise.lines = 7}
 #Join data and mutate with text labels for group_N
 
 
@@ -327,7 +326,6 @@ First, combine both data sets with a `left_join()`. Second, create a new variabl
 ```
 
 ```{r r7-solution, echo=FALSE, eval=FALSE}
-#Join data and mutate with text labels for group_N
 data <- data |>
   dplyr::left_join(sample_size) |>
   dplyr::mutate(group_N = paste0(group, "\n", "N=", num))
@@ -352,7 +350,20 @@ return_stats <- function(y) {
 ```
 
 
-```{r r8, tidy=FALSE, exercise=TRUE, exercise.setup = "r7", exercise.lines = 19}
+```{r r8setup, echo=FALSE}
+sample_size <- data |>
+  dplyr::group_by(group) |>
+  dplyr::summarize(num=dplyr::n())
+
+data <- data |>
+  dplyr::left_join(sample_size) |>
+  dplyr::mutate(group_N = paste0(group, "\n", "N=", num))
+
+```
+
+
+
+```{r r8, tidy=FALSE, exercise=TRUE, exercise.setup = "r8setup", exercise.lines = 19}
 #Use the new variable group_N as x
 
 
@@ -425,8 +436,6 @@ ggplot(data, aes(x = group, y = outcome, fill = group))
 ```
 
 ```{r r9-solution, echo=FALSE, eval=FALSE}
-#The see package adds a geom_violindot
-library(see)
 ggplot(data, aes(x = group, y = outcome, fill = group)) +
   geom_violindot(fill_dots = "black", size_dots = 5)+
   scale_fill_material_d(palette = "contrast")
@@ -435,7 +444,7 @@ ggplot(data, aes(x = group, y = outcome, fill = group)) +
 
 Or consider the `ggstatsplot` package: As the result from the `ggbetweenstats()` function shows, the package automatically adds statistical details to the graph. In our case, it combines box and violin plots to compare the outcome *between* the subjects [@ggstatsplot].
 
-```{r r10, fig.height = 3.5, exercise=TRUE, exercise.lines = 5}
+```{r r10, fig.height = 5, fig.width=7, exercise=TRUE, exercise.lines = 5}
 #The ggstatsplot package
 library(ggstatsplot)
 
@@ -443,8 +452,6 @@ library(ggstatsplot)
 
 
 ```{r r10-solution, echo=FALSE, eval=FALSE}
-#The ggstatsplot package
-library(ggstatsplot)
 ggbetweenstats(data, group, outcome)+
   theme_minimal(base_size = 10)
 ```
@@ -471,7 +478,6 @@ To visualize how often these names appear, we need to apply a filter to get only
 ```
 
 ```{r r11-solution, echo=FALSE, eval=FALSE}
-#Get male baby names for the Top 10 names
 babynames_df <- babynames %>% 
   filter(sex =="M" & name %in% name_pop)
 ```
@@ -487,7 +493,6 @@ Next, visualize the data with a line plot (`geom_line`). Use `year` as `x`, `n` 
 ```
 
 ```{r r12-solution, echo=FALSE, eval=FALSE}
-# Plot
 babynames_df %>%
   ggplot(aes(x=year, y=n, group=name, color=name)) +
   geom_line() +
@@ -505,7 +510,6 @@ ggplot(babynames_df, aes(x=year, y=n, group=name)) +
 
 
 ```{r r13-solution, echo=FALSE, eval=FALSE}
-#Split with facet_wrap
 ggplot(babynames_df, aes(x=year, y=n, group=name)) +
   geom_line() +
   facet_wrap(name ~ ., nrow = 2)
@@ -707,7 +711,6 @@ ggplot(df_clutter, aes(x=outcome, y=count)) +
 ```
 
 ```{r r17-solution, echo=FALSE, eval=FALSE}
-#De-color de bars
 ggplot(df_clutter, aes(x=outcome, y=count)) +
   geom_col(color = "black", fill = "white")+
   theme_minimal(base_size = 12)+
@@ -772,7 +775,6 @@ Since the data does not contain text to improve the bar graph, we may use the `p
 ```
 
 ```{r r19-solution, echo=FALSE, eval=FALSE}
-#Paste a label
 paste0(df_clutter$outcome, "\n", df_clutter$percent, "%")
 ```
 
@@ -789,7 +791,6 @@ ggplot(df_clutter, aes(x=outcome, y=count)) +
 ```
 
 ```{r r20-solution, echo=FALSE, eval=FALSE}
-#Include text labels inside the bars
 ggplot(df_clutter, aes(x=outcome, y=count)) +
   geom_col(color = "black", fill = "white")+
   geom_text(aes(label = paste0(outcome, "\n", percent, "%"), 
@@ -809,17 +810,11 @@ I highlighted several books to improve your `ggplot2` and data visualizations sk
 In addition, keep the following functions and packages from Chapter 7 in mind:
 
 - Create a new ggplot (`ggplot`), aesthetic mappings (`aes`), and add a geom_* (e.g., `geom_bar, geom_point, geom_smooth`)
-
 - Add a layer with `+`, start each new function on a new line, don't forget to delete the plus sign if you delete the last line of code
-
 - There are several predefined theme functions (e.g., `theme_bw`, `theme_light`).
-
 - Modify axis, legend, and plot labels (e.g., with `labs`)
-
 - Lay out panels in a grid (e.g., `facet_grid`)
-
 - Discard (or adjust) the legend (e.g., ` theme(legend.position = "none")`)
-
 - Adjust the coordinate system (e.g., `coord_cartesian`)
 
 - Further packages: 
@@ -832,10 +827,10 @@ In addition, keep the following functions and packages from Chapter 7 in mind:
 
 
 
-Finally, a link to download this tutorial as PDF file.
+The link to download this tutorial as PDF file:
 
 ```{r, echo=FALSE, eval=T}
-actionButton("download", "PR Tutorial 02", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial07.pdf')", icon = icon("file-pdf"))
+actionButton("download", "PR Tutorial 07", onclick="window.open('https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial07.pdf')", icon = icon("file-pdf"))
 ```
 
 
