@@ -389,7 +389,7 @@ I introduce the performance package because it gives you a quick overview about 
 
 
 
-```{r r15, exercise=TRUE, eval=FALSE}
+```{r r15, exercise=TRUE, eval=FALSE, fig.height= 7, fig.width=8}
 #Get a quick overview
 
 ```
