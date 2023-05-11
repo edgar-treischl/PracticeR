@@ -264,8 +264,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r1-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Count factor variable
-fct_count(df$marital)</code></pre>
+<pre class="text"><code>fct_count(df$marital)</code></pre>
 </div>
 <p>Or examine the unique levels of a variable with the
 <code>fct_unique()</code> function:</p>
@@ -277,8 +276,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r2-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># How many unique levels do we observe
-fct_unique(df$marital)</code></pre>
+<pre class="text"><code>fct_unique(df$marital)</code></pre>
 </div>
 </div>
 <div id="section-change-the-order-of-levels" class="section level2">
@@ -295,8 +293,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r3-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># fct_infreq: Reorder factor levels by frequency
-f &lt;- fct_infreq(df$relig)
+<pre class="text"><code>f &lt;- fct_infreq(df$relig)
 fct_count(f)</code></pre>
 </div>
 <p>The <code>fct_infreq()</code> sorts them in order of their frequency,
@@ -318,8 +315,7 @@ levels(f)
 <div class="tutorial-exercise-support" data-label="r4-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># fct_inorder: Reorder factor levels by first appearance
-fct_inorder(f)</code></pre>
+<pre class="text"><code>fct_inorder(f)</code></pre>
 </div>
 <p>Can you still remember how to manually relevel? Use the
 <code>fct_relevel()</code> and sort the level <code>Never Married</code>
@@ -333,8 +329,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r5-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Relevel manually
-# f &lt;- fct_relevel(df$marital, c(&quot;Married&quot;, &quot;Never Married&quot;))
+<pre class="text"><code># f &lt;- fct_relevel(df$marital, c(&quot;Married&quot;, &quot;Never Married&quot;))
 f &lt;- fct_relevel(df$marital, &quot;Never Married&quot;, after = 1)
 fct_count(f)</code></pre>
 </div>
@@ -348,8 +343,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r6-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># fct_rev: Reverse order of factor levels
-f &lt;- fct_rev(df$marital)
+<pre class="text"><code>f &lt;- fct_rev(df$marital)
 fct_count(f)</code></pre>
 </div>
 </div>
@@ -370,8 +364,7 @@ data-diagnostics="1" data-startover="1" data-lines="7">
 <div class="tutorial-exercise-support" data-label="r7-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Create a variable with the five largest, rest are others
-df$relig5 &lt;- fct_other(df$relig,
+<pre class="text"><code>df$relig5 &lt;- fct_other(df$relig,
   keep = c(&quot;Protestant&quot;, &quot;Catholic&quot;, &quot;None&quot;, &quot;Jewish&quot;)
 )
 
@@ -394,8 +387,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r8-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Lump uncommon factor together levels into &quot;other&quot;
-f &lt;- fct_lump_n(df$relig, n = 5, other_level = &quot;Further groups&quot;)
+<pre class="text"><code>f &lt;- fct_lump_n(df$relig, n = 5, other_level = &quot;Further groups&quot;)
 fct_count(f)</code></pre>
 </div>
 <p>Next, we are going to prepare the educational background. The
@@ -409,8 +401,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r9-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Count degrees
-fct_count(df$degree)</code></pre>
+<pre class="text"><code>fct_count(df$degree)</code></pre>
 </div>
 <p>We already used the <code>fct_recode()</code> function to change
 factor levels by hand. The lowest category of <code>degree</code> is
@@ -425,8 +416,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r10-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># fct_recode: Change factor levels by hand
-f &lt;- fct_recode(df$degree, `Less than high school` = &quot;Lt High School&quot;)
+<pre class="text"><code>f &lt;- fct_recode(df$degree, `Less than high school` = &quot;Lt High School&quot;)
 fct_count(f)</code></pre>
 </div>
 <p>Suppose we want to control only if participants have a high
@@ -443,8 +433,7 @@ data-diagnostics="1" data-startover="1" data-lines="10">
 <div class="tutorial-exercise-support" data-label="r11-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Collapse factor variable
-df$edu_dummy &lt;- fct_collapse(df$degree,
+<pre class="text"><code>df$edu_dummy &lt;- fct_collapse(df$degree,
   low = c(
     &quot;Lt High School&quot;,
     &quot;High School&quot;,
@@ -485,8 +474,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r12-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Drop unused levels
-fct_drop(religion)</code></pre>
+<pre class="text"><code>fct_drop(religion)</code></pre>
 </div>
 <p>Furthermore, I included missing values on purpose and the latter may
 have an impact on our analysis. We can make them explicit and include
@@ -499,8 +487,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r13-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Make NAs explicit
-fct_na_value_to_level(religion, level = &quot;Missing&quot;)</code></pre>
+<pre class="text"><code>fct_na_value_to_level(religion, level = &quot;Missing&quot;)</code></pre>
 </div>
 </div>
 <div id="section-further-steps" class="section level2">
@@ -540,8 +527,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r14-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Make em longer
-pivot_longer(table4a,
+<pre class="text"><code>pivot_longer(table4a,
   cols = 2:3, names_to = &quot;year&quot;,
   values_to = &quot;cases&quot;
 )</code></pre>
@@ -569,8 +555,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r15-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Make it wider
-pivot_wider(table2,
+<pre class="text"><code>pivot_wider(table2,
   names_from = type,
   values_from = count
 )</code></pre>
@@ -618,8 +603,7 @@ data-diagnostics="1" data-startover="1" data-lines="5">
 <div class="tutorial-exercise-support" data-label="r16-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Mutating joins
-band_members |&gt; inner_join(band_instruments, by = &quot;name&quot;)
+<pre class="text"><code>band_members |&gt; inner_join(band_instruments, by = &quot;name&quot;)
 band_members |&gt; full_join(band_instruments, by = &quot;name&quot;)
 
 # Further joins:
@@ -646,9 +630,7 @@ library(naniar)</code></pre>
 <div class="tutorial-exercise-support" data-label="r17-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Visualize the amount of missing values
-library(naniar)
-gg_miss_var(df, show_pct = TRUE)</code></pre>
+<pre class="text"><code>gg_miss_var(df, show_pct = TRUE)</code></pre>
 </div>
 </div>
 <div id="section-summary" class="section level2">
@@ -783,26 +765,25 @@ learnr:::store_exercise_cache(structure(list(label = "r1", global_setup = struct
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r1", code = "#Count factor variable\n", 
         opts = list(label = "\"r1\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Count factor variable", 
-    "fct_count(df$marital) "), chunk_opts = list(label = "r1-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "05_Forcats_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r1", exercise = TRUE, code = c("#Count factor variable", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("fct_count(df$marital) ", chunk_opts = list(
+        label = "r1-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "05_Forcats_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r1", exercise = TRUE, code = c("#Count factor variable", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r1, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -831,26 +812,25 @@ learnr:::store_exercise_cache(structure(list(label = "r2", global_setup = struct
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r2", code = "#How many unique levels do we observe\n", 
         opts = list(label = "\"r2\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#How many unique levels do we observe", 
-    "fct_unique(df$marital)"), chunk_opts = list(label = "r2-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "05_Forcats_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r2", exercise = TRUE, code = c("#How many unique levels do we observe", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("fct_unique(df$marital)", chunk_opts = list(
+        label = "r2-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "05_Forcats_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r2", exercise = TRUE, code = c("#How many unique levels do we observe", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r2, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -879,26 +859,26 @@ learnr:::store_exercise_cache(structure(list(label = "r3", global_setup = struct
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r3", code = "#fct_infreq: Reorder factor levels by frequency \n", 
         opts = list(label = "\"r3\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#fct_infreq: Reorder factor levels by frequency ", 
-    "f <- fct_infreq(df$relig)", "fct_count(f) "), chunk_opts = list(
-        label = "r3-solution", eval = FALSE, echo = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "05_Forcats_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "images/", dev = "png", 
-        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
-        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
-        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
-        out.height = NULL, out.extra = NULL, fig.retina = 2, 
-        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
-        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
-        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
-        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
-        exercise.lines = 5, label = "r3", exercise = TRUE, code = c("#fct_infreq: Reorder factor levels by frequency ", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("f <- fct_infreq(df$relig)", 
+    "fct_count(f) "), chunk_opts = list(label = "r3-solution", 
+        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "05_Forcats_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "images/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
+        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
+        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
+        label = "r3", exercise = TRUE, code = c("#fct_infreq: Reorder factor levels by frequency ", 
         ""), out.width.px = 576, out.height.px = 384, params.src = " r3, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -928,26 +908,25 @@ learnr:::store_exercise_cache(structure(list(label = "r4", global_setup = struct
     setup = NULL, chunks = list(list(label = "r4", code = "#Example factor\nf <- factor(c(\"b\", \"a\", \"c\"))\nlevels(f)\n\n#fct_inorder: Reorder factor levels by first appearance  \n", 
         opts = list(label = "\"r4\"", exercise = "TRUE", exercise.lines = "7"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#fct_inorder: Reorder factor levels by first appearance  ", 
-    "fct_inorder(f)"), chunk_opts = list(label = "r4-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "05_Forcats_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 7, 
-        label = "r4", exercise = TRUE, code = c("#Example factor", 
+    check = NULL, solution = structure("fct_inorder(f)", chunk_opts = list(
+        label = "r4-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "05_Forcats_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 7, label = "r4", exercise = TRUE, code = c("#Example factor", 
         "f <- factor(c(\"b\", \"a\", \"c\"))", "levels(f)", "", 
         "#fct_inorder: Reorder factor levels by first appearance  ", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r4, exercise=TRUE, exercise.lines = 7", 
@@ -978,8 +957,7 @@ learnr:::store_exercise_cache(structure(list(label = "r5", global_setup = struct
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r5", code = "# Relevel manually\n", 
         opts = list(label = "\"r5\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("# Relevel manually", 
-    "#f <- fct_relevel(df$marital, c(\"Married\", \"Never Married\"))", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#f <- fct_relevel(df$marital, c(\"Married\", \"Never Married\"))", 
     "f <- fct_relevel(df$marital, \"Never Married\", after = 1)", 
     "fct_count(f)"), chunk_opts = list(label = "r5-solution", 
         eval = FALSE, echo = FALSE)), tests = NULL, options = list(
@@ -1028,26 +1006,26 @@ learnr:::store_exercise_cache(structure(list(label = "r6", global_setup = struct
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r6", code = "#fct_rev: Reverse order of factor levels\n\n", 
         opts = list(label = "\"r6\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#fct_rev: Reverse order of factor levels", 
-    "f <- fct_rev(df$marital)", "fct_count(f)"), chunk_opts = list(
-        label = "r6-solution", eval = FALSE, echo = FALSE)), 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
-        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "05_Forcats_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "images/", dev = "png", 
-        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
-        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
-        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
-        out.height = NULL, out.extra = NULL, fig.retina = 2, 
-        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
-        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
-        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
-        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
-        exercise.lines = 5, label = "r6", exercise = TRUE, code = c("#fct_rev: Reverse order of factor levels", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("f <- fct_rev(df$marital)", 
+    "fct_count(f)"), chunk_opts = list(label = "r6-solution", 
+        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "05_Forcats_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "images/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
+        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
+        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
+        label = "r6", exercise = TRUE, code = c("#fct_rev: Reverse order of factor levels", 
         "", ""), out.width.px = 576, out.height.px = 384, params.src = "r6, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1077,8 +1055,8 @@ learnr:::store_exercise_cache(structure(list(label = "r7", global_setup = struct
     setup = NULL, chunks = list(list(label = "r7", code = "#Create a variable with the five largest, rest are others\n\n\n", 
         opts = list(label = "\"r7\"", exercise = "TRUE", exercise.lines = "7"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Create a variable with the five largest, rest are others", 
-    "df$relig5 <- fct_other(df$relig,", "                       keep = c(\"Protestant\", \"Catholic\", \"None\", \"Jewish\")", 
+    check = NULL, solution = structure(c("df$relig5 <- fct_other(df$relig,", 
+    "                       keep = c(\"Protestant\", \"Catholic\", \"None\", \"Jewish\")", 
     ")", "", "fct_count(df$relig5)"), chunk_opts = list(label = "r7-solution", 
         eval = FALSE, echo = FALSE)), tests = NULL, options = list(
         eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
@@ -1127,8 +1105,7 @@ learnr:::store_exercise_cache(structure(list(label = "r8", global_setup = struct
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r8", code = "#Lump uncommon factor together levels into \"other\"\n\n", 
         opts = list(label = "\"r8\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Lump uncommon factor together levels into \"other\"", 
-    "f <- fct_lump_n(df$relig, n = 5, other_level = \"Further groups\") ", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("f <- fct_lump_n(df$relig, n = 5, other_level = \"Further groups\") ", 
     "fct_count(f)"), chunk_opts = list(label = "r8-solution", 
         eval = FALSE, echo = FALSE)), tests = NULL, options = list(
         eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
@@ -1176,26 +1153,25 @@ learnr:::store_exercise_cache(structure(list(label = "r9", global_setup = struct
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r9", code = "#Count degrees\n", 
         opts = list(label = "\"r9\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Count degrees", 
-    "fct_count(df$degree)"), chunk_opts = list(label = "r9-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "05_Forcats_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r9", exercise = TRUE, code = c("#Count degrees", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("fct_count(df$degree)", chunk_opts = list(
+        label = "r9-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "05_Forcats_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r9", exercise = TRUE, code = c("#Count degrees", 
         ""), out.width.px = 576, out.height.px = 384, params.src = "r9, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1224,8 +1200,7 @@ learnr:::store_exercise_cache(structure(list(label = "r10", global_setup = struc
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r10", code = "#fct_recode: Change factor levels by hand\n\n", 
         opts = list(label = "\"r10\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#fct_recode: Change factor levels by hand", 
-    "f <- fct_recode(df$degree, `Less than high school` = \"Lt High School\")", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("f <- fct_recode(df$degree, `Less than high school` = \"Lt High School\")", 
     "fct_count(f)"), chunk_opts = list(label = "r10-solution", 
         eval = FALSE, echo = FALSE)), tests = NULL, options = list(
         eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
@@ -1274,10 +1249,9 @@ learnr:::store_exercise_cache(structure(list(label = "r11", global_setup = struc
     setup = NULL, chunks = list(list(label = "r11", code = "#Collapse factor variable\n\n\n", 
         opts = list(label = "\"r11\"", exercise = "TRUE", exercise.lines = "10"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Collapse factor variable", 
-    "df$edu_dummy <- fct_collapse(df$degree, ", "                  low = c(\"Lt High School\",", 
-    "                            \"High School\",", "                            \"Junior College\"),", 
-    "                  high = c(\"Bachelor\", \"Graduate\") ", 
+    check = NULL, solution = structure(c("df$edu_dummy <- fct_collapse(df$degree, ", 
+    "                  low = c(\"Lt High School\",", "                            \"High School\",", 
+    "                            \"Junior College\"),", "                  high = c(\"Bachelor\", \"Graduate\") ", 
     "                  )", "", "fct_count(df$edu_dummy)"), chunk_opts = list(
         label = "r11-solution", eval = FALSE, echo = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -1378,26 +1352,25 @@ learnr:::store_exercise_cache(structure(list(label = "r12", global_setup = struc
         list(label = "r12", code = "#Drop unused levels\n", opts = list(
             label = "\"r12\"", exercise = "TRUE", exercise.setup = "\"r12a\""), 
             engine = "r")), code_check = NULL, error_check = NULL, 
-    check = NULL, solution = structure(c("#Drop unused levels", 
-    "fct_drop(religion)"), chunk_opts = list(label = "r12-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "05_Forcats_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r12", exercise = TRUE, exercise.setup = "r12a", 
+    check = NULL, solution = structure("fct_drop(religion)", chunk_opts = list(
+        label = "r12-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "05_Forcats_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r12", exercise = TRUE, exercise.setup = "r12a", 
         code = c("#Drop unused levels", ""), out.width.px = 576, 
         out.height.px = 384, params.src = "r12, exercise=TRUE, exercise.setup = \"r12a\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
@@ -1431,8 +1404,7 @@ learnr:::store_exercise_cache(structure(list(label = "r13", global_setup = struc
         list(label = "r13", code = "#Make NAs explicit\n\n", 
             opts = list(label = "\"r13\"", exercise = "TRUE", 
                 exercise.setup = "\"r12a\""), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Make NAs explicit", 
-    "fct_na_value_to_level(religion, level=\"Missing\")"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("fct_na_value_to_level(religion, level=\"Missing\")", chunk_opts = list(
         label = "r13-solution", eval = FALSE, echo = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1480,8 +1452,7 @@ learnr:::store_exercise_cache(structure(list(label = "r14", global_setup = struc
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r14", code = "#Make em longer\n\n\n", 
         opts = list(label = "\"r14\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Make em longer", 
-    "pivot_longer(table4a, cols = 2:3, names_to =\"year\",", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("pivot_longer(table4a, cols = 2:3, names_to =\"year\",", 
     "             values_to = \"cases\")"), chunk_opts = list(
         label = "r14-solution", eval = FALSE, echo = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -1529,27 +1500,26 @@ learnr:::store_exercise_cache(structure(list(label = "r15", global_setup = struc
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r15", code = "#Make it wider\n\n\n", 
         opts = list(label = "\"r15\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Make it wider", 
-    "pivot_wider(table2, ", "            names_from = type,", 
-    "            values_from = count)"), chunk_opts = list(label = "r15-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "05_Forcats_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 5, 
-        label = "r15", exercise = TRUE, code = c("#Make it wider", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("pivot_wider(table2, ", 
+    "            names_from = type,", "            values_from = count)"
+    ), chunk_opts = list(label = "r15-solution", eval = FALSE, 
+        echo = FALSE)), tests = NULL, options = list(eval = FALSE, 
+        echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
+        collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
+        size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
+        cache = 0, cache.path = "05_Forcats_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 5, label = "r15", exercise = TRUE, code = c("#Make it wider", 
         "", "", ""), out.width.px = 576, out.height.px = 384, 
         params.src = "r15, exercise=TRUE", fig.num = 0, exercise.df_print = "paged", 
         exercise.checker = "NULL"), engine = "r", version = "4"), class = c("r", 
@@ -1578,8 +1548,7 @@ learnr:::store_exercise_cache(structure(list(label = "r16", global_setup = struc
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r16", code = "#Mutating joins\n\n\n", 
         opts = list(label = "\"r16\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Mutating joins", 
-    "band_members |> inner_join(band_instruments, by = \"name\")", 
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("band_members |> inner_join(band_instruments, by = \"name\")", 
     "band_members |> full_join(band_instruments, by = \"name\")", 
     "", "#Further joins:", "#band_members |> left_join(band_instruments)", 
     "#band_members |> right_join(band_instruments)"), chunk_opts = list(
@@ -1629,8 +1598,7 @@ learnr:::store_exercise_cache(structure(list(label = "r17", global_setup = struc
 "head(df)", ""), chunk_opts = list(label = "setup", include = FALSE)), 
     setup = NULL, chunks = list(list(label = "r17", code = "#Visualize the amount of missing values\nlibrary(naniar)\n\n", 
         opts = list(label = "\"r17\"", exercise = "TRUE"), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = structure(c("#Visualize the amount of missing values", 
-    "library(naniar)", "gg_miss_var(df, show_pct = TRUE)"), chunk_opts = list(
+    code_check = NULL, error_check = NULL, check = NULL, solution = structure("gg_miss_var(df, show_pct = TRUE)", chunk_opts = list(
         label = "r17-solution", eval = FALSE, echo = FALSE)), 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
         tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
@@ -1728,7 +1696,7 @@ href="https://CRAN.R-project.org/package=haven">https://CRAN.R-project.org/packa
 <h1 class="title toc-ignore" style="display:none;">Practice R Tutorial
 05</h1>
 <h4 class="author"><em>Edgar Treischl</em></h4>
-<h4 class="date"><em>Last update: 2023-05-08</em></h4>
+<h4 class="date"><em>Last update: 2023-05-11</em></h4>
 </div>
 <!-- end doc-metadata -->
 

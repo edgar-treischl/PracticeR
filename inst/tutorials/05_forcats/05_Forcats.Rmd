@@ -114,7 +114,6 @@ Suppose we need to prepare several categorical variables, such as religion  (`re
 ```
 
 ```{r r1-solution, eval=FALSE, echo=FALSE}
-#Count factor variable
 fct_count(df$marital) 
 ```
 
@@ -126,7 +125,6 @@ Or examine the unique levels of a variable with the `fct_unique()` function:
 ```
 
 ```{r r2-solution, eval=FALSE, echo=FALSE}
-#How many unique levels do we observe
 fct_unique(df$marital)
 ```
 
@@ -142,7 +140,6 @@ The variable religion (`relig`) has 13 different levels. Let's assume we want to
 ```
 
 ```{r r3-solution, eval=FALSE, echo=FALSE}
-#fct_infreq: Reorder factor levels by frequency 
 f <- fct_infreq(df$relig)
 fct_count(f) 
 ```
@@ -161,7 +158,6 @@ levels(f)
 ```
 
 ```{r r4-solution, eval=FALSE, echo=FALSE}
-#fct_inorder: Reorder factor levels by first appearance  
 fct_inorder(f)
 ```
 
@@ -175,7 +171,6 @@ Can you still remember how to manually relevel? Use the `fct_relevel()` and sort
 ```
 
 ```{r r5-solution, eval=FALSE, echo=FALSE}
-# Relevel manually
 #f <- fct_relevel(df$marital, c("Married", "Never Married"))
 f <- fct_relevel(df$marital, "Never Married", after = 1)
 fct_count(f)
@@ -191,7 +186,6 @@ Sometimes we need to turn the order around. Reverse the order of the levels with
 ```
 
 ```{r r6-solution, eval=FALSE, echo=FALSE}
-#fct_rev: Reverse order of factor levels
 f <- fct_rev(df$marital)
 fct_count(f)
 ```
@@ -210,7 +204,6 @@ The `relig` variable has many levels and even has a category named `other`, sinc
 ```
 
 ```{r r7-solution, eval=FALSE, echo=FALSE}
-#Create a variable with the five largest, rest are others
 df$relig5 <- fct_other(df$relig,
                        keep = c("Protestant", "Catholic", "None", "Jewish")
 )
@@ -228,7 +221,6 @@ The `fct_other()` function includes in the code the used levels. If we are uncon
 ```
 
 ```{r r8-solution, eval=FALSE, echo=FALSE}
-#Lump uncommon factor together levels into "other"
 f <- fct_lump_n(df$relig, n = 5, other_level = "Further groups") 
 fct_count(f)
 ```
@@ -244,7 +236,6 @@ Next, we are going to prepare the educational background. The variable `degree` 
 ```
 
 ```{r r9-solution, eval=FALSE, echo=FALSE}
-#Count degrees
 fct_count(df$degree)
 ```
 
@@ -259,7 +250,6 @@ We already used the `fct_recode()` function to change factor levels by hand. The
 ```
 
 ```{r r10-solution, eval=FALSE, echo=FALSE}
-#fct_recode: Change factor levels by hand
 f <- fct_recode(df$degree, `Less than high school` = "Lt High School")
 fct_count(f)
 ```
@@ -277,7 +267,6 @@ Suppose we want to control only if participants have a high educational backgrou
 
 
 ```{r r11-solution, eval=FALSE, echo=FALSE}
-#Collapse factor variable
 df$edu_dummy <- fct_collapse(df$degree, 
                   low = c("Lt High School",
                             "High School",
@@ -314,7 +303,6 @@ Did you notice that the variable has a level for `Catholic` even though we do no
 ```
 
 ```{r r12-solution, eval=FALSE, echo=FALSE}
-#Drop unused levels
 fct_drop(religion)
 ```
 
@@ -327,7 +315,6 @@ Furthermore, I included missing values on purpose and the latter may have an imp
 ```
 
 ```{r r13-solution, eval=FALSE, echo=FALSE}
-#Make NAs explicit
 fct_na_value_to_level(religion, level="Missing")
 ```
 
@@ -355,7 +342,6 @@ Use the `pivot_longer()` function to transform the data. The long data should ha
 ```
 
 ```{r r14-solution, eval=FALSE, echo=FALSE}
-#Make em longer
 pivot_longer(table4a, cols = 2:3, names_to ="year",
              values_to = "cases")
 ```
@@ -379,7 +365,6 @@ Keep in mind that we need to provide *where* the names (`names_from`) and the va
 ```
 
 ```{r r15-solution, eval=FALSE, echo=FALSE}
-#Make it wider
 pivot_wider(table2, 
             names_from = type,
             values_from = count)
@@ -413,7 +398,6 @@ Use one of the `join` function (e.g., `inner_join`, `full_join`) to combine the 
 
 
 ```{r r16-solution, eval=FALSE, echo=FALSE}
-#Mutating joins
 band_members |> inner_join(band_instruments, by = "name")
 band_members |> full_join(band_instruments, by = "name")
 
@@ -437,8 +421,6 @@ library(naniar)
 ```
 
 ```{r r17-solution, eval=FALSE, echo=FALSE}
-#Visualize the amount of missing values
-library(naniar)
 gg_miss_var(df, show_pct = TRUE)
 ```
 
