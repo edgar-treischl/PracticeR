@@ -282,15 +282,7 @@ library(gt)</code></pre>
 <div class="tutorial-exercise-support" data-label="r2-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># Create table output
-penguins_table &lt;- penguins |&gt;
-  group_by(species) |&gt;
-  drop_na() |&gt;
-  summarise(across(bill_length_mm:flipper_length_mm, mean))
-
-# Create a gt table
-library(gt)
-gt_tbl &lt;- gt(penguins_table)
+<pre class="text"><code>gt_tbl &lt;- gt(penguins_table)
 gt_tbl</code></pre>
 </div>
 <p>The package has functions and options to improve the default result.
@@ -474,20 +466,7 @@ ___</code></pre>
 <div class="tutorial-exercise-support" data-label="r9-solution"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="5">
-<pre class="text"><code># The models
-m1 &lt;- lm(body_mass_g ~ bill_length_mm,
-  data = penguins
-)
-m2 &lt;- lm(body_mass_g ~ bill_length_mm + flipper_length_mm,
-  data = penguins
-)
-m3 &lt;- lm(body_mass_g ~ bill_length_mm + flipper_length_mm + sex,
-  data = penguins
-)
-
-# The minimal code
-library(huxtable)
-huxreg(m1, m2, m3)</code></pre>
+<pre class="text"><code>huxreg(m1, m2, m3)</code></pre>
 </div>
 <p>In the second step, I outlined that we can omit
 coefficients(<code>omit_coefs</code>), adjust the reported
@@ -714,27 +693,26 @@ Quarto. Click on the Quarto logo to visit the website.</p>
 <p>Keep the following R packages, functions, and key insights from
 Chapter 8 in mind:</p>
 <ul>
-<li><p>Create many different documents with <code>rmarkdown</code> and
-adjust the document in the meta section (YAML header)</p></li>
-<li><p>Pandoc runs in the background, converts the file and uses, for
-example, Latex in case of a PDF file</p></li>
-<li><p>Adjust code via chunk-options (e.g., <code>eval</code>,
-<code>echo</code>, <code>warning</code>, <code>message</code>)</p></li>
-<li><p>Format text with Markdown and RStudio’s visual markdown editing
-mode</p></li>
-<li><p>Start using a citation manager (e.g., Zotero)</p></li>
-<li><p>Create table with, for example, the <code>flextable</code>, the
-<code>modelsummary</code>, and the <code>stargazer</code>
-package</p></li>
-<li><p>Create a huxtable to display model output
-(<code>huxtable::huxreg</code>)</p></li>
-<li><p>Read R code from a file, a connection or expressions
-(<code>source</code>)</p></li>
+<li>Create many different documents with <code>rmarkdown</code> and
+adjust the document in the meta section (YAML header)</li>
+<li>Pandoc runs in the background, converts the file and uses, for
+example, Latex in case of a PDF file</li>
+<li>Adjust code via chunk-options (e.g., <code>eval</code>,
+<code>echo</code>, <code>warning</code>, <code>message</code>)</li>
+<li>Format text with Markdown and RStudio’s visual markdown editing
+mode</li>
+<li>Start using a citation manager (e.g., Zotero)</li>
+<li>Create table with, for example, the <code>flextable</code>, the
+<code>modelsummary</code>, and the <code>stargazer</code> package</li>
+<li>Create a huxtable to display model output
+(<code>huxtable::huxreg</code>)</li>
+<li>Read R code from a file, a connection or expressions
+(<code>source</code>)</li>
 </ul>
 <p>Finally, a link to download this tutorial as PDF file.</p>
 <button id="download" type="button" class="btn btn-default action-button" onclick="window.open(&#39;https://github.com/edgar-treischl/Scripts_PracticeR/raw/main/tutorials/PracticeR_Tutorial08.pdf&#39;)">
 <i class="far fa-file-pdf" role="presentation" aria-label="file-pdf icon"></i>
-PR Tutorial 08
+PR Tutorial 02
 </button>
 </div>
 <div id="section-references" class="section level2">
@@ -876,10 +854,8 @@ learnr:::store_exercise_cache(structure(list(label = "r2", global_setup = struct
     code = "#Create table output\npenguins_table <- penguins |> \n  group_by(species)|>\n  drop_na()|>\n  summarise(across(bill_length_mm:flipper_length_mm, mean))\n\n#Create a gt table\nlibrary(gt)\n", 
     opts = list(label = "\"r2\"", exercise = "TRUE", exercise.lines = "12"), 
     engine = "r")), code_check = NULL, error_check = NULL, check = NULL, 
-    solution = structure(c("#Create table output", "penguins_table <- penguins |> ", 
-    "  group_by(species)|>", "  drop_na()|>", "  summarise(across(bill_length_mm:flipper_length_mm, mean))", 
-    "", "#Create a gt table", "library(gt)", "gt_tbl <- gt(penguins_table)", 
-    "gt_tbl"), chunk_opts = list(label = "r2-solution", eval = FALSE, 
+    solution = structure(c("gt_tbl <- gt(penguins_table)", "gt_tbl"
+    ), chunk_opts = list(label = "r2-solution", eval = FALSE, 
         echo = FALSE)), tests = NULL, options = list(eval = FALSE, 
         echo = TRUE, results = "markup", tidy = "styler", tidy.opts = NULL, 
         collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
@@ -1274,30 +1250,25 @@ learnr:::store_exercise_cache(structure(list(label = "r9", global_setup = struct
     code = "#The models\nm1 <- lm(body_mass_g ~ bill_length_mm, \n         data = penguins)\nm2 <- lm(body_mass_g ~ bill_length_mm + flipper_length_mm, \n         data = penguins)\nm3 <- lm(body_mass_g ~ bill_length_mm + flipper_length_mm + sex, \n         data = penguins)\n\n#The minimal code\nlibrary(huxtable)\n___", 
     opts = list(label = "\"r9\"", exercise = "TRUE", exercise.lines = "15", 
         exercise.blanks = "\"___\""), engine = "r")), code_check = NULL, 
-    error_check = NULL, check = NULL, solution = structure(c("#The models", 
-    "m1 <- lm(body_mass_g ~ bill_length_mm, ", "         data = penguins)", 
-    "m2 <- lm(body_mass_g ~ bill_length_mm + flipper_length_mm, ", 
-    "         data = penguins)", "m3 <- lm(body_mass_g ~ bill_length_mm + flipper_length_mm + sex, ", 
-    "         data = penguins)", "", "#The minimal code", "library(huxtable)", 
-    "huxreg(m1, m2, m3)"), chunk_opts = list(label = "r9-solution", 
-        eval = FALSE, echo = FALSE)), tests = NULL, options = list(
-        eval = FALSE, echo = TRUE, results = "markup", tidy = "styler", 
-        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
-        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
-        strip.white = TRUE, cache = 0, cache.path = "08_Tables_cache/html/", 
-        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
-        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
-        fig.show = "asis", fig.align = "default", fig.path = "images/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-        fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 576, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = FALSE, error = TRUE, 
-        message = FALSE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, exercise.eval = FALSE, exercise.lines = 15, 
-        label = "r9", exercise = TRUE, exercise.blanks = "___", 
+    error_check = NULL, check = NULL, solution = structure("huxreg(m1, m2, m3)", chunk_opts = list(
+        label = "r9-solution", eval = FALSE, echo = FALSE)), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = "styler", tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "08_Tables_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "images/", dev = "png", 
+        dev.args = NULL, dpi = 192, fig.ext = "png", fig.width = 6, 
+        fig.height = 4, fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 576, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = FALSE, error = TRUE, message = FALSE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, max.print = 1000, exercise.eval = FALSE, 
+        exercise.lines = 15, label = "r9", exercise = TRUE, exercise.blanks = "___", 
         code = c("#The models", "m1 <- lm(body_mass_g ~ bill_length_mm, ", 
         "         data = penguins)", "m2 <- lm(body_mass_g ~ bill_length_mm + flipper_length_mm, ", 
         "         data = penguins)", "m3 <- lm(body_mass_g ~ bill_length_mm + flipper_length_mm + sex, ", 
@@ -1629,7 +1600,7 @@ href="https://CRAN.R-project.org/package=kableExtra">https://CRAN.R-project.org/
 <h1 class="title toc-ignore" style="display:none;">Practice R Tutorial
 08</h1>
 <h4 class="author"><em>Edgar Treischl</em></h4>
-<h4 class="date"><em>Last update: 2023-05-07</em></h4>
+<h4 class="date"><em>Last update: 2023-05-11</em></h4>
 </div>
 <!-- end doc-metadata -->
 

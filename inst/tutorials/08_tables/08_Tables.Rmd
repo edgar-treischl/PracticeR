@@ -120,14 +120,6 @@ library(gt)
 ```
 
 ```{r r2-solution, eval=FALSE, echo=FALSE}
-#Create table output
-penguins_table <- penguins |> 
-  group_by(species)|>
-  drop_na()|>
-  summarise(across(bill_length_mm:flipper_length_mm, mean))
-
-#Create a gt table
-library(gt)
 gt_tbl <- gt(penguins_table)
 gt_tbl
 ```
@@ -259,16 +251,6 @@ ___
 ```
 
 ```{r r9-solution, eval=FALSE, echo=FALSE}
-#The models
-m1 <- lm(body_mass_g ~ bill_length_mm, 
-         data = penguins)
-m2 <- lm(body_mass_g ~ bill_length_mm + flipper_length_mm, 
-         data = penguins)
-m3 <- lm(body_mass_g ~ bill_length_mm + flipper_length_mm + sex, 
-         data = penguins)
-
-#The minimal code
-library(huxtable)
 huxreg(m1, m2, m3)
 ```
 
@@ -471,19 +453,12 @@ Thus, also consider Quarto if you start to create documents on a regular basis, 
 Keep the following R packages, functions, and key insights from Chapter 8 in mind:
 
 - Create many different documents with `rmarkdown` and adjust the document in the meta section (YAML header)
-
 - Pandoc runs in the background, converts the file and uses, for example, Latex in case of a PDF file
-
 - Adjust code via chunk-options (e.g., `eval`, `echo`, `warning`, `message`)
-
 - Format text with Markdown and RStudio's visual markdown editing mode
-
 - Start using a citation manager (e.g., Zotero)
-
 - Create table with, for example, the `flextable`, the `modelsummary`, and the `stargazer` package 
-
 - Create a huxtable to display model output (`huxtable::huxreg`)
-
 - Read R code from a file, a connection or expressions (`source`)
 
 

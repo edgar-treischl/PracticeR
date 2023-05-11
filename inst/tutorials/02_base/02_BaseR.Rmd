@@ -8,8 +8,7 @@ output:
     theme: flatly
 bibliography: PracticeR_FINAL.bib
 description: >
-  Recapture the basics about base R and get in touch with common and cryptic 
-  error messages.
+  Get in touch with common and cryptic error messages from base R.
    
 runtime: shiny_prerendered
 ---
